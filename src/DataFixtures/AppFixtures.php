@@ -39,7 +39,7 @@ class AppFixtures extends Fixture
             $user->setLastName($faker->lastName);
             $user->setFirstName($faker->firstNameMale);
             $user->setBio($faker->catchphrase);
-            $user->setAvatar($faker->imageUrl);
+            $user->setAvatar($faker->imageUrl(200,200));
             $user->setEmail($faker->email);
             $user->setAddress($faker->streetAddress);
             $user->setZipCode($faker->postcode);
@@ -61,8 +61,8 @@ class AppFixtures extends Fixture
                 $game = new Game();
 
                 $game->setName('jeu_num_'.$j.$i);
-                $game->setImage($faker->imageUrl());
-                $game->setThumbnail($faker->imageUrl(300,225));
+                $game->setImage($faker->imageUrl(400,300));
+                $game->setThumbnail($faker->imageUrl(200,150));
                 $game->setTheme($faker->sentence(12, true));
                 $game->setShortDescription($faker->sentence(24, true));
                 $game->setDescription($faker->paragraph(6, true));
