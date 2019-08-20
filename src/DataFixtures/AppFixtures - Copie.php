@@ -9,16 +9,11 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Faker\Factory;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component;
 
 class AppFixtures extends Fixture
 
-{
-    /**
-     * @var UserPasswordEncoderInterface
-     */
-   private $encoder;
+{   private $encoder;
 
      public function __construct(UserPasswordEncoderInterface $encoder)
      {
@@ -34,8 +29,7 @@ class AppFixtures extends Fixture
         {
             $user = new User();
             $user->setUsername($faker->userName);
-            $username = $user->getUsername();
-            $user->setPassword($this->encoder->encodePassword($user,$username));
+            $user->setPassword($this->encoder->encodePassword($faker->password));
             $user->setLastName($faker->lastName);
             $user->setFirstName($faker->firstNameMale);
             $user->setBio($faker->catchphrase);
