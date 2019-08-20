@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ludo | Admin | Gestion des jeux{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="container">
+    <h1>Espace d'administration des jeux</h1>
+{#
+    <h2>Bienvenue {{ app.user.name }}</h2>
+#}
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th colspan="14"><a href="{{ path('add_game') }}" class="btn btn-success">Ajouter un jeu</a></th>
+        </tr>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Image</th>
+                <th>Vignette</th>
+                <th>Thème</th>
+                <th>Description courte</th>
+                <th>Description</th>
+                <th>Nb joueurs minimum</th>
+                <th>Nb joueurs maximum</th>
+                <th>Durée</th>
+                <th>Age minimum</th>
+                <th>Catégorie</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for game in games %}
+                <tr>
+                    <th>{{ game.id }}</th>
+                    <td>{{ game.name }}</td>
+                    <td><img src="{{ game.image }}" alt="Image du jeu {{ game.name }}"></td>
+                    <td><img src="{{ game.thumbnail }}" alt="Vignette du jeu {{ game.name }}"></td>
+                    <td>{{ game.theme }}</td>
+                    <td>{{ game.shortDescription }}</td>
+                    <td>{{ game.description }}</td>
+                    <td>{{ game.numPlayerMin }}</td>
+                    <td>{{ game.numPlayerMax }}</td>
+                    <td>{{ game.duration }}</td>
+                    <td>{{ game.ageMin }}</td>
+                    <td>{{ game.category.name }}</td>
+                    <td><a href="{{ path('edit_game', { 'id' : game.id }) }}" class="btn btn-success">Modifier</a></td>
+                    <td><a href="{{ path('delete_game', { 'id' : game.id }) }}" class="btn btn-danger">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+</div>
+{% endblock %}
