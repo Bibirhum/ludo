@@ -2,21 +2,21 @@
 
 namespace App\DataFixtures;
 
-use Faker\Factory;
+use App\Entity\Category;
+use App\Entity\Game;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Faker\Factory;
 
 class AppFixtures extends Fixture
 
 {   private $encoder;
 
-    public function __construct(UserPasswordEncoderInterface $encoder)
-    {
-        $this->encoder = $encoder;
-    }
+    // public function __construct(UserPasswordEncoderInterface $encoder)
+    // {
+    //     $this->encoder = $encoder;
+    // }
 
     public function load(ObjectManager $manager)
     {
@@ -27,7 +27,7 @@ class AppFixtures extends Fixture
         {
             $user = new User();
             $user->setUsername($faker->userName);
-            $user->setPassword($this->encoder->encodePassword($user,$faker->userName ));
+            $user->setPassword($faker->password);
             $user->setLastName($faker->lastName);
             $user->setFirstName($faker->firstNameMale);
             $user->setBio($faker->catchphrase);
@@ -38,6 +38,34 @@ class AppFixtures extends Fixture
             $user->setCity($faker->city);
             $user->setStatus(random_int(0,1));
             $manager->persist($user);
+        }
+
+        $faker = Factory::create('fr_FR');
+
+        for ($j = 0; $j < 10; $j++) {
+            $category = new Category();
+            $category->setName('categorie_num_'.$j);
+            $category->setDescription($faker->paragraph(6, true));
+
+            $manager->persist($category);
+
+            for ($i = 0; $i < 5; $i++) {
+                $game = new Game();
+
+                $game->setName('jeu_num_'.$j.$i);
+                $game->setImage($faker->imageUrl());
+                $game->setThumbnail($faker->imageUrl(300,225));
+                $game->setTheme($faker->sentence(12, true));
+                $game->setShortDescription($faker->sentence(24, true));
+                $game->setDescription($faker->paragraph(6, true));
+                $game->setNumPlayerMin(rand(1,2));
+                $game->setNumPlayerMax(rand(2,6));
+                $game->setDuration(rand(20,90));
+                $game->setAgeMin(rand(4,18));
+                $game->setCategory($category);
+
+                $manager->persist($game);
+            }
         }
 
         $manager->flush();
