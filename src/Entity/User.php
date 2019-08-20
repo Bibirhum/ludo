@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity(fields={"username"}, message="Ce pseudo existe déjà")
  */
 class User implements UserInterface, \Serializable
 {
@@ -253,19 +255,19 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
-    
+
     // fonctions connexion
-    
+
     public function eraseCredentials()
     {
-    
+
     }
-    
+
     public function getSalt()
     {
         return null;
     }
-    
+
     public function serialize()
     {
         return serialize(array(
@@ -276,7 +278,7 @@ class User implements UserInterface, \Serializable
             // $this->salt,
         ));
     }
-    
+
     public function unserialize($serialized)
     {
         list (
