@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Recherche de joueurs{% endblock %}
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>Recherche de joueurs</h1>
+
+    <!-- Search form -->
+    <form class="form-inline active-purple-4" method="post" action="">
+        <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Entrer le nom d'un joueur"
+               aria-label="search">
+        <i class="fas fa-search" aria-hidden="true"></i>
+    </form>
+    <form class="form-inline active-purple-4" method="post" action="">
+        <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Entrer une localisation"
+               aria-label="search">
+        <i class="fas fa-search" aria-hidden="true"></i>
+    </form>
+    <button type="button" class="btn btn-secondary"><a href="#">Lancer la recherche</a></button>
+
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="https://static1.purepeople.com/articles/9/32/22/29/@/4561010-nicolas-sarkozy-l-ancien-president-de-l-637x0-2.jpg" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">NICOLAS SARKOZY</h5>
+                    <p class="card-text">Maitre incontestable du UNO</p>
+                    <p class="card-text"><small class="text-muted">Paris 16</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+            <div class="col-md-4">
+                <img src="https://www.challenges.fr/assets/img/2018/09/11/cover-r4x3w1000-5b978f41e1edf-sipa-ap22227656-000003.jpg" class="card-img" alt="...">
+            </div>
+            <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">VLADIMIR POUTINE</h5>
+                    <p class="card-text">Grand fan de la bataille navale</p>
+                    <p class="card-text"><small class="text-muted">Moscou</small></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
