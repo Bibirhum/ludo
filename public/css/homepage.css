@@ -1,0 +1,16 @@
+body {
+    background: lightskyblue;
+}
+
+/* HEADER */
+h1 {
+    font-family: Arial;
+    font-style: italic;
+    text-align: center;
+}
+
+.row {
+    justify-content: space-between;
+    padding-top: 150px;
+}
+
