@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -50,6 +51,8 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $avatar;
+
+    private $avatarFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -162,6 +165,38 @@ class User implements UserInterface, \Serializable
 
         return $this;
     }
+
+    public function getAvatarFile(): ?File
+    {
+        return $this->avatarFile;
+    }
+
+    public function setAvatarFile(?File $avatarFile): self
+    {
+        $this->avatarFile = $avatarFile;
+
+        return $this;
+    }
+
+    // /**
+    //  * @return mixed
+    //  */
+    // public function getMimeTypes()
+    // {
+    //     return $this->mimeTypes;
+    // }
+
+    // /**
+    //  * @param mixed $mimeTypes
+    //  *
+    //  * @return File
+    //  */
+    // public function setMimeTypes($mimeTypes)
+    // {
+    //     $this->mimeTypes = $mimeTypes;
+
+    //     return $this;
+    // }
 
     public function getEmail(): ?string
     {
