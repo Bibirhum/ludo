@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div>
+  <h1>RECHERCHER UN JEUX</h1>
+  <form method="post">
+    <div class="form-group">
+      <label for="inputGamename">Recherche par nom</label>
+      <input type="text" class="form-control" value="" id="inputGamename" placeholder="Entrez le nom d'un jeux">
+    </div>
+    <div class="form-group">
+      <label for="">Indiquer une durée de jeux</label>
+      <input type="range" class="form-control-range" id="formControlRange">
+    </div>
+    <h6>Choisir le/les theme(s)</h6>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" value="" id="">
+      <label class="form-check-label" for="">
+      </label>
+    </div>
+    <h6>Choisir la catégorie</h6>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="exampleRadios" id="" value="option1" checked>
+      <label class="form-check-label" for="">
+      </label>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2">Lancer la recherche</button>
+  </form>
+</div>
+
+<ul>
+    {% for game in game %}
+      
+        <h2>{{ game.name }}</h2>
+        {# <li>
+                <a href="{{ path('product', { 'id' : product.id }) }}">{{ product.name }}</a>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') and product.owner == app.user %}
+                        <a class="btn btn-success" href="{{ path('edit_product', { 'id' : product.id }) }}">Modifier</a>
+                        <a class="btn btn-danger" href="{{ path('delete_product', { 'id' : product.id }) }}">Supprimer</a>
+                {% endif %}
+        </li> #}
+    {% endfor %}
+</ul>
+{% endblock %}
