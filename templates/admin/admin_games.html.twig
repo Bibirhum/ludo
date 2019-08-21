@@ -21,16 +21,9 @@
             <tr>
                 <th>ID</th>
                 <th>Titre</th>
-                <th>Image</th>
                 <th>Vignette</th>
-                <th>Thème</th>
-                <th>Description courte</th>
-                <th>Description</th>
-                <th>Nb joueurs minimum</th>
-                <th>Nb joueurs maximum</th>
-                <th>Durée</th>
-                <th>Age minimum</th>
                 <th>Catégorie</th>
+                <th>Description courte</th>
                 <th colspan="2">Action</th>
             </tr>
         </thead>
@@ -39,16 +32,9 @@
                 <tr>
                     <th>{{ game.id }}</th>
                     <td>{{ game.name }}</td>
-                    <td><img src="{{ game.image }}" alt="Image du jeu {{ game.name }}"></td>
-                    <td><img src="{{ game.thumbnail }}" alt="Vignette du jeu {{ game.name }}"></td>
-                    <td>{{ game.theme }}</td>
-                    <td>{{ game.shortDescription }}</td>
-                    <td>{{ game.description }}</td>
-                    <td>{{ game.numPlayerMin }}</td>
-                    <td>{{ game.numPlayerMax }}</td>
-                    <td>{{ game.duration }}</td>
-                    <td>{{ game.ageMin }}</td>
+                    <td><img src="{{ asset(game.thumbnail) }}" alt="Vignette du jeu {{ game.name }}" width="160" height="120"></td>
                     <td>{{ game.category.name }}</td>
+                    <td>{{ game.shortDescription }}</td>
                     <td><a href="{{ path('edit_game', { 'id' : game.id }) }}" class="btn btn-success">Modifier</a></td>
                     <td><a href="{{ path('delete_game', { 'id' : game.id }) }}" class="btn btn-danger">Supprimer</a></td>
                 </tr>

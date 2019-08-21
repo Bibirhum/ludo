@@ -5,6 +5,9 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GameRepository")
@@ -27,6 +30,13 @@ class Game
      * @ORM\Column(type="string", length=255)
      */
     private $image;
+
+    // ici on ne met pas d'annotations pour que Doctrine ne le prenne pas en compte
+    // cette variable est utilisée dans le formulaire de création d'objet pour gérer le fichier d'image uploadé
+    /**
+     * @Assert\Image()
+     */
+    private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -112,6 +122,23 @@ class Game
     {
         $this->image = $image;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param mixed $imageFile
+     */
+    public function setImageFile(?File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
         return $this;
     }
 

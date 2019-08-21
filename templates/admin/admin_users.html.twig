@@ -28,7 +28,8 @@
                 <th>Présentation</th>
                 <th>Avatar</th>
                 <th>Statut</th>
-                <th colspan="3">Actions</th>
+                <th>Réinitialiser le mot de passe</th>
+                <th>Supprimer le compte</th>
             </tr>
         </thead>
         <tbody>
@@ -42,10 +43,14 @@
                 <td>{{ user.bio }}</td>
                 <td>{{ user.avatar }}</td>
                 <td>{{ user.status }}</td>
+                <td>{{ user.status }}</td>
 {#
                 <td><a href="{{ path('user_games', { 'id' : user.id }) }}" class="btn btn-success">Liste des jeux</a></td>
 #}
+{#
                 <td><a href="{{ path('edit_user', { 'id' : user.id }) }}" class="btn btn-success">Modifier</a></td>
+#}
+                <td><a href="{{ path('reset_pwd', { 'id' : user.id }) }}" class="btn btn-danger">Reset pwd</a></td>
                 <td><a href="{{ path('delete_user', { 'id' : user.id }) }}" class="btn btn-danger">Supprimer</a></td>
             {% endfor %}
             </tbody>

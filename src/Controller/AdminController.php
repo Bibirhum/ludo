@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Repository\GameRepository;
 use App\Repository\UserRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -31,6 +32,7 @@ class AdminController extends AbstractController
             'users' => $users,
         ]);
     }
+    //@IsGranted("IS_AUTHENTICATED_FULLY")
 
     /**
      * @Route("/admin/games", name="admin_games")
@@ -43,4 +45,6 @@ class AdminController extends AbstractController
             'games' => $games,
         ]);
     }
+    //@IsGranted("IS_AUTHENTICATED_FULLY")
+
 }
