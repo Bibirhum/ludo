@@ -15,6 +15,20 @@ use Symfony\Component\Routing\Annotation\Route;
 class GameController extends AbstractController
 {
     /**
+     * @Route("/games/search", name="games_search")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+    */
+    public function index()
+    {
+        // Méthode qui permet de récupérer les données des jeux et de les afficher en pâge de recherche
+        $game = $this->getDoctrine()->getRepository(Game::class)->findAll();
+        return $this->render('game/index.html.twig', [
+            'game' => $game,
+            'controller_name' => 'GamesSearchController',
+        ]);
+    }
+
+    /**
      * @Route("/game/user_games", name="user_games")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
