@@ -22,9 +22,8 @@ class GameController extends AbstractController
     {
         // Méthode qui permet de récupérer les données des jeux et de les afficher en pâge de recherche
         $game = $this->getDoctrine()->getRepository(Game::class)->findAll();
-        return $this->render('game/index.html.twig', [
+        return $this->render('game/listgames.html.twig', [
             'game' => $game,
-            'controller_name' => 'GamesSearchController',
         ]);
     }
 
