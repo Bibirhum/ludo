@@ -18,7 +18,14 @@
 <div class="container fluid mx-auto d-block text-center">
     <h1>Bienvenue {{user.username}}</h1>
 
-     <img src="{{asset(user.avatar)}}" class="rounded-circle"> 
+{% if user.avatar is empty %}
+      <img src="https://api.adorable.io/avatars/285/abott@adorable.png" class="rounded-circle">
+{% else %}
+       <img src="{{asset(user.avatar)}}" class="rounded-circle w-25">
+ {% endif %}
+
+     
+     
     {% if is_granted('IS_AUTHENTICATED_FULLY')%}
         <span class="badge badge-success">Connecté</span>
     {% endif %}

@@ -52,23 +52,23 @@ class EditUserProfileType extends AbstractType
                 ],
             ])
             ->add('bio', TextareaType::class, ['label' => 'Bio'])
-            ->add('avatar', FileType::class, [
-                'label' =>'Votre avatar (.jpg, .png, .jpeg)',
-                'mapped'=> false,
-                'required'=> false,
-                'constraints' => [
-                    new File([
-                        'maxSize' => '2000k',
-                        'mimeTypes' => [
-                            'application/jpg',
-                            'application/png',
-                            'application/jpeg'
-                        ],
-                        'mimeTypesMessage' => 'Veuillez charger une image valide .png, .jpg. ou .jpeg de 2Mo maximum',
-                    ])
-                ],
+            ->add('avatarFile', FileType::class, array('label'=>'user avatar','data_class' =>null,'required' =>false)) //[
+                // 'label' =>'Votre avatar (.jpg, .png, .jpeg)',
+                // 'mapped'=> false,
+                //'required'=> false,
+                // 'constraints' => [
+                //     new File([
+                //         'maxSize' => '2000k',
+                //         'mimeTypes' => [
+                //             'application/jpg',
+                //             'application/png',
+                //             'application/jpeg'
+                //         ],
+                //         'mimeTypesMessage' => 'Veuillez charger une image valide .png, .jpg. ou .jpeg de 2Mo maximum',
+                //     ])
+                // ],
 
-            ]) //fin add 'avatar'
+            //]) //fin add 'avatar'
             ->add('address', TextareaType::class, ['label' => 'Adresse'])
             ->add('zip_code', IntegerType::class, ['label' => 'Code Postal'])
             ->add('city', TextType::class, ['label' => 'Ville'])
