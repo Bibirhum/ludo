@@ -56,6 +56,16 @@ class UserProfileController extends AbstractController
                 $user->setAvatar($folder.DIRECTORY_SEPARATOR.$filename);
                 }
 
+                // $user->setPassword(
+                //     $passwordEncoder->encodePassword(
+                //         $user,
+                //         $form->get('plainPassword')->getData()
+                //     )
+                // );
+    
+            
+    
+
                 $objectManager->persist($user);
                 $objectManager->flush();
                 

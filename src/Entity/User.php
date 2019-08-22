@@ -89,6 +89,39 @@ class User implements UserInterface, \Serializable
         $this->associated_games = new ArrayCollection();
     }
 
+
+    /**
+     * @return Collection|UserGameAssociation[]
+     */
+    public function getAssociatedGames(): Collection
+    {
+        return $this->associated_games;
+    }
+
+    public function addAssociatedGames(UserGameAssociation $associatedUser): self
+    {
+        if (!$this->associated_games->contains($associatedGame)) {
+            $this->associated_games[] = $associatedGame;
+            $associatedGame->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssociatedGame(UserGameAssociation $associatedGame): self
+    {
+        if ($this->associated_games->contains($associatedGame)) {
+            $this->associated_games->removeElement($associatedGame);
+            // set the owning side to null (unless already changed)
+            if ($associatedGame->getUser() === $this) {
+                $associatedUser->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -258,38 +291,6 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-
-
-    /**
-     * @return Collection|UserGameAssociation[]
-     */
-    public function getAssociatedGames(): Collection
-    {
-        return $this->associated_games;
-    }
-
-    public function addAssociatedGame(UserGameAssociation $associatedGame): self
-    {
-        if (!$this->associated_games->contains($associatedGame)) {
-            $this->associated_games[] = $associatedGame;
-            $associatedGame->setUsers($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAssociatedGame(UserGameAssociation $associatedGame): self
-    {
-        if ($this->associated_games->contains($associatedGame)) {
-            $this->associated_games->removeElement($associatedGame);
-            // set the owning side to null (unless already changed)
-            if ($associatedGame->getUsers() === $this) {
-                $associatedGame->setUsers(null);
-            }
-        }
-
-        return $this;
-    }
 
     // fonctions connexion
 
