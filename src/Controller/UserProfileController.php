@@ -10,6 +10,7 @@ use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 class UserProfileController extends AbstractController
@@ -32,7 +33,8 @@ class UserProfileController extends AbstractController
      */
     public function editUser (
         ObjectManager $objectManager,
-        Request $request
+        Request $request,
+        UserPasswordEncoderInterface $passwordEncoder
         // User $user = null
         )
     {   
@@ -56,12 +58,12 @@ class UserProfileController extends AbstractController
                 $user->setAvatar($folder.DIRECTORY_SEPARATOR.$filename);
                 }
 
-                // $user->setPassword(
-                //     $passwordEncoder->encodePassword(
-                //         $user,
-                //         $form->get('plainPassword')->getData()
-                //     )
-                // );
+                $user->setPassword(
+                     $passwordEncoder->encodePassword(
+                        $user,
+                        $form->get('password')->getData()
+                    )
+                );
     
             
     

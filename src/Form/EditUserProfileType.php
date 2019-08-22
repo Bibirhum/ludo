@@ -28,7 +28,7 @@ class EditUserProfileType extends AbstractType
             ->add('first_name', TextType::class, ['label' => "Prénom"])
             ->add('last_name', TextType::class, ['label' => 'Nom'])
             ->add('email', EmailType::class, ['label' => 'Adresse email'])
-            ->add('plainPassword', RepeatedType::class, [
+            ->add('password', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'type' => PasswordType::class,
