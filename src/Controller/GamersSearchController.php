@@ -16,4 +16,4 @@ class GamersSearchController extends AbstractController
             'controller_name' => 'GamersSearchController',
         ]);
     }
-}
+    }
