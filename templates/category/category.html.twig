@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ludo | Admin | Gestion des catégories{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="example-wrapper">
+    <h1>Espace d'administration des catégories</h1>
+
+    <h3>Bienvenue {{ app.user.username }}</h3>
+
+    <h2>Liste des catégories</h2>
+    <div>
+        <button><a href="{{ path('add_category') }}">Ajouter une catégorie</a></button>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nom</th>
+                <th>Description</th>
+                <th>Mettre à jour</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for category in categories %}
+            <tr>
+                <th>{{ category.id }}</th>
+                <td>{{ category.name }}</td>
+                <td>{{ category.description }}</td>
+                <td><a href="{{ path('edit_category', { 'id' : category.id }) }}" class="btn btn-warning">Mettre à jour</a></td>
+                <td><a href="{{ path('delete_category', { 'id' : category.id }) }}" class="btn btn-danger">Supprimer</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
