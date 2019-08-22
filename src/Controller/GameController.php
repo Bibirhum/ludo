@@ -21,29 +21,19 @@ class GameController extends AbstractController
     public function index(Request $request)
     {
         $gameForm = $this->createForm(GameType::class);
+        // mettre à jour le formulaire à l'aide des informations reçues de l'utilisateur
         $gameForm->handleRequest($request);
-        // Méthode qui permet de récupérer les données des jeux et de les afficher en pâge de recherche
         $game = $this->getDoctrine()->getRepository(Game::class)->findAll();
+        if ($gameForm->isSubmitted() && $gameForm->isValid()) {
+            return $this->render('game/listgames.html.twig', [
+                'game' => $game,
+                'game_form' => $gameForm->createView(),
+            ]);
+        }
+
         return $this->render('game/listgames.html.twig', [
             'game' => $game,
             'game_form' => $gameForm->createView(),
-        ]);
-    }
-
-    /**
-     * @Route("/game/user_games", name="user_games")
-     * @IsGranted("IS_AUTHENTICATED_FULLY")
-     */
-    // cette méthode n'a peut-être pas d'utilité ici
-    public function userGames(
-        GameRepository $gameRepository,
-        User $user)
-    {
-        // A COMPLETER
-        $games = $gameRepository->findAll();
-
-        return $this->render('game/user_games.html.twig', [
-            'games' => $games,
         ]);
     }
 

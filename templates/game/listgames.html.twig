@@ -7,16 +7,13 @@
 
   <div class="col-3 position-sticky">
     <h3>Filtrer par :</h1>
-    {# todo : 'require' => false pour les champs suivants en ajoutant un attribut voir doc twig#}
-    {# {{ form_start(game_form) }} #}
       {{ form_row(game_form.name, {'required': false}) }}
       {{ form_row(game_form.category, {'required': false}) }}
       {{ form_row(game_form.duration, {'required': false}) }}
       {{ form_row(game_form.numPlayerMin, {'required': false}) }}
       {{ form_row(game_form.numPlayerMax, {'required': false}) }}
       {{ form_row(game_form.ageMin, {'required': false}) }}
-      {{ form_row(game_form.submit, {'label': 'Lancer la recherche'}) }}
-    {# {{ form_end(game_form) }} #}
+      {{ form_row(game_form.submit, {'label': 'Lancer la recherche', 'attr': { 'class': 'btn-primary' }}) }}
     {# <form method="post">
       <div class="form-group">
         <label for="inputGamename">Nom</label>
