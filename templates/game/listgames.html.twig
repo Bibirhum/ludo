@@ -1,0 +1,63 @@
+{% extends 'layout.html.twig' %}
+
+{% block body %}
+
+<h1 class="text-center mb-5">RECHERCHER UN JEU</h1>
+<div class="row">
+
+  <div class="col-3 position-sticky">
+    <h3>Filtrer par :</h1>
+      {# {{ form_row(game_form.name) }}
+      {{ form_row(game_form.category, {'required': false}) }}
+      {{ form_row(game_form.duration, {'required': false}) }}
+      {{ form_row(game_form.numPlayerMin, {'required': false}) }}
+      {{ form_row(game_form.numPlayerMax, {'required': false}) }}
+      {{ form_row(game_form.ageMin, {'required': false}) }}
+      {{ form_row(game_form.submit, {'label': 'Lancer la recherche', 'attr': { 'class': 'btn-primary' }}) }} #}
+    
+    {{ form(game_form) }}
+
+    {# <form method="post">
+      <div class="form-group">
+        <label for="inputGamename">Nom</label>
+        <input type="text" class="form-control" value="" id="inputGamename" placeholder="Entrez le nom d'un jeux">
+      </div>
+      <div class="form-group">
+        <label for="">Durée de jeu</label>
+        <input type="range" class="form-control-range" id="formControlRange">
+      </div>
+      <h6>Theme</h6>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" value="" id="">
+        <label class="form-check-label" for="">
+        </label>
+      </div>
+      <h6>Catégorie</h6>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="exampleRadios" id="" value="option1" checked>
+        <label class="form-check-label" for="">
+        </label>
+      </div>
+      <button type="submit" class="btn btn-primary mb-2">Lancer la recherche</button>
+    </form> #}
+  </div>
+
+    <div class="col-9 row d-flex justify-content-around">
+      {% for game in game %}
+        <div class="card text-center mb-5" style="width: 18rem;" >
+          <div class="card-header">{{ game.name }}</div>
+          <img src="{{ game.image }}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Entre {{ game.numPlayerMin }} et {{ game.numPlayerMax }} joueurs</h5>
+            <p class="card-text">A partir de {{ game.ageMin }} ans</p>
+            <p class="card-text">Temps de jeu en moyenne de {{ game.duration }} minutes</p>
+            <p class="card-text">{{ game.shortDescription }}</p>
+            <div class="card-footer text-muted">Thème: {{ game.theme }} - Catégorie: {{ game.category.name }}</div>
+            <a href="#" class="btn btn-primary">Ajouter à ma liste</a>
+          </div>
+        </div> 
+      {% endfor %}
+    </div>
+
+</div>
+{% endblock %}
