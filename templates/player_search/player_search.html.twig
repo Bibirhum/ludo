@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ludo | Rechercher un joueur{% endblock %}
+
+{% block body %}
+    <style>
+
+    </style>
+
+    <div class="container">
+        <h1>Recherche de partenaires de jeux</h1>
+
+        <h3>Bienvenue {{ app.user.username }}</h3>
+
+        {{ form(playersearch_form) }}
+
+        <p>
+            {{ game.name }}
+        </p>
+
+        <div class="row">
+            {% for player in players %}
+            <div class="col-2">
+                <div class="card">
+                    <img src="{{ asset(player.avatar) }}" class="card-img-top" alt="Avatar du joueur {{ player.username }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ player.username }}</h5>
+                        <p class="card-text">{{ player.bio }}</p>
+                        <hr>
+                        <p>{{ player.city }}</p>
+                        <a href="#" class="btn btn-success">Fiche du joueur</a>
+                        <a href="#" class="btn btn-primary">Contacter ce joueur</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Pseudo</th>
+                <th>Présentation</th>
+                <th>Avatar</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for player in players %}
+                <tr>
+                    <td>{{ player.username }}</td>
+                    <td>{{ player.bio }}</td>
+                    <td><img src="{{ asset(player.avatar) }}" alt="Avatar du joueur {{ player.username }}"></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+    </div>
+{% endblock %}
