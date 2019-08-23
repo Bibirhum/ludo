@@ -64,10 +64,18 @@ class GameController extends AbstractController
             $paramNumPlayerMax = $data['numPlayerMax'];
             $paramDuration = $data['duration'];
             $paramAgeMin = $data['ageMin'];
-            $game = $gameRepository->findBy([
-                'category' => $paramCategory,
+            if (empty($paramName)) {
+                $game = $gameRepository->findAll();
+            }
+            else {
+                $game = $gameRepository->findBy([
+                'name' => $paramName,
             ]);
-        } else {
+        }
+        } 
+       
+        
+        else {
             $game = $gameRepository->findAll();
         }
 
