@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ludo | Admin | Gestion d'un joueur{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="container">
+    <h1>Espace d'administration des joueurs</h1>
+
+    <h3>Bienvenue {{ app.user.username }}</h3>
+
+    <h2>Modification d'un joueur </h2>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>ID</th>
+                <td>{{ user.id }}</td>
+            </tr>
+            <tr>
+                <th>Pseudo</th>
+                <td>{{ user.username }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ user.firstName }}</td>
+            </tr>
+
+            <tr>
+                <th>Nom</th>
+                <td>{{ user.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ user.address }}-{{ user.zipCode }}-{{ user.city }}</td>
+            </tr>
+            <tr>
+                <th>Présentation</th>
+                <td>{{ user.bio }}</td>
+            </tr>
+            <tr>
+                <th>Avatar</th>
+                <td><img src="{{ asset(user.avatar) }}" alt=""></td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{ form(user_form) }}
+
+    <div>
+        <button class="btn btn-primary"><a href="{{ path('admin_users') }}">Retour à la liste des joueurs</a></button>
+    </div>
+
+</div>
+{% endblock %}
+
+

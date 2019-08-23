@@ -1,29 +1,23 @@
 <?php
+
 namespace App\Form;
+
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\IsTrue;
-class RegistrationFormType extends AbstractType
+use Symfony\Component\Validator\Constraints\NotBlank;
+
+class UserType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class, ['label' => 'Pseudo'])
-            ->add('first_name', TextType::class, ['label' => "Prénom"])
-            ->add('last_name', TextType::class, ['label' => 'Nom'])
-            ->add('email', EmailType::class, ['label' => 'Adresse email'])
-            ->add('plainPassword', RepeatedType::class, [
+            ->add('password', RepeatedType::class, [
                 // instead of being set onto the object directly,
                 // this is read and encoded in the controller
                 'type' => PasswordType::class,
@@ -31,12 +25,13 @@ class RegistrationFormType extends AbstractType
                     'label' => 'Mot de passe'
                 ],
                 'second_options' => [
-                    'label' => 'Confirmation mot de passe'
+                    'label' => 'Confirmation du mot de passe'
                 ],
                 'mapped' => false,
+
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Please enter a password',
+                        'message' => 'Veuillez saisir un mot de passe',
                     ]),
                     new Length([
                         'min' => 6,
@@ -46,11 +41,12 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('address', TextareaType::class, ['label' => 'Adresse'])
-            ->add('zip_code', IntegerType::class, ['label' => 'Code Postal'])
-            ->add('city', TextType::class, ['label' => 'Ville'])
+            ->add('status')
+            ->add('submit', SubmitType::class, ['label' => 'Mettre à jour'])
+
         ;
     }
+
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([

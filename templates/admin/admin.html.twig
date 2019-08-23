@@ -9,15 +9,14 @@
 
 <div class="container">
     <h1>Espace d'administration du site <em>Ludo</em></h1>
-    {#
-        <h2>Bienvenue {{ app.user.name }}</h2>
-    #}
 
+    <h2>Bienvenue {{ app.user.username }}</h2>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/ludo/src/Controller/GameController.php'|file_link(0) }}">src/Controller/GameController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/ludo/templates/game/index.html.twig'|file_link(0) }}">templates/game/index.html.twig</a></code></li>
-    </ul>
+    <div class="row">
+        <button class="btn btn-primary"><a href="{{ path('admin_users') }}"></a>Gestion des joueurs</button>
+        <button class="btn btn-primary"><a href="{{ path('admin_games') }}"></a>Gestion des jeux</button>
+        <button class="btn btn-primary"><a href="{{ path('admin_categories') }}"></a>Gestion des catégories de jeu</button>
+    </div>
+
 </div>
 {% endblock %}
