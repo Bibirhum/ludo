@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil - modification{% endblock %}
+
+{% block body %}
+    <h1>Modifier mon profil</h1>
+
+{{ form(edit_user_form) }}
+
+
+<a href="{{ path('user_profile') }}" class="btn btn-danger">Annuler</a>
+
+{% endblock %}

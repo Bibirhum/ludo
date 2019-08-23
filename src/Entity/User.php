@@ -2,11 +2,12 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -51,6 +52,8 @@ class User implements UserInterface, \Serializable
      */
     private $avatar;
 
+    private $avatarFile;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
@@ -85,6 +88,39 @@ class User implements UserInterface, \Serializable
     {
         $this->associated_games = new ArrayCollection();
     }
+
+
+    /**
+     * @return Collection|UserGameAssociation[]
+     */
+    public function getAssociatedGames(): Collection
+    {
+        return $this->associated_games;
+    }
+
+    public function addAssociatedGames(UserGameAssociation $associatedUser): self
+    {
+        if (!$this->associated_games->contains($associatedGame)) {
+            $this->associated_games[] = $associatedGame;
+            $associatedGame->setUsers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeAssociatedGame(UserGameAssociation $associatedGame): self
+    {
+        if ($this->associated_games->contains($associatedGame)) {
+            $this->associated_games->removeElement($associatedGame);
+            // set the owning side to null (unless already changed)
+            if ($associatedGame->getUser() === $this) {
+                $associatedUser->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
 
     public function getId(): ?int
     {
@@ -163,6 +199,38 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
+    public function getAvatarFile(): ?File
+    {
+        return $this->avatarFile;
+    }
+
+    public function setAvatarFile(?File $avatarFile): self
+    {
+        $this->avatarFile = $avatarFile;
+
+        return $this;
+    }
+
+    // /**
+    //  * @return mixed
+    //  */
+    // public function getMimeTypes()
+    // {
+    //     return $this->mimeTypes;
+    // }
+
+    // /**
+    //  * @param mixed $mimeTypes
+    //  *
+    //  * @return File
+    //  */
+    // public function setMimeTypes($mimeTypes)
+    // {
+    //     $this->mimeTypes = $mimeTypes;
+
+    //     return $this;
+    // }
+
     public function getEmail(): ?string
     {
         return $this->email;
@@ -223,38 +291,6 @@ class User implements UserInterface, \Serializable
         return $this;
     }
 
-
-
-    /**
-     * @return Collection|UserGameAssociation[]
-     */
-    public function getAssociatedGames(): Collection
-    {
-        return $this->associated_games;
-    }
-
-    public function addAssociatedGame(UserGameAssociation $associatedGame): self
-    {
-        if (!$this->associated_games->contains($associatedGame)) {
-            $this->associated_games[] = $associatedGame;
-            $associatedGame->setUsers($this);
-        }
-
-        return $this;
-    }
-
-    public function removeAssociatedGame(UserGameAssociation $associatedGame): self
-    {
-        if ($this->associated_games->contains($associatedGame)) {
-            $this->associated_games->removeElement($associatedGame);
-            // set the owning side to null (unless already changed)
-            if ($associatedGame->getUsers() === $this) {
-                $associatedGame->setUsers(null);
-            }
-        }
-
-        return $this;
-    }
 
     // fonctions connexion
 
