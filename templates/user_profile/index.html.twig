@@ -64,7 +64,10 @@
 <div class="container fluid">
     <h2>Mes jeux</h2>
 
-    <p>{{user.bio}}</p>
+ {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+            <a href="{{ path('games_search')}}">Ajouter un jeu</a>
+    {% endif %}
+   
 
 </div>
 
