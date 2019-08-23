@@ -11,6 +11,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Category;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class GameController extends AbstractController
 {
@@ -18,17 +23,57 @@ class GameController extends AbstractController
      * @Route("/games/search", name="games_search")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
     */
-    public function searchGames(Request $request)
+    public function searchGames(Request $request, GameRepository $gameRepository, Game $game = null)
     {
-        $gameForm = $this->createForm(GameType::class);
-        // mettre à jour le formulaire à l'aide des informations reçues de l'utilisateur
-        $gameForm->handleRequest($request);
-        $games = $this->getDoctrine()
-            ->getRepository(Game::class)
-            ->findAll();
+        $gameSearchForm = $this->createFormBuilder()
+            ->add('name', TextType::class, [
+                'label' => 'Nom du jeu',
+                'required' => false,
+            ])
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'label' => 'Choisir une catégorie',
+                'required' => false,
+            ])
+            ->add('numPlayerMin', IntegerType::class, [
+                'label' => 'Nombre minimal de joueurs',
+                'required' => false,
+            ])
+            ->add('numPlayerMax', IntegerType::class, [
+                'label' => 'Nombre maximal de joueurs',
+                'required' => false,
+            ])
+            ->add('duration', IntegerType::class, [
+                'label' => 'Durée d\'une partie en minutes',
+                'required' => false,
+            ])
+            ->add('ageMin', IntegerType::class, [
+                'label' => 'Âge minimum',
+                'required' => false,
+            ])
+            ->add('submit', SubmitType::class)
+            ->getForm();
+        $gameSearchForm->handleRequest($request);
+        
+        if ($gameSearchForm->isSubmitted() && $gameSearchForm->isValid()) {
+            $data = $gameSearchForm->getData();
+            $paramName = $data['name'];
+            $paramCategory = $data['category']; 
+            $paramNumPlayerMin = $data['numPlayerMin'];
+            $paramNumPlayerMax = $data['numPlayerMax'];
+            $paramDuration = $data['duration'];
+            $paramAgeMin = $data['ageMin'];
+            $game = $gameRepository->findBy([
+                'category' => $paramCategory,
+            ]);
+        } else {
+            $game = $gameRepository->findAll();
+        }
+
         return $this->render('game/listgames.html.twig', [
-            'game' => $games,
-            'game_form' => $gameForm->createView(),
+            'game_form' => $gameSearchForm->createView(),
+            'game' => $game,
         ]);
     }
 
