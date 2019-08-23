@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ludo | Ajout d'un jeu dans une ludothèque{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="example-wrapper">
+    <h1>Ajout d'un jeu dans une ludothèque</h1>
+
+    {{ message }}
+    <p>Joueur :  {{ user.username }}</p>
+
+    <p>Jeu : {{ game.name }}</p>
+
+    <p>Association :<br>
+        id : {{ user_game.id }}<br>
+        commentaire : {{ user_game.commentary }}<br>
+        rating : {{ user_game.rating }}<br>
+        playsGame : {{ user_game.playsGame }}<br>
+        ownsGame :  {{ user_game.ownsGame }}<br>
+    </p>
+</div>
+{% endblock %}
