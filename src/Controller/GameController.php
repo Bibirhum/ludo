@@ -18,21 +18,16 @@ class GameController extends AbstractController
      * @Route("/games/search", name="games_search")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
     */
-    public function index(Request $request)
+    public function searchGames(Request $request)
     {
         $gameForm = $this->createForm(GameType::class);
         // mettre à jour le formulaire à l'aide des informations reçues de l'utilisateur
         $gameForm->handleRequest($request);
-        $game = $this->getDoctrine()->getRepository(Game::class)->findAll();
-        if ($gameForm->isSubmitted() && $gameForm->isValid()) {
-            return $this->render('game/listgames.html.twig', [
-                'game' => $game,
-                'game_form' => $gameForm->createView(),
-            ]);
-        }
-
+        $games = $this->getDoctrine()
+            ->getRepository(Game::class)
+            ->findAll();
         return $this->render('game/listgames.html.twig', [
-            'game' => $game,
+            'game' => $games,
             'game_form' => $gameForm->createView(),
         ]);
     }
