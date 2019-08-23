@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ludo | Administration{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="container">
+    <h1>Espace d'administration du site <em>Ludo</em></h1>
+
+    <h2>Bienvenue {{ app.user.username }}</h2>
+
+    <div class="row">
+        <button class="btn btn-primary"><a href="{{ path('admin_users') }}"></a>Gestion des joueurs</button>
+        <button class="btn btn-primary"><a href="{{ path('admin_games') }}"></a>Gestion des jeux</button>
+        <button class="btn btn-primary"><a href="{{ path('admin_categories') }}"></a>Gestion des catégories de jeu</button>
+    </div>
+
+</div>
+{% endblock %}

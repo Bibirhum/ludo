@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ludo | Admin | Gestion des joueurs{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="container">
+    <h1>Espace d'administration des joueurs</h1>
+
+    <h3>Bienvenue {{ app.user.username }}</h3>
+
+    <h2>Liste des joueurs inscrits</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Pseudo</th>
+                <th>Prénom</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Adresse</th>
+                <th>Présentation</th>
+                <th>Avatar</th>
+                <th>Statut</th>
+                <th>Mettre à jour</th>
+                <th>Supprimer</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <th>{{ user.id }}</th>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.firstName }}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.address }}-{{ user.zipCode }}-{{ user.city }}</td>
+                    <td>{{ user.bio }}</td>
+                    <td><img src="{{ user.avatar }}" alt="Avatar du joueur {{ user.username }}" width="160" height="120"></td>
+                    <td>{{ user.status }}</td>
+    {#
+                    <td><a href="{{ path('user_games', { 'id' : user.id }) }}" class="btn btn-success">Liste des jeux</a></td>
+    #}
+    {#
+                    <td><a href="{{ path('edit_user', { 'id' : user.id }) }}" class="btn btn-success">Modifier</a></td>
+    #}
+                    <td><a href="{{ path('admin_one_user', { 'id' : user.id }) }}" class="btn btn-warning">Mettre à jour</a></td>
+                    <td><a href="{{ path('delete_user', { 'id' : user.id }) }}" class="btn btn-danger">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+</div>
+{% endblock %}

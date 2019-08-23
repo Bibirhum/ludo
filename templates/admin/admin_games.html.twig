@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ludo | Admin | Gestion des jeux{% endblock %}
+
+{% block body %}
+<style>
+
+</style>
+
+<div class="container">
+    <h1>Espace d'administration des jeux</h1>
+
+    <h3>Bienvenue {{ app.user.username }}</h3>
+
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th colspan="14"><a href="{{ path('add_game') }}" class="btn btn-success">Ajouter un jeu</a></th>
+        </tr>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Vignette</th>
+                <th>Catégorie</th>
+                <th>Description courte</th>
+                <th colspan="2">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for game in games %}
+                <tr>
+                    <th>{{ game.id }}</th>
+                    <td>{{ game.name }}</td>
+                    <td><img src="{{ asset(game.thumbnail) }}" alt="Vignette du jeu {{ game.name }}" width="160" height="120"></td>
+                    <td>{{ game.category.name }}</td>
+                    <td>{{ game.shortDescription }}</td>
+                    <td><a href="{{ path('edit_game', { 'id' : game.id }) }}" class="btn btn-success">Modifier</a></td>
+                    <td><a href="{{ path('delete_game', { 'id' : game.id }) }}" class="btn btn-danger">Supprimer</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+    </table>
+</div>
+{% endblock %}
