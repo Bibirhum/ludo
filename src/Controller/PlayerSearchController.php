@@ -4,7 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Entity\User;
+use App\Entity\UserGameAssociation;
 use App\Repository\GameRepository;
+use App\Repository\UserGameAssociationRepository;
 use App\Repository\UserRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,8 +23,10 @@ class PlayerSearchController extends AbstractController
      */
     public function playerSearch(
         Request $request,
+        UserGameAssociationRepository $userGameRepository,
         GameRepository $gameRepository,
         UserRepository $userRepository,
+        UserGameAssociation $userGameAssociation = null,
         Game $game = null,
         User $user = null
     )
@@ -31,15 +35,7 @@ class PlayerSearchController extends AbstractController
 
         $playerSearchForm = $this->createFormBuilder()
             ->add('name', TextType::class, [
-                'label' => 'Titre du jeu',
-                'required' => false,
-            ])
-            ->add('username', TextType::class, [
-                'label' => 'Pseudo',
-                'required' => false,
-            ])
-            ->add('zipCode', TextType::class, [
-                'label' => 'Code postal',
+                'label' => 'Nom du jeu',
                 'required' => false,
             ])
             ->add('city', TextType::class, [
@@ -56,24 +52,52 @@ class PlayerSearchController extends AbstractController
 
             $data = $playerSearchForm->getData();
 
-            $paramGame = $data['name'];
-            $paramUsername = $data['username'];
-            $paramZipCode = $data['zipCode'];
-            $paramCity = $data['city'];
+            $paramGame = ($data['name'] === null ? '%' : $data['name']);
+            $paramCity = ($data['city'] === null ? '%' : $data['city']);
 
+            if ($paramGame === '%') {
+                $user = $userRepository->findBy([
+                   'city' => $paramCity,
+                ]);
+            } else {
+                $userGameAssociation = $userGameRepository->findByFields3(
+                    $paramGame,
+                    $paramCity
+                );
+            }
 
-            $game = $gameRepository->findOneBy(['name' => $paramGame]);
+            if ($user || $userGameAssociation) {
+                $this->addFlash(
+                    'success',
+                    'Voici la liste des joueurs qui correspondent à vos critères de recherche'
+                );
+            } else {
+                $this->addFlash(
+                    'warning',
+                    'Aucun joueur ne correspond à vos critères de recherche'
+                );
+            }
 
-            $user = $userRepository->findByFields(
-                $paramUsername,
-                $paramZipCode,
-                $paramCity
-            );
         }
         return $this->render('player_search/player_search.html.twig', [
             'playersearch_form' => $playerSearchForm->createView(),
+            'usergames' => $userGameAssociation,
             'players' => $user,
-            'game' => $game,
+        ]);
+    }
+
+    /**
+     * @Route("/player/infos/{id<\d+>}", name="player_infos")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     */
+    public function playerInfos(
+        UserRepository $userRepository,
+        UserGameAssociationRepository $userGameAssociationRepository,
+        User $user
+    )
+    {
+        return $this->render('user_profile/user_infos.html.twig', [
+            'user' => $user,
         ]);
     }
 }
