@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un jeu{% endblock %}
+
+{% block body %}
+    <h1>Modifier un jeu</h1>
+
+
+    {{ form(NewGameForm) }}
+
+    {{ form_start(NewGameForm) }}
+    {{ form_row(NewGameForm) }}
+
+    {{ form_end(NewGameForm) }}
+
+    <a href="{{ path('user_profile') }}">Revenir au profil</a>
+{% endblock %}
