@@ -5,12 +5,17 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Entity\User;
 use App\Entity\UserGameAssociation;
+use App\Form\UserGameType;
 use App\Repository\GameRepository;
 use App\Repository\UserGameAssociationRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 
 class UserGamesController extends AbstractController
 {
@@ -24,11 +29,15 @@ class UserGamesController extends AbstractController
         ]);
     }
 
+
+
     /**
-     * @Route("/user/addgame/{id<\d+>}", name="user_addgame")
+     * @Route("/usergame/add/{id<\d+>}", name="add_user_game")
+     * @Route("/usergame/edit/{id<\d+>}", name="edit_user_game")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
-    public function userAddGame(
+    public function editUserGame(
+        Request $request,
         ObjectManager $objectManager,
         UserGameAssociationRepository $userGameRepository,
         Game $game
@@ -40,6 +49,40 @@ class UserGamesController extends AbstractController
             'users' => $user,
             'games' => $game,
         ]);
+
+        // DEBUT REPRISE CODE AXEL
+        $form_type = 'update';
+
+        if ($userGame === null) {
+            $userGame = new UserGameAssociation();
+            $form_type = 'create';
+        }
+
+        $form = $this->createForm(UserGameType::class, $userGame);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($userGame->getUsers() === null) {
+                $userGame->setUsers($this->getUser());
+            }
+            if ($userGame->getGames() === null) {
+                $userGame->setGames($game);
+            }
+            $entityManager->persist($userGame);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('user_profile');
+        }
+
+        return $this->render('game_infos/edit_game.html.twig', [
+            'NewGameForm' => $form->createView(),
+            'game' => $game,
+            'usergame' => $userGame,
+            'form_type' => $form_type,
+        ]);
+
+        // FIN CODE AXEL
 
         if ($userGame) {
             return $this->render('user_games/usergames.html.twig', [
@@ -110,3 +153,67 @@ class UserGamesController extends AbstractController
         ]);
     }
 }
+
+namespace App\Controller;
+
+use App\Entity\Game;
+use App\Form\FormEditMyGamesType;
+use App\Repository\GameRepository;
+use App\Entity\UserGameAssociation;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
+
+
+class GameInfosController extends AbstractController
+{
+
+    /**
+     * @Route("/usergame/add/{id<\d+>}", name="add_user_game")
+     * @Route("/usergame/edit/{id<\d+>}", name="edit_user_game")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     */
+    public function update(Request $request, Game $game = null)
+    {
+       /* $entityManager = $this->getDoctrine()->getManager();
+
+        $userGame = $entityManager->getRepository(UserGameAssociation::class)->findOneBy([
+                'games' => $game->getId(),
+                'users' => $this->getUser()->getId(),
+            ]
+        );*/
+
+/*        $form_type = 'update';*/
+
+        /*if ($userGame === null) {
+            $userGame = new UserGameAssociation();
+            $form_type = 'create';
+        }*/
+
+       /* $form = $this->createForm(FormEditMyGamesType::class, $userGame);
+        $form->handleRequest($request);*/
+
+        /*if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($userGame->getUsers() === null) {
+                $userGame->setUsers($this->getUser());
+            }
+            if ($userGame->getGames() === null) {
+                $userGame->setGames($game);
+            }
+            $entityManager->persist($userGame);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('user_profile');
+        }*/
+
+       /* return $this->render('game_infos/edit_game.html.twig', [
+            'NewGameForm' => $form->createView(),
+            'game' => $game,
+            'usergame' => $userGame,
+            'form_type' => $form_type,
+        ]);*/
+    }}

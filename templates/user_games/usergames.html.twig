@@ -7,7 +7,7 @@
 
 </style>
 
-<div class="example-wrapper">
+<div class="container">
     <h1>Ajout d'un jeu dans une ludothèque</h1>
 
     {{ message }}
@@ -23,4 +23,23 @@
         ownsGame :  {{ user_game.ownsGame }}<br>
     </p>
 </div>
+
+{#
+    developpements Axel
+#}
+    <h1>Modifier un jeu</h1>
+
+    <p>Jeu {{ game.name }}</p>
+
+
+    {{ form(NewGameForm) }}
+
+    {{ form_start(NewGameForm) }}
+    {{ form_row(NewGameForm) }}
+
+    {{ form_end(NewGameForm) }}
+
+    <a href="{{ path('user_profile') }}">Revenir au profil</a>
+
+
 {% endblock %}
