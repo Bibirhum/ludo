@@ -89,17 +89,18 @@
       </div>
       
       <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
-        <div class="tab-content tab-space">
-          <div class="tab-pane active text-center gallery" id="studio">
+        <div class="tab-content tab-space ml-5 mr-5">
             <div class="row">
               {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-              <div class="col-md-3 ml-auto mr-auto">
+              <div class="col-md-3">
                 <div class="card">
                   <div class="card-header">
+                  <h3>
                   Ajouter un jeux
+                  </h3>
                   </div>
                   <a class="change" href="{{ path('games_search')}}">
-                    <i class="material-icons">
+                    <i class="material-icons add_circle_outline">
                       add_circle_outline
                     </i>
                   </a>
@@ -109,30 +110,33 @@
               
               {% for item in user_game %}
 
-              <div class="col-md-3 ml-auto mr-auto">
-                <div class="card w-25">
+              <div class="col-md-3">
+                <div class="card">
+                <div class="card-header">
+                <h3>{{ item.games.name }}</h3>
+                </div>
                   {# à modifier avec asset pour accueillir les vraies images   #}
                   <img class="card-img-top" src="{{ item.games.thumbnail }}" alt="Card image cap">
                   <div class="card-body">
-                    <h4 class="card-title">{{ item.games.name }}</h4>
-                    <p class="card-text">
-                    <h6>Catégorie : </h6><p>Catégorie</p> <br>
-                    <h6>Commentaire : </h6>{{ item.commentary}}
-                    <h6>Note perso : </h6>{{ item.rating }} <br>
+                    <h6>Catégorie : {{ item.games.category.name }}</h6>
+                    <h6>Commentaire : {{ item.commentary}}</h6>
+                    <h6>Note perso : >{{ item.rating }}</h6>
                     {% if item.playsGame is same as (1)  %}
-                    <span class="badge badge-success">J'y joue!</span>
+                    <i class="material-icons">
+                    sentiment_satisfied_alt
+                    </i>J'y joue !
                     {% endif %}
                     {% if item.ownsGame is same as (1) %}
-                    <span class="badge badge-info">Je l'ai!</span>
+                    <i class="material-icons">
+                    thumb_up_alt
+                    </i>Je l'ai !
                     {% endif %} 
-                    </p>
-                    <a href="#!" class="btn btn-primary">Détails</a>
+                    <a href="#!"><i class="material-icons">arrow_right_alt</i>Détails</a>
                   </div>
                 </div>
               </div>
               {% endfor %}
             </div>
-          </div>
         </div>
       </div>
 

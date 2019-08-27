@@ -20,6 +20,14 @@ a.change:hover, .navbar a:hover, .navbar .nav-item a.nav-link:hover{
     text-decoration: none;
 }
 
+/* card */
+.card{
+    text-align: center;
+}
+.add_circle_outline{
+    font-size: 50px;
+}
+
 
 .h6, h6 {
     font-size: .75rem !important;
