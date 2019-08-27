@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello MessageController!{% endblock %}
+
+{% block body %}
+
+
+<h1>Bonjour  world</h1>
+
+
+    <div class="container">
+        <div class="list-group">
+            {% for message in messages %}
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Expéditeur {{ message.id_sender }}  Destinataire {{ message.id_recipient }}</h5>
+                    <small>{{ message.datetime }}</small>
+                </div>
+                <p class="mb-1">{{message.message}}</p>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+
+{#    <div class="container">#}
+{#        <div class="list-group">#}
+{#            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">#}
+{#                <div class="d-flex w-100 justify-content-between">#}
+{#                    <h5 class="mb-1">{{ message.id_sender }}</h5>#}
+{#                    <small>{{ message.datetime }}</small>#}
+{#                </div>#}
+{#                <p class="mb-1">{{message.message}}</p>#}
+{#            </a>#}
+{#            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">#}
+{#                <div class="d-flex w-100 justify-content-between">#}
+{#                    <h5 class="mb-1">{{ message.id_recipient }}</h5>#}
+{#                    <small>{{ message.datetime }}</small>#}
+{#                </div>#}
+{#                <p class="mb-1">{{message.message}}</p>#}
+{#            </a>#}
+{#            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">#}
+{#                <div class="d-flex w-100 justify-content-between">#}
+{#                    <h5 class="mb-1">{{ message.id_recipient }}</h5>#}
+{#                    <small>{{ message.datetime }}</small>#}
+{#                </div>#}
+{#                <p class="mb-1">{{message.message}}</p>#}
+{#            </a>#}
+{#        </div>#}
+{#    </div>#}
+{% endblock %}
