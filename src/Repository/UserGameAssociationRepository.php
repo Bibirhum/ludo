@@ -19,6 +19,25 @@ class UserGameAssociationRepository extends ServiceEntityRepository
         parent::__construct($registry, UserGameAssociation::class);
     }
 
+    public function findByFields3(?string $game, ?string $city)
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery('
+            SELECT a
+            FROM App\Entity\User u, App\Entity\UserGameAssociation a, App\Entity\Game g
+            WHERE u.id = a.users AND a.games = g.id
+            AND g.name LIKE :game AND u.city LIKE :city
+            GROUP BY a.users
+            ORDER BY u.username ASC
+        ')
+
+            ->setParameter('game', $game)
+            ->setParameter('city', $city);
+
+        return $query->execute();
+
+    }
+
     // /**
     //  * @return UserGameAssociation[] Returns an array of UserGameAssociation objects
     //  */
