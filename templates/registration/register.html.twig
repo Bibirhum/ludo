@@ -25,7 +25,7 @@
     <h1>S'inscrire</h1>
 
 
-    <div class="row d-flex flex-nowrap mx-auto">
+    <div class="row d-flex flex-nowrap mx-auto justify-content-around">
 
         <div class="col-md-12 form-group">
             {{ form_start(registrationForm) }}
@@ -42,7 +42,15 @@
              {{ form_row(registrationForm.zip_code, {'label_attr': {'class':'formFields'}}) }} 
 
          
-        </div>   
+        </div>  
+
+          <div class="col-md-12 form-group">
+            {{ form_row(registrationForm.address, {'label_attr': {'class':'formFields'}}) }} 
+            {{ form_row(registrationForm.city, {'label_attr': {'class':'formFields'}}) }}
+             {{ form_row(registrationForm.zip_code, {'label_attr': {'class':'formFields'}}) }} 
+
+         
+        </div>  
 
                
 

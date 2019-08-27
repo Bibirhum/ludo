@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% block title %}Mon profil - modification{% endblock %}
 
@@ -8,6 +8,86 @@
 {{ form(edit_user_form) }}
 
 
-<a href="{{ path('user_profile') }}" class="btn btn-danger">Annuler</a>
+
+
+{% endblock %} #}
+
+
+
+
+
+
+{% block title %}{% endblock %}
+
+<title>Ludo - Modification du profil</title>
+
+<!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<!-- Custom styles for this template -->
+  <link href="{{ asset('startbootstrap-one-page-wonder/css/editProfile.css') }}" rel="stylesheet">
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+{% block body %}
+
+<div class="row text-left ml-2 my-2">
+        <div class="col-md-12 form-group float-left">
+        <h6>Fausse manip'?</h6>
+            <button class="btn btn-lg btn-tertiary btn--animated" type="submit" onclick="location.href='{{ path('user_profile') }}'">
+                Annuler
+            </button>
+        </div>
+    </div>
+
+{% form_theme edit_user_form 'bootstrap_4_layout.html.twig' %}
+
+<div class="simple-login-container mx-auto my-0">
+    <h1>Modification du profil</h1>
+
+
+    <div class="row d-flex flex-nowrap justify-content-around">
+
+        <div class="col-md-12 form-group">
+            {{ form_start(edit_user_form) }}
+            {{ form_row(edit_user_form.username, {'label_attr': {'class':'formFields'}}) }}
+            {{ form_row(edit_user_form.first_name, {'label_attr': {'class':'formFields'}}) }}
+            {{ form_row(edit_user_form.last_name, {'label_attr': {'class':'formFields'}}) }}
+            {{ form_row(edit_user_form.email, {'label_attr': {'class':'formFields'}}) }}
+            {{ form_row(edit_user_form.password, {'label_attr': {'class':'formFields'}}) }} 
+        </div>
+
+        <div class="col-md-12 form-group">
+            {{ form_row(edit_user_form.address, {'label_attr': {'class':'formFields'}}) }} 
+            {{ form_row(edit_user_form.city, {'label_attr': {'class':'formFields'}}) }}
+             {{ form_row(edit_user_form.zip_code, {'label_attr': {'class':'formFields'}}) }} 
+            <div class="personnalisation">
+            <h6>Personnalisation</h6>
+            <p class="font-italic">C'est le moment de sortir vos atouts ;)</p>
+                {{ form_row(edit_user_form.bio, {'label_attr': {'class':'formFields'}}) }} 
+                {{ form_row(edit_user_form.avatarFile, {'label_attr': {'class':'formFields'}}) }}
+            </div>
+        </div>
+
+               
+
+    </div>
+
+    {# <button type="submit" class="btn btn-primary btn--animated w-100">Je valide !</button> #}
+            {{ form_end(edit_user_form) }}  
+    
+    </div>
+
+</div> 
+{# fin de simple-login-container #}
+
+
+
+
 
 {% endblock %}

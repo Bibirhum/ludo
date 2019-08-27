@@ -52,7 +52,7 @@ class EditUserProfileType extends AbstractType
                 ],
             ])
             ->add('bio', TextareaType::class, ['label' => 'Bio'])
-            ->add('avatarFile', FileType::class, array('label'=>'user avatar','data_class' =>null,'required' =>false)) //[
+            ->add('avatarFile', FileType::class, array('label'=>'Avatar','data_class' =>null,'required' =>false)) //[
                 // 'label' =>'Votre avatar (.jpg, .png, .jpeg)',
                 // 'mapped'=> false,
                 //'required'=> false,
@@ -72,7 +72,7 @@ class EditUserProfileType extends AbstractType
             ->add('address', TextareaType::class, ['label' => 'Adresse'])
             ->add('zip_code', IntegerType::class, ['label' => 'Code Postal'])
             ->add('city', TextType::class, ['label' => 'Ville'])
-            ->add('submit', SubmitType::class, ['label' => 'Valider'])
+            ->add('submit', SubmitType::class, ['label' => 'Je valide !'])
             
         ;
     }
