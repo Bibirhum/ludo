@@ -14,7 +14,8 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Lato';
+  font-family: 'Catamaran';
+  font-weight: 800 !important;
 }
 
 .btn-xl {
@@ -58,8 +59,8 @@ header.masthead {
   overflow: hidden;
   padding-top: calc(7rem + 72px);
   padding-bottom: 7rem;
-  background-image: linear-gradient(to bottom,rgba(114, 137, 218, 0.9),  rgba(246, 140, 15, 0.5)),
-  url("../img/hero.jpg");
+  background: -webkit-gradient(linear, left bottom, left top, from(#ff6a00), to(#ee0979));
+  background: linear-gradient(0deg, #ff6a00 0%, #ee0979 100%);
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: scroll;

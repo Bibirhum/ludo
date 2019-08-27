@@ -8,20 +8,17 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Ludo - les fans de jeux de plateau</title>
+  <title>One Page Wonder - Start Bootstrap Template</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="{{ asset('landing_page/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
   <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
 
   <!-- Custom styles for this template -->
-  <link href="{{ asset('landing_page/css/one-page-wonder.css') }}" rel="stylesheet">
-
-  {# animations #}
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="css/one-page-wonder.min.css" rel="stylesheet">
 
 </head>
 
@@ -30,17 +27,17 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Ludo</a>
+      <a class="navbar-brand" href="#">Start Bootstrap</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+            <a class="nav-link" href="#">Sign Up</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+            <a class="nav-link" href="#">Log In</a>
           </li>
         </ul>
       </div>
@@ -50,90 +47,75 @@
   <header class="masthead text-center text-white">
     <div class="masthead-content">
       <div class="container">
-        <div class="heading-main">
-        <h1 class="masthead-heading mb-0">Ludo</h1>
-        </div>
-        <div class="heading-secondary">
-        <h2 class="masthead-subheading mb-0">les fans de jeux de plateau</h2>
-        </div>
-        <a href="{{ path('app_register') }}" class="btn btn-primary btn-xl rounded-pill mt-5 btn--animated">Je m'inscris !</a>
+        <h1 class="masthead-heading mb-0">One Page Wonder</h1>
+        <h2 class="masthead-subheading mb-0">Will Rock Your Socks Off</h2>
+        <a href="#" class="btn btn-primary btn-xl rounded-pill mt-5">Learn More</a>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>
     <div class="bg-circle-2 bg-circle"></div>
-    {# <div class="bg-circle-2 bg-circle"></div> #}
-    {# <div class="bg-circle-3 bg-circle"></div> #}
-    {# <div class="bg-circle-4 bg-circle"></div> #}
+    <div class="bg-circle-3 bg-circle"></div>
+    <div class="bg-circle-4 bg-circle"></div>
   </header>
 
-  {% block body %}
-
- <section data-aos="fade-right"
-     data-aos-offset="300"
-     data-aos-easing="ease-in-sine">
+  <section>
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-            <img class="img-fluid rounded-circle" src="{{ asset('landing_page/img/game2.jpg')}}" alt="">
+            <img class="img-fluid rounded-circle" src="img/01.jpg" alt="">
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-            <h2 class="display-4">Faîtes équipe !</h2>
-            <p>Recrutez facilement des partenaires de jeu en localisant immédiatement qui joue à vos jeux préférés près de chez vous. Vous pouvez même voir qui possède un exemplaire du jeu chez lui/elle !</p>
+            <h2 class="display-4">For those about to rock...</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-   <section data-aos="fade-left"
-     data-aos-offset="300"
-     data-aos-easing="ease-in-sine">
+  <section>
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6">
           <div class="p-5">
-                <img class="img-fluid rounded-circle" src="{{ asset('landing_page/img/game5.jpg')}}" alt="">
+            <img class="img-fluid rounded-circle" src="img/02.jpg" alt="">
           </div>
         </div>
         <div class="col-lg-6">
           <div class="p-5">
-            <h2 class="display-4">A vous de jouer!</h2>
-            <p>Montrez à tous à quoi vous jouez et quels jeux vous possédez en construisant votre ludothèque en ligne</p>
+            <h2 class="display-4">We salute you!</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-   <section data-aos="fade-right"
-     data-aos-offset="300"
-     data-aos-easing="ease-in-sine">
+  <section>
     <div class="container">
       <div class="row align-items-center">
         <div class="col-lg-6 order-lg-2">
           <div class="p-5">
-           <img class="img-fluid rounded-circle" src="{{ asset('landing_page/img/donnersonavis.jpg')}}" alt="">
+            <img class="img-fluid rounded-circle" src="img/03.jpg" alt="">
           </div>
         </div>
         <div class="col-lg-6 order-lg-1">
           <div class="p-5">
-            <h2 class="display-4">Donnez votre avis !</h2>
-            <p>Aiguillez les autres joueurs en notant et en recommandant les jeux auxquels vous avez joué. Qui sait? Peut-être disputerez-vous bientôt une partie avec eux !</p>
+            <h2 class="display-4">Let there be rock!</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quod aliquid, mollitia odio veniam sit iste esse assumenda amet aperiam exercitationem, ea animi blanditiis recusandae! Ratione voluptatum molestiae adipisci, beatae obcaecati.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  {% endblock %}
 
   <!-- Footer -->
   <footer class="py-5 bg-black">
     <div class="container">
-      <p class="m-0 text-center text-white small">Copyright &copy; Ludo 2019</p>
+      <p class="m-0 text-center text-white small">Copyright &copy; Your Website 2019</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -141,36 +123,7 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script>
-  AOS.init();
-</script>
 
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</div>
-{% endblock %} #}
