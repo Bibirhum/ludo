@@ -1,36 +1,174 @@
-{% extends 'base.html.twig' %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% block title %}Hello HomeController!{% endblock %}
+<head>
 
-{% block body %}
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-<div>
-    <h1>LUDO</h1>
-    <h2>RENCONTREZ DES JOUEURS PRES DE CHEZ VOUS</h2>
-    <ul>
-        <li><a href="{{ path('app_register') }}">INSCRIPTION</a></li>
-        <li><a href="{{ path('app_login') }}">CONNEXION</a></li>
-    </ul>
-</div>
+  <title>Ludo - les fans de jeux de plateau</title>
 
-<div class="row">
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">CONSTRUISEZ VOTRE LUDOTHEQUE EN LIGNE</p>
-        </div>
+  <!-- Bootstrap core CSS -->
+  <link href="{{ asset('startbootstrap-one-page-wonder/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{{ asset('startbootstrap-one-page-wonder/css/one-page-wonder.css') }}" rel="stylesheet">
+
+  {# animations #}
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Ludo</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">ORGANISEZ DES PARTIES ENDIABLEES ! </p>
+  </nav>
+
+  <header class="masthead text-center text-white">
+    <div class="masthead-content">
+      <div class="container">
+        <div class="heading-main">
+        <h1 class="masthead-heading mb-0">Ludo</h1>
         </div>
-    </div>
-    <div class="card" style="width: 18rem;">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-            <p class="card-text">NOTEZ VOS JEUX PREFERES.</p>
+        <div class="heading-secondary">
+        <h2 class="masthead-subheading mb-0">les fans de jeux de plateau</h2>
         </div>
+        <a href="{{ path('app_register') }}" class="btn btn-primary btn-xl rounded-pill mt-5 btn--animated">Je m'inscris !</a>
+      </div>
     </div>
-</div>
-{% endblock %}
+    <div class="bg-circle-1 bg-circle"></div>
+    <div class="bg-circle-2 bg-circle"></div>
+    {# <div class="bg-circle-2 bg-circle"></div> #}
+    {# <div class="bg-circle-3 bg-circle"></div> #}
+    {# <div class="bg-circle-4 bg-circle"></div> #}
+  </header>
+
+  {% block body %}
+
+ <section data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+            <img class="img-fluid rounded-circle" src="{{ asset('startbootstrap-one-page-wonder/img/game2.jpg')}}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Faîtes équipe !</h2>
+            <p>Recrutez facilement des partenaires de jeu en localisant immédiatement qui joue à vos jeux préférés près de chez vous. Vous pouvez même voir qui possède un exemplaire du jeu chez lui/elle !</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <section data-aos="fade-left"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6">
+          <div class="p-5">
+                <img class="img-fluid rounded-circle" src="{{ asset('startbootstrap-one-page-wonder/img/game5.jpg')}}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="p-5">
+            <h2 class="display-4">A vous de jouer!</h2>
+            <p>Montrez à tous à quoi vous jouez et quels jeux vous possédez en construisant votre ludothèque en ligne</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <section data-aos="fade-right"
+     data-aos-offset="300"
+     data-aos-easing="ease-in-sine">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-6 order-lg-2">
+          <div class="p-5">
+           <img class="img-fluid rounded-circle" src="{{ asset('startbootstrap-one-page-wonder/img/donnersonavis.jpg')}}" alt="">
+          </div>
+        </div>
+        <div class="col-lg-6 order-lg-1">
+          <div class="p-5">
+            <h2 class="display-4">Donnez votre avis !</h2>
+            <p>Aiguillez les autres joueurs en notant et en recommandant les jeux auxquels vous avez joué. Qui sait? Peut-être disputerez-vous bientôt une partie avec eux !</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {% endblock %}
+
+  <!-- Footer -->
+  <footer class="py-5 bg-black">
+    <div class="container">
+      <p class="m-0 text-center text-white small">Copyright &copy; Ludo 2019</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+  AOS.init();
+</script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
