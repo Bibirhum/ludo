@@ -2,7 +2,9 @@
     background-color: rgba(17, 25, 74, 1);
 }
 body{
-    background-color: rgba(73, 85, 137, 1);
+    background-image: linear-gradient(to bottom,rgba(114, 137, 218, 0.5),  rgba(114, 137, 218, 0.5)),
+  url("../landing_page/img/game1blurry.jpg");
+    font-family: 'Lato';
 }
 
 

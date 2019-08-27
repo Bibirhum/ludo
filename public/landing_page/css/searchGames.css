@@ -1,0 +1,77 @@
+body{
+    background-image: linear-gradient(to bottom,rgba(114, 137, 218, 0.2),  rgba(114, 137, 218, 0.2)),
+  url("../img/game1blurry.jpg");
+  background-size:cover;
+    font-family: 'Lato';
+}
+
+.container_form{
+    background-image: linear-gradient(to bottom,rgba(114, 137, 218, 0.2),  rgba(114, 137, 218, 0.2)),
+}
+
+
+h1{
+    color: white;
+    font-family: 'Catamaran';
+    font-weight: bold;
+}
+
+h3{
+    color:white;
+}
+
+h5,h6{
+    font-weight:bold;
+}
+
+.container.header_section{
+    margin-top:2rem;
+    padding-top:2rem;
+}
+
+.formFields{
+    font-family:'Lato';
+    font-weight:bold;
+    color:white;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+}
+
+.position-sticky{
+    margin-right:0.5rem;
+}
+
+
+.btn-primary {
+    background-color: #7289da;
+    border-color: #7289da;
+  }
+  
+  .btn-primary:hover {
+    background-color: #f68c0f !important;
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0; }
+  
+  .btn-primary:active, .btn-primary:focus {
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+  
+        
+  .btn-primary, .btn-primary:link, .btn-primary:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.5rem 2rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer; }
+  
+    .btn--animated {
+      animation: moveInBottom .5s ease-out .75s;
+      animation-fill-mode: backwards; }

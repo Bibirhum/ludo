@@ -4,31 +4,48 @@
 
 {% block body %}
 
-    <div class="container">
-        <h1 class="text-center mb-5">Je cherche des jeux !</h1>
+<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="../public/landing_page/css/searchGames.css">
+
+    <div class="container header_section">
+        <h1 class="text-center mb-5">Recherche de jeux</h1>
     </div>
 
-    <div class="container">
+    <div class="container container_form">
         <div class="row">
 
 
-            <div class="col-3 position-sticky">
+            <div class="col-3 position-sticky float-left">
                 <h3>Filtrer par :</h3>
-                {# {{ form_row(game_form.name) }}
-                {{ form_row(game_form.category, {'required': false}) }}
-                {{ form_row(game_form.duration, {'required': false}) }}
-                {{ form_row(game_form.numPlayerMin, {'required': false}) }}
-                {{ form_row(game_form.numPlayerMax, {'required': false}) }}
-                {{ form_row(game_form.ageMin, {'required': false}) }}
-                {{ form_row(game_form.submit, {'label': 'Lancer la recherche', 'attr': { 'class': 'btn-primary' }}) }} #}
 
-                {{ form(game_form) }}
+        {# {{ form_start(game_form) }}
+            {{ form_row(game_form.name, {'label_attr': {'class':'formFields'}}) }}
+            {{ form_row(game_form.category, {'label_attr': {'class':'formFields'}}) }}
+            {{ form_row(game_form.numPlayerMin, {'label_attr': {'class':'formFields'}}) }}
+            {{ form_row(game_form.numPlayerMax, {'label_attr': {'class':'formFields'}}) }}
+            {{ form_row(game_form.duration, {'label_attr': {'class':'formFields'}}) }} 
+            {{ form_row(game_form.ageMin, {'label_attr': {'class':'formFields'}}) }} 
+        
+        {{ form_end(game_form) }}  #}
+
+
+
+                 {{ form_start(game_form) }}
+                {{ form_row(game_form.name, {'required': false,'label_attr': {'class':'formFields'}}) }}
+                {{ form_row(game_form.category, {'required': false,'label_attr': {'class':'formFields'}}) }}
+                {{ form_row(game_form.duration, {'required': false,'label_attr': {'class':'formFields'}}) }}
+                {{ form_row(game_form.numPlayerMin, {'required': false,'label_attr': {'class':'formFields'}}) }}
+                {{ form_row(game_form.numPlayerMax, {'required': false,'label_attr': {'class':'formFields'}}) }}
+                {{ form_row(game_form.ageMin, {'required': false,'label_attr': {'class':'formFields'}}) }}
+                {{ form_row(game_form.submit, {'label': 'Lancer la recherche', 'attr': { 'class': 'btn-primary' }}) }}
+                {{ form_end(game_form) }} 
 
             </div>
 
-            <div class="col-9 row d-flex justify-content-around">
+            <div class="col-9 row d-flex justify-content-around results">
                 {% for game in games %}
-                    <div class="card text-center mb-5" style="width:25%;">
+                    <div class="card text-center mb-5 w-50">
                         <div class="card-header">
                             <h4 class="card-title">{{ game.name }}</h4>
                         </div>
@@ -37,7 +54,8 @@
                             <h5>{{ game.category.name }}</h5>
                             <p class="card-text">Entre {{ game.numPlayerMin }} et {{ game.numPlayerMax }} joueurs</p>
                             <p class="card-text">À partir de {{ game.ageMin }} ans</p>
-                            <p class="card-text">Durée d'une partie : {{ game.duration }} minutes</p>
+                            <p class="card-text">
+                            <h6>Durée d'une partie :</h6> {{ game.duration }} minutes</p>
                             <p class="card-text">{{ game.shortDescription }}</p>
                             <a href="{{ path('user_addgame', {'id' : game.id}) }}" class="btn btn-primary">Ajouter à ma liste</a>
                         </div>
