@@ -1,12 +1,15 @@
-{% extends 'layoutUserProfile.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block title %}Ludo | Mon profil{% endblock %}
+{% block title %}Mon profil{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
 
 {% block body %}
   
 <div class="page-header header-filter" data-parallax="true"></div>
   
-  </div><div class="main main-raised">
+  <div class="main main-raised">
 
 		<div class="profile-content" >
       {% if is_granted('IS_AUTHENTICATED_FULLY')%}
@@ -119,8 +122,8 @@
                   <img class="card-img-top" src="{{ item.games.thumbnail }}" alt="Card image cap">
                   <div class="card-body">
                     <h6>Catégorie : {{ item.games.category.name }}</h6>
-                    <h6>Commentaire : {{ item.commentary}}</h6>
-                    <h6>Note perso : >{{ item.rating }}</h6>
+                    <h6>{% if game.commentary %}Commentaire : {{ game.commentary }}{% else %}Aucun de commentaire{% endif %}</h6>
+                    <h6>{% if game.rating %}Note : {{ game.rating }}{% else %}Aucune de note{% endif %}</h6>
                     {% if item.playsGame is same as (1)  %}
                     <i class="material-icons">
                     sentiment_satisfied_alt

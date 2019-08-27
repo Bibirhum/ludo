@@ -1,54 +1,88 @@
 <!DOCTYPE html>
 <html>
+
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>LUDO| {% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
+    <link rel="stylesgeet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
+    <link href="{{ asset('css/global.css') }}" rel="stylesheet">
     {% block stylesheets %}
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        <!-- Custom styles for this template -->
-        <link href="{{ asset('css/global.css') }}" rel="stylesheet">
+    
     {% endblock %}
 </head>
 
-<body>
-<!-- Navigation -->
-<div class="container-fluid">
-    <nav class="navbar navbar-expand-lg navbar-dark row">
-        <a class="navbar-brand col-1" href="{{ path('games_search') }}">LUDO</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+
+
+<body class="profile-page">
+
+{# NavBar #}
+<nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg "  color-on-scroll="100"  id="sectionsNav">
+    <div class="container">
+        <div class="navbar-translate">
+            <a class="navbar-brand" href="{{ path('games_search') }}"><img src="{{ asset('img/logo.png') }}" alt="logo ludo"></a>
+        </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
+         <i class="material-icons">menu</i>
         </button>
-        <div class="collapse navbar-collapse col-11 row" id="navbarNav">
-            <ul class="navbar-nav d-flex col-12">
-                <li class="nav-item p-2">
-                    <a class="nav-link" href="{{ path('games_search') }}">JEUX</a>
+    
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="dropdown nav-item">
+                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
+                        <i class="material-icons">apps</i> RECHERCHER
+                    </a>
+                    <div class="dropdown-menu dropdown-with-icons">
+                    <a href="{{ path('games_search') }}" class="dropdown-item">
+                        JEUX
+                    </a>
+                    <a href="{{ path('player_search') }}" class="dropdown-item">
+                        JOUEURS
+                    </a>
+                    </div>
                 </li>
-                <li class="nav-item p-2">
-                    <a class="nav-link" href="#">JOUEURS</a>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('user_profile') }}">
+                        MON COMPTE
+                    </a>
                 </li>
-                {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item p-2">
-                    <a class="nav-link" href="{{ path('admin') }}">ADMINISTRATION</a>
-                </li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                        <li class="nav-item">
+                    <a class="nav-link" href="{{ path('app_logout') }}">
+                            Se DECONNECTER
+                            </a>
+                        </li>
                 {% endif %}
-                <li class="nav-item p-2">
-                    <a class="nav-link" href="{{ path('user_profile') }}">MON COMPTE</a>
-                </li>
+                {% if is_granted('ROLE_ADMIN') %}
+                        <li class="nav-item">
+                    <a class="nav-link" href="{{ path('admin') }}">
+                            ADMINISTRATION
+                            </a>
+                        </li>
+                {% endif %}
             </ul>
         </div>
-    </nav>
-</div>
+    </div>
+</nav>
+{# Fin NavBar #}
 
-<!-- Page Content -->
-<div class="container-fluid">
 {% block body %}{% endblock %}
-</div>
+
+<footer id="footer" class="footer">
+  <p>Copyright &copy; Ludo 2019</p>
+</footer>
 
 {% block javascripts %}
-    <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/script.js') }}"></script>  
 {% endblock %}
 </body>
 </html>

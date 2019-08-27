@@ -1,62 +1,98 @@
-{% extends 'layoutUserProfile.html.twig' %}
+{% extends 'layout.html.twig' %}
 
-{% block title %}Ludo | Fiche d'un joueur{% endblock %}
+{% block title %}Fiche d'un joueur{% endblock %}
+
+{% block stylesheets %}{% endblock %}
 
 {% block body %}
-    <style>
 
-    </style>
+<div class="page-header header-filter" data-parallax="true"></div>
+  
+<div class="main main-raised">
 
-    <div class="container fluid mx-auto d-block text-center">
-        <h1>Joueur <b>{{ user.username }}</b></h1>
+    <div class="profile-content" >
+    
+    <span class="corner"><a href="{{ path('player_search') }}">Retour vers la recherche de partenaires de jeu</a></span>
 
-        {% if user.avatar is empty %}
-            <img src="https://api.adorable.io/avatars/200/abott@adorable.png" class="rounded-circle w-25"
-                 alt="Avatar du joueur {{ user.username }}">
-        {% else %}
-            <img src="{{ asset(user.avatar) }}" class="rounded-circle w-25" alt="Avatar du joueur {{ user.username }}">
-        {% endif %}
-
-        <div class="container fluid">
-
-            <p class="font-italic">{{ user.bio }}</p>
-
-            <div class="container fluid">
-                <h2>Sa ludothèque idéale</h2>
-            </div>
-
-            <div class="d-flex flex-nowrap">
-
-                {% for game in user.associatedGames %}
-                    <div class="card w-25">
-                        {# à modifier avec asset pour accueillir les vraies images   #}
-                        <img class="card-img-top" src="{{ asset(game.games.thumbnail) }}"
-                             alt="Photo du jeu {{ game.games.name }}">
-                        <div class="card-body">
-                            <h4 class="card-title">{{ game.games.name }}</h4>
-                            <p class="card-text">
-                            <h6><b>Catégorie : </b></h6>
-                            <p>{{ game.games.category.name }}</p>
-                            <h6><b>Commentaire : </b></h6>
-                            <p>{% if game.commentary %}{{ game.commentary }}{% else %}Pas de commentaire{% endif %}</p>
-                            <h6><b>Note : </b>{% if game.rating %}{{ game.rating }}{% else %}Pas de note{% endif %}</h6>
-                            <p>
-                                {% if game.playsGame == 1 %}
-                                    <span class="badge badge-success">{{ user.username }} y joue !</span>
-                                {% endif %}
-                                {% if game.ownsGame == 1 %}
-                                    <span class="badge badge-info">{{ user.username }} l'a en stock !</span>
-                                {% endif %}
-                                {% if game.playsGame == 0 and game.ownsGame == 0 %}
-                                    <span class="badge badge-warning">{{ user.username }} est intéressé(e) !</span>
-                                {% endif %}
-                            </p>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
-
+      <div class="container">
+        <div class="row">
+	        <div class="col-md-6 ml-auto mr-auto">
+        	  <div class="profile">
+	            <div class="avatar">
+                {% if user.avatar is empty %}
+                <img src="https://api.adorable.io/avatars/285/abott@adorable.png" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                {% else %}
+                <img src="{{asset(user.avatar)}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                {% endif %}
+              </div>
+              <div class="name">
+                <h3 class="title">Joueur : {{user.username}}</h3>
+              </div>
+              <div class="description text-center">
+                <p>{{user.bio}}</p>
+              </div>
+            </div>             
+          </div>
         </div>
-<button class="btn btn-light"><a href="{{ path('player_search') }}">Retour vers la recherche de partenaires de jeu</a></button>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6 ml-auto mr-auto">
+          <div id="accordion" role="tablist">
+            <div class="profile-tabs">
+              <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                    <i class="material-icons">favorite</i>
+                      SES JEUX PRÉFÉRÉS
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+        <div class="tab-content tab-space ml-5 mr-5">
+            <div class="row">
+
+              {% for game in user.associatedGames %}
+
+              <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>{{ game.games.name }}</h3>
+                    </div>
+                    <img class="card-img-top" src="{{ game.games.thumbnail }}" alt="Photo du jeu {{ game.games.name }}">
+                    <div class="card-body">
+                        <h6>Catégorie : {{ game.games.category.name }}</h6>
+                        <h6>{% if game.commentary %}Commentaire : {{ game.commentary }}{% else %}Aucun de commentaire{% endif %}</h6>
+                        <h6>{% if game.rating %}Note : {{ game.rating }}{% else %}Aucune de note{% endif %}</h6>
+                        <p>
+                            {% if game.playsGame is same as (1)  %}
+                                <i class="material-icons">sentiment_satisfied_alt</i>{{ user.username }} y joue !
+                            {% endif %}
+                            {% if game.ownsGame is same as (1)  %}
+                                <i class="material-icons">thumb_up_alt</i>{{ user.username }} l'a en stock !
+                            {% endif %}
+                            {% if game.playsGame == 0 and game.ownsGame == 0 %}
+                                <span class="badge badge-warning">{{ user.username }} est intéressé(e) !</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                </div>
+              </div>
+
+              {% endfor %}
+
+            </div>
+        </div>
+      </div>
+
     </div>
+</div>
+
+
 {% endblock %}
