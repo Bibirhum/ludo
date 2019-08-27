@@ -21,13 +21,19 @@ class FormEditMyGamesType extends AbstractType
             ->add('commentary', TextareaType::class, ['label' => 'Votre commentaire'])
 
             ->add('playsGame',ChoiceType::class, 
-                 ['choices' => [
+                 [
+                    'expanded' => true,
+                    'multiple' => false,
+                    'choices' => [
                     'yes' => 1,
                     'no' => 0],
                 'label' => 'jouez vous au jeu?'])
 
             ->add('ownsGame',ChoiceType::class, 
-                ['choices' => [
+                [
+                    'expanded' => true,
+                    'multiple' => false,
+                    'choices' => [
                     'yes' => 1,
                     'no' => 0],
                 'label' => 'possedez vous le jeu?'])
