@@ -8,7 +8,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Ludo - les fans de jeux de plateau</title>
+  <title>Ludo - Les fans de jeux de plateau</title>
 
   <!-- Bootstrap core CSS -->
   <link href="{{ asset('landing_page/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -30,7 +30,7 @@
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Ludo</a>
+      <a class="navbar-brand" href="#"><img src="{{ asset('landing_page/img/logoludowhitesmall.png') }}"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -42,9 +42,11 @@
           <li class="nav-item">
             <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
           </li>
+{% if is_granted('IS_AUTHENTICATED_FULLY')%}
           <li class="nav-item">
             <a class="nav-link" href="{{ path('user_profile') }}">Mon compte</a>
           </li>
+{% endif %}
         </ul>
       </div>
     </div>
@@ -54,12 +56,12 @@
     <div class="masthead-content">
       <div class="container">
         <div class="heading-main">
-        <h1 class="masthead-heading mb-0">Ludo</h1>
+        <img src="{{ asset('landing_page/img/logoludowhite.png') }}">
         </div>
         <div class="heading-secondary">
-        <h2 class="masthead-subheading mb-0">les fans de jeux de plateau</h2>
+        <h2 class="masthead-subheading mb-0 slogan">Les fans de jeux de plateau</h2>
         </div>
-        <a href="{{ path('app_register') }}" class="btn btn-primary btn-xl rounded-pill mt-5 btn--animated">Je m'inscris !</a>
+        <a href="{{ path('app_register') }}" class="btn btn-primary btn-xl rounded-pill mt-5 btn--animated cta">Je m'inscris !</a>
       </div>
     </div>
     <div class="bg-circle-1 bg-circle"></div>

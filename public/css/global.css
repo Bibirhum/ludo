@@ -1,10 +1,213 @@
-.navbar{
-    background-color: rgba(17, 25, 74, 1);
-}
+
 body{
     background-image: linear-gradient(to bottom,rgba(114, 137, 218, 0.5),  rgba(114, 137, 218, 0.5)),
   url("../landing_page/img/game1blurry.jpg");
     font-family: 'Lato';
+}
+
+.navbar{
+  background-color: rgba(17, 25, 74, 1);
+}
+
+/* NAVBAR */
+
+.navbar-toggler .material-icons{
+  color: #fff;
+}
+
+.navbar {
+  border: 0;
+  border-radius: 3px;
+  padding: .625rem 0;
+  margin-bottom: 20px;
+  color: #fff;
+  background-color: rgba(8, 3, 37, 1)!important;
+  box-shadow: 0 4px 18px 0 rgba(0,0,0,.12), 0 7px 10px -5px rgba(0,0,0,.15) !important;
+  z-index: 1000 !important;
+  transition: all 150ms ease 0s;
+  
+}
+
+.navbar.navbar-transparent {
+  z-index: 1030;
+  background-color: transparent!important;
+  box-shadow: none !important;
+  padding-top: 25px;
+  color: #fff;
+}
+
+.navbar .navbar-brand {
+  position: relative;
+  color: inherit;
+  padding: 0;
+  height: 50px;
+  font-size: 1.125rem;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+.navbar .navbar-nav .nav-item .nav-link:not(.btn) .material-icons {
+  margin-top: -7px;
+  top: 3px;
+  position: relative;
+  margin-right: 3px;
+}
+
+.navbar .navbar-nav .nav-item .nav-link .material-icons {
+  font-size: 1.25rem;
+  max-width: 24px;
+  margin-top: -1.1em;
+}
+
+.navbar .navbar-nav .nav-item .nav-link .fa, .navbar .navbar-nav .nav-item .nav-link .material-icons {
+  font-size: 1.25rem;
+  max-width: 24px;
+  margin-top: -1.1em;
+}
+
+.navbar .navbar-nav .nav-item .nav-link {
+  position: relative;
+  color: inherit;
+  padding: .9375rem;
+  font-weight: 400;
+  font-size: 12px;
+  border-radius: 3px;
+  line-height: 20px;
+}
+
+
+
+.nav-pills, .nav-tabs {
+  border: 0;
+  border-radius: 3px;
+  padding: 0 15px;
+}
+
+.nav .nav-item {
+  position: relative;
+  margin: 0 2px;
+}
+
+.nav-pills.nav-pills-icons .nav-item .nav-link {
+  border-radius: 4px;
+}
+
+.nav-pills .nav-item .nav-link.active {
+  color: #fff;
+  background-color: rgba(246, 140, 15, 1);
+  box-shadow: 0 5px 20px 0 rgba(0,0,0,.2), 0 13px 24px -11px rgba(246, 140, 15, 1);
+}
+
+.nav-pills .nav-item .nav-link {
+  line-height: 24px;
+  font-size: 12px;
+  font-weight: 500;
+  min-width: 100px;
+  color: #555;
+  transition: all .3s;
+  border-radius: 30px;
+  padding: 10px 15px;
+  text-align: center;
+}
+
+.nav-pills .nav-item .nav-link:not(.active):hover {
+  background-color: rgba(246, 140, 15, 1);
+}
+
+
+.nav-pills .nav-item i {
+  display: block;
+  font-size: 30px;
+  padding: 15px 0;
+}
+
+a .material-icons {
+  vertical-align: middle;
+}
+
+/* Link */
+a.change{
+  color: rgba(114, 137, 218, 1);
+  transition: all .3s;
+}
+a.change:hover, .navbar a:hover, .navbar .nav-item a.nav-link:hover{
+  color: rgba(246, 140, 15, 1);
+  text-decoration: none;
+}
+
+/* dropdown menu */
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  min-width: 11rem !important;
+  margin: .125rem 0 0;
+  font-size: 1rem;
+  color: #212529;
+  text-align: left;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: .25rem;
+  transition: transform .3s cubic-bezier(.4,0,.2,1),opacity .2s cubic-bezier(.4,0,.2,1);
+}
+
+.dropdown-menu.show{
+  transition: transform .3s cubic-bezier(.4,0,.2,1),opacity .2s cubic-bezier(.4,0,.2,1);
+}
+
+
+.dropdown-menu .dropdown-item:focus, .dropdown-menu .dropdown-item:hover, .dropdown-menu a:active, .dropdown-menu a:focus, .dropdown-menu a:hover {
+  box-shadow: 0 4px 20px 0 rgba(0,0,0,.14), 0 7px 10px -5px rgba(246, 140, 15, 1);
+  background-color: rgba(246, 140, 15, 1);
+  color: #FFF;
+}
+.show .dropdown-toggle:after {
+  transform: rotate(180deg);
+}
+
+.dropdown-toggle:after {
+  will-change: transform;
+  transition: transform .15s linear;
+}
+
+
+.dropdown-menu .dropdown-item, .dropdown-menu li>a {
+  position: relative;
+  width: auto;
+  display: flex;
+  flex-flow: nowrap;
+  align-items: center;
+  color: #333;
+  font-weight: 400;
+  text-decoration: none;
+  font-size: .8125rem;
+  border-radius: .125rem;
+  margin: 0 .3125rem;
+  transition: all .15s linear;
+  min-width: 7rem;
+  padding: 0.625rem 1.25rem;
+  min-height: 1rem !important;
+  overflow: hidden;
+  line-height: 1.428571;
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+}
+
+.dropdown-menu.dropdown-with-icons .dropdown-item {
+  padding: .75rem 1.25rem .75rem .75rem;
+}
+
+.dropdown-menu.dropdown-with-icons .dropdown-item .material-icons {
+  vertical-align: middle;
+  font-size: 24px;
+  position: relative;
+  margin-top: -4px;
+  top: 1px;
+  margin-right: 12px;
+  opacity: .5;
 }
 
 
