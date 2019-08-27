@@ -154,3 +154,166 @@ ownsGame :  {{ user_game.ownsGame }}<br> #}
  
 {% endblock %}
 
+{# {% extends 'layoutUserProfile.html.twig' %}
+
+{% block title %}Ludo | Mon profil{% endblock %}
+
+
+
+{% block body %}
+
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  
+<div class="page-header header-filter" data-parallax="true"></div>
+  
+  
+  
+  <div class="main main-raised w-50 mx-auto">
+
+		<div class="profile-content" >
+      {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+      <span> Vous êtes connecté</span>
+      {% endif %}
+
+      <div class="container">
+        <div class="row">
+	        <div class="col-md-6 ml-auto mr-auto">
+        	  <div class="profile">
+	            <div class="avatar">
+                {% if user.avatar is empty %}
+                <img src="https://api.adorable.io/avatars/285/abott@adorable.png" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                {% else %}
+                <img src="{{asset(user.avatar)}}" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                {% endif %}
+              </div>
+              <div class="name">
+                <h1 class="title">Bienvenue {{user.username}}! </h1>
+              </div>
+              <div class="description text-center">
+                <p class="font-italic user_bio">{{user.bio}}</p>
+              </div>
+
+
+
+
+
+              <div id="accordion" role="tablist">
+                <div class="profile-tabs">
+                  <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      <i class="fas fa-user"></i>
+                      <h4>Mes infos</h4>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+                <ul class="list-group list-group-flush  d-flex align-items-center">
+                  <li class="list-group-item">{{user.email}}</li>
+                  <li class="list-group-item">{{user.address}}</li>
+                  <li class="list-group-item">{{user.zipcode}}</li>
+                  <li class="list-group-item">{{user.city}}</li>
+                </ul>
+                {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+                <div>
+                  <a class="change" href="{{ path('edit_user_profile') }}">
+                    <i class="material-icons">
+                      create
+                    </i>
+                    Modifier mes informations
+                  </a>
+                </div>
+                {% endif %}
+              </div>
+            </div>             
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col-md-6 ml-auto mr-auto">
+          <div id="accordion" role="tablist">
+            <div class="profile-tabs">
+              <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                  <i class="fas fa-dice-six"></i>
+                      <h4>Mes jeux</h4>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
+        <div class="tab-content tab-space ml-5 mr-5">
+            <div class="row">
+              {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+              <div class="col-md-3">
+                <div class="card">
+                  <div class="card-header">
+                  <h3>
+                  Ajouter un jeu
+                  </h3>
+                  </div>
+                  <a class="change" href="{{ path('games_search')}}">
+                    <i class="material-icons add_circle_outline">
+                      add_circle_outline
+                    </i>
+                  </a>
+                </div>
+              </div>
+              {% endif %}
+              
+              {% for item in user_game %}
+
+              <div class="col-md-3">
+                <div class="card">
+                <div class="card-header">
+                <h3>{{ item.games.name }}</h3>
+                </div>
+                  <img class="card-img-top" src="{{ item.games.thumbnail }}" alt="Card image cap">
+                  <div class="card-body">
+                    <h6>Catégorie : {{ item.games.category.name }}</h6>
+                    <h6>Commentaire :</h6> 
+                    <p>{{ item.commentary}}</p>
+                    <h6>Note perso : >{{ item.rating }}</h6>
+                    {% if item.playsGame is same as (1)  %}
+                    <i class="material-icons">
+                    sentiment_satisfied_alt
+                    </i>J'y joue !
+                    {% endif %}
+                    {% if item.ownsGame is same as (1) %}
+                    <i class="material-icons">
+                    thumb_up_alt
+                    </i>Je l'ai !
+                    {% endif %} 
+                    <a href="#!"><i class="material-icons">arrow_right_alt</i>Détails</a>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://kit.fontawesome.com/cef3058f65.js"></script>
+
+
+{# id : {{ user_game_association.id }}
+commentaire : {{ user_game.commentary }}<br>
+rating : {{ user_game.rating }}<br>
+playsGame : {{ user_game.playsGame }}<br>
+ownsGame :  {{ user_game.ownsGame }}<br> #}
+ 
+{% endblock %} #}
+
