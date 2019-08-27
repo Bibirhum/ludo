@@ -249,6 +249,21 @@ class Game
 
         return $this;
     }
+
+// // ajout de Baptiste pour lier un Game à un User
+
+// public function getUser(): ?User
+//     {
+//         return $this->user;
+//     }
+
+//     public function setUser(?User $user): self
+//     {
+//         $this->user = $user;
+
+//         return $this;
+//     }
+
     /**
      * @return Collection|UserGameAssociation[]
      */

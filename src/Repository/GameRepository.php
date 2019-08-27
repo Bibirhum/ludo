@@ -19,6 +19,37 @@ class GameRepository extends ServiceEntityRepository
         parent::__construct($registry, Game::class);
     }
 
+    public function findByFields(
+        ?string $name,
+        ?string $category,
+        ?int $numPlayerMin,
+        ?int $numPlayerMax,
+        ?int $duration,
+        ?int $ageMin
+        )
+    {
+        $entityManager = $this->getEntityManager();
+        $query = $entityManager->createQuery('
+            SELECT g
+            FROM App\Entity\Game g, App\Entity\Category c
+            WHERE g.category = c.id
+            AND g.name LIKE :name
+            AND c.name LIKE :category
+            AND g.numPlayerMin >= :numPlayerMin
+            AND g.numPlayerMax <= :numPlayerMax
+            AND g.duration <= :duration
+            AND g.ageMin >= :ageMin
+            ORDER BY g.name ASC
+        ')
+            ->setParameter('name', $name)
+            ->setParameter('category', $category)
+            ->setParameter('numPlayerMin', $numPlayerMin)
+            ->setParameter('numPlayerMax', $numPlayerMax)
+            ->setParameter('duration', $duration)
+            ->setParameter('ageMin', $ageMin);
+
+        return $query->execute();
+    }
     // /**
     //  * @return Game[] Returns an array of Game objects
     //  */

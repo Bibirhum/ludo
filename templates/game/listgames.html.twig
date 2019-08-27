@@ -1,0 +1,50 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Ludo | Rechercher des jeux{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <h1 class="text-center mb-5">Je cherche des jeux !</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+
+
+            <div class="col-3 position-sticky">
+                <h3>Filtrer par :</h3>
+                {# {{ form_row(game_form.name) }}
+                {{ form_row(game_form.category, {'required': false}) }}
+                {{ form_row(game_form.duration, {'required': false}) }}
+                {{ form_row(game_form.numPlayerMin, {'required': false}) }}
+                {{ form_row(game_form.numPlayerMax, {'required': false}) }}
+                {{ form_row(game_form.ageMin, {'required': false}) }}
+                {{ form_row(game_form.submit, {'label': 'Lancer la recherche', 'attr': { 'class': 'btn-primary' }}) }} #}
+
+                {{ form(game_form) }}
+
+            </div>
+
+            <div class="col-9 row d-flex justify-content-around">
+                {% for game in games %}
+                    <div class="card text-center mb-5" style="width:25%;">
+                        <div class="card-header">
+                            <h4 class="card-title">{{ game.name }}</h4>
+                        </div>
+                        <img src="{{ asset(game.image) }}" class="card-img-top" alt="Photo du jeu {{ game.name }}">
+                        <div class="card-body">
+                            <h5>{{ game.category.name }}</h5>
+                            <p class="card-text">Entre {{ game.numPlayerMin }} et {{ game.numPlayerMax }} joueurs</p>
+                            <p class="card-text">À partir de {{ game.ageMin }} ans</p>
+                            <p class="card-text">Durée d'une partie : {{ game.duration }} minutes</p>
+                            <p class="card-text">{{ game.shortDescription }}</p>
+                            <a href="{{ path('user_addgame', {'id' : game.id}) }}" class="btn btn-primary">Ajouter à ma liste</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+{% endblock %}

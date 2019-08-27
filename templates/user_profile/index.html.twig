@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block title %}Mon profil{% endblock %}
 
@@ -10,6 +10,7 @@
 <div class="float-right"> 
  {% if is_granted('IS_AUTHENTICATED_FULLY')%}
             <a href="{{ path('app_logout') }}" class="btn btn-danger">Logout</a>
+            <a href="{{ path('edit_user_profile') }}" class="btn btn-primary">Modifier mes informations</a>
     {% endif %}
 
     </div>
@@ -17,7 +18,14 @@
 <div class="container fluid mx-auto d-block text-center">
     <h1>Bienvenue {{user.username}}</h1>
 
-    <img src="{{user.avatar}}" class="rounded-circle">
+{% if user.avatar is empty %}
+      <img src="https://api.adorable.io/avatars/285/abott@adorable.png" class="rounded-circle">
+{% else %}
+       <img src="{{asset(user.avatar)}}" class="rounded-circle w-25">
+ {% endif %}
+
+     
+     
     {% if is_granted('IS_AUTHENTICATED_FULLY')%}
         <span class="badge badge-success">Connecté</span>
     {% endif %}
