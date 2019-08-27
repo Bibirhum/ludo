@@ -142,6 +142,53 @@
 
     </div>
   </div>
+
+</div> 
+{# fin container #}
+
+<div class="container fluid">
+    <h2>Mes jeux</h2>
+
+
+<div class="d-flex flex-nowrap">
+
+{% for item in user_game %}
+      <div class="card w-25">
+      {# à modifier avec asset pour accueillir les vraies images   #}
+    <img class="card-img-top" src="{{ item.games.thumbnail }}" alt="Card image cap">
+    <div class="card-body">
+      <h4 class="card-title">{{ item.games.name }}</h4>
+      <p class="card-text">
+      <h6>Catégorie : </h6><p>Catégorie</p> <br>
+        <h6>Commentaire : </h6>{{ item.commentary}}
+        <h6>Note perso : </h6>{{ item.rating }} <br>
+        {% if item.playsGame is same as (1)  %}
+        <span class="badge badge-success">J'y joue!</span>
+        {% endif %}
+        {% if item.ownsGame is same as (1) %}
+        <span class="badge badge-info">Je l'ai!</span>
+        {% endif %} 
+      </p>
+      <a href="#!" class="btn btn-primary">Détails</a>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+
+   
+        {# id : {{ user_game_association.id }}
+        commentaire : {{ user_game.commentary }}<br>
+        rating : {{ user_game.rating }}<br>
+        playsGame : {{ user_game.playsGame }}<br>
+        ownsGame :  {{ user_game.ownsGame }}<br> #}
+   
+
+ {% if is_granted('IS_AUTHENTICATED_FULLY')%}
+            {# <a href="{{ path('games_search')}}">Ajouter un jeu</a> #}
+    {% endif %}
+   
+
 </div>
 
 {# id : {{ user_game_association.id }}

@@ -22,18 +22,18 @@ class GameController extends AbstractController
     /**
      * @Route("/games/search", name="games_search")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
-    */
+     */
     public function searchGames(Request $request, GameRepository $gameRepository, Game $game = null)
     {
         $gameSearchForm = $this->createFormBuilder()
             ->add('name', TextType::class, [
-                'label' => 'Nom du jeu',
+                'label' => 'Nom',
                 'required' => false,
             ])
             ->add('category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
-                'label' => 'Choisir une catégorie',
+                'label' => 'Catégorie',
                 'required' => false,
             ])
             ->add('numPlayerMin', IntegerType::class, [
@@ -45,47 +45,45 @@ class GameController extends AbstractController
                 'required' => false,
             ])
             ->add('duration', IntegerType::class, [
-                'label' => 'Durée d\'une partie en minutes',
+                'label' => 'Durée maximale d\'une partie en minutes',
                 'required' => false,
             ])
             ->add('ageMin', IntegerType::class, [
-                'label' => 'Âge minimum',
+                'label' => 'Âge minimum requis',
                 'required' => false,
             ])
             ->add('submit', SubmitType::class)
             ->getForm();
         $gameSearchForm->handleRequest($request);
-        
+
         if ($gameSearchForm->isSubmitted() && $gameSearchForm->isValid()) {
             $data = $gameSearchForm->getData();
-            $paramName = $data['name'];
-            $paramCategory = $data['category']; 
-            $paramNumPlayerMin = $data['numPlayerMin'];
-            $paramNumPlayerMax = $data['numPlayerMax'];
-            $paramDuration = $data['duration'];
-            $paramAgeMin = $data['ageMin'];
-            if (empty($paramName)) {
-                $game = $gameRepository->findAll();
-            }
-            else {
-                $game = $gameRepository->findBy([
-                'name' => $paramName,
-            ]);
-        }
-        } 
-       
-        
-        else {
+            $paramName = ($data['name'] === null ? '%' : $data['name']);
+            $paramCategory = ($data['category']->getName() === null ? '%' : $data['category']->getName());
+            $paramNumPlayerMin = ($data['numPlayerMin'] === null ? 0 : $data['numPlayerMin']);$data['numPlayerMin'];
+            $paramNumPlayerMax = ($data['numPlayerMax'] === null ? 1000000 : $data['numPlayerMax']);$data['numPlayerMax'];
+            $paramDuration = ($data['duration'] === null ? 1000000 : $data['duration']);$data['duration'];
+            $paramAgeMin = ($data['ageMin'] === null ? 0 : $data['ageMin']);$data['ageMin'];
+
+            $game = $gameRepository->findByFields(
+                $paramName,
+                $paramCategory,
+                $paramNumPlayerMin,
+                $paramNumPlayerMax,
+                $paramDuration,
+                $paramAgeMin
+            );
+        } else {
             $game = $gameRepository->findAll();
         }
 
         return $this->render('game/listgames.html.twig', [
             'game_form' => $gameSearchForm->createView(),
-            'game' => $game,
+            'games' => $game,
         ]);
     }
 
-     /**
+    /**
      * @Route("/game/add", name="add_game")
      * @Route("/game/edit/{id<\d+>}", name="edit_game")
      */
