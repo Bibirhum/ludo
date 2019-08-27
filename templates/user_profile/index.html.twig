@@ -1,14 +1,16 @@
 {% extends 'layoutUserProfile.html.twig' %}
 
-{% block title %}Mon profil{% endblock %}
+{% block title %}Ludo | Mon profil{% endblock %}
 
 {% block body %}
   
      
 
-<div class="page-header header-filter" data-parallax="true" style="background-image:url('http://wallpapere.org/wp-content/uploads/2012/02/black-and-white-city-night.png');"></div>
-  <div class="main main-raised">
-		<div class="profile-content">
+<div class="page-header header-filter" data-parallax="true"></div>
+  
+  </div><div class="main main-raised">
+
+		<div class="profile-content" >
       {% if is_granted('IS_AUTHENTICATED_FULLY')%}
       <span> Vous êtes connecté</span>
       {% endif %}
@@ -142,7 +144,7 @@
 
     </div>
   </div>
-</div>
+
 
 {# id : {{ user_game_association.id }}
 commentaire : {{ user_game.commentary }}<br>
