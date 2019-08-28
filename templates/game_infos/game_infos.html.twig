@@ -1,0 +1,30 @@
+{% extends "base.html.twig" %} 
+
+
+
+{% block body %}
+<div>
+    <h1> {{ game.name }}</h1>
+    <img src="{{ asset(game.image) }}" alt="image du jeu"/>
+    <h2>Description</h2>
+    <ul>
+        <li>{{ game.description }}</li>
+        <li>temps moyen d'une partie {{ game.duration }} min</li>
+        <li>age minimum: {{ game.duration }} ans</li>
+        <li>{{ game.category.name }}</li>
+        <li>theme : {{game.theme}}</li>
+        <li>de {{game.NumPlayerMin}} à {{game.NumPlayerMax}} joueurs</li>
+        
+
+    </ul>
+    <h2>Commentaires</h2>
+    <ul>
+        {% for association in game.associatedUsers %}
+        <li>{{ association.commentary }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{{ path('home') }}">Revenir à la page d'accueil</a>
+    
+</div>
+   
+{% endblock %}
