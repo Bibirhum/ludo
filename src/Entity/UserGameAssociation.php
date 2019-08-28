@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserGameAssociationRepository")
@@ -30,6 +31,8 @@ class UserGameAssociation
 
     /**
      * @ORM\Column(type="integer", nullable=true)
+     * @Assert\LessThanOrEqual(5)
+     * @Assert\GreaterThanOrEqual(0)
      */
     private $rating;
 

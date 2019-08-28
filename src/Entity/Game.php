@@ -26,34 +26,54 @@ class Game
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "The game name must be at least {{ limit }} characters long",
+     *      maxMessage = "The game name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $image;
 
     // ici on ne met pas d'annotations pour que Doctrine ne le prenne pas en compte
     // cette variable est utilisée dans le formulaire de création d'objet pour gérer le fichier d'image uploadé
-    /**
-     * @Assert\Image()
-     */
+
     private $imageFile;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
      */
     private $thumbnail;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "The game name must be at least {{ limit }} characters long",
+     *      maxMessage = "The game name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $theme;
 
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "The game name must be at least {{ limit }} characters long",
+     *      maxMessage = "The game name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $short_description;
 
@@ -64,21 +84,33 @@ class Game
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     * @Assert\LessThanOrEqual(100)
+     * @Assert\GreaterThanOrEqual(0)
      */
     private $numPlayerMin;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     * @Assert\LessThanOrEqual(100)
+     * @Assert\GreaterThanOrEqual(0)
      */
     private $numPlayerMax;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     * @Assert\LessThanOrEqual(1440)
+     * @Assert\GreaterThanOrEqual(0)
      */
     private $duration;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank
+     * @Assert\LessThanOrEqual(100)
+     * @Assert\GreaterThanOrEqual(0)
      */
     private $ageMin;
 

@@ -1,41 +1,67 @@
+{% extends 'layout.html.twig' %}
 
-<link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <link href="{{ asset('landing_page/css/addedNewGameUser.css') }}" rel="stylesheet">
+{% block title %}Ludo |
+    {% if form_type == 'update' %}
+        Ajout d'un
+    {% else %}
+        Mise à jour des infos sur un
+    {% endif %}jeu dans une ludothèque
+{% endblock %}
 
-<div class="example-wrapper mx-auto w-50">
-    <h1>Ajout à ma ludothèque</h1>
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="{{ asset('landing_page/css/addedNewGameUser.css') }}" rel="stylesheet">
+{% endblock %}
 
-    <p class="message">{{ message }}</p>
-    {# <p>Joueur :  {{ user.username }}</p> #}
+{% block body %}
+    <style>
 
-    <p>Jeu : {{ game.name }}</p>
+    </style>
 
-    <img src="{{ game.image }}">
+    <div class="container">
 
-    <p>Association :<br>
-        {# id : {{ user_game.id }}<br> #}
-        Commentaire : {{ user_game.commentary }}<br>
-        Note : {{ user_game.rating }}<br>
+        {% if form_type == 'update' %}
+            <h1>
+                Je change mon avis sur un jeu de ma ludothèque
+            </h1>
+        {% else %}
+            <h1>
+                J'ajoute un jeu dans ma ludothèque
+            </h1>
+        {% endif %}
 
-        <br>
-        <br>
-        {% if user_game.playsGame is same as (1)  %}
-        <i class="far fa-thumbs-up"></i>
-                    J'y joue !
-                    {% endif %}
-                    {% if user_game.ownsGame is same as (1) %}
-                    <i class="far fa-hand-paper"></i>
-                    </i>Je l'ai !
-                    
-                    {% endif %} 
-                    <br>
-                    <br>
-                    <button class="btn btn-lg btn-primary btn--animated" type="submit" onclick="location.href='{{ path('user_profile') }}'">
-                Voir mon profil
-            </button>
-    </p>
-</div>
+        <h3>Bienvenue Joueur : {{ app.user.username }} !</h3>
 
+        <h2>Jeu : {{ game.name }}</h2>
 
- <script src="https://kit.fontawesome.com/cef3058f65.js"></script>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        {{ form_start(usergame_form) }}
+            {{ form_row(usergame_form.rating) }}
+            {{ form_row(usergame_form.commentary) }}
+            {{ form_row(usergame_form.playsGame) }}
+            {{ form_row(usergame_form.ownsGame) }}
+            {% if form_type == 'update' %}
+                {{ form_row(usergame_form.submit, {'label': 'Mettre à jour'}) }}
+            {% else %}
+                {{ form_row(usergame_form.submit, {'label': 'Ajouter'}) }}
+            {% endif %}
+        {{ form_end(usergame_form) }}
+
+        <button class="btn btn-warning"><a href="{{ path('user_profile') }}">Revenir à mon compte</a></button>
+
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="https://kit.fontawesome.com/cef3058f65.js"></script>
+{% endblock %}
