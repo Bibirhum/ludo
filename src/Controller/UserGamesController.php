@@ -32,8 +32,8 @@ class UserGamesController extends AbstractController
 
 
     /**
-     * @Route("/usergame/add/{id<\d+>}", name="add_user_game")
-     * @Route("/usergame/edit/{id<\d+>}", name="edit_user_game")
+     * @Route("/user/add_game/{id<\d+>}", name="add_user_game")
+     * @Route("/user/edit_game/{id<\d+>}", name="edit_user_game")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function editUserGame(
@@ -69,21 +69,34 @@ class UserGamesController extends AbstractController
             if ($userGame->getGames() === null) {
                 $userGame->setGames($game);
             }
-            $entityManager->persist($userGame);
-            $entityManager->flush();
+            $objectManager->persist($userGame);
+            $objectManager->flush();
 
-            return $this->redirectToRoute('user_profile');
+            if ($form_type === 'update') {
+                $this->addFlash(
+                    'success',
+                    'Votre avis sur ce jeu a bien été mis à jour'
+                );
+            } else {
+                $this->addFlash(
+                    'success',
+                    'Ce jeu a bien été ajouté à votre ludothèque'
+                );
+            }
+            //return $this->redirectToRoute('user_profile');
         }
 
-        return $this->render('game_infos/edit_game.html.twig', [
-            'NewGameForm' => $form->createView(),
+
+        return $this->render('user_games/usergames.html.twig', [
+            'usergame_form' => $form->createView(),
             'game' => $game,
             'usergame' => $userGame,
             'form_type' => $form_type,
         ]);
-
+    }
         // FIN CODE AXEL
 
+        /* premier code Franck
         if ($userGame) {
             return $this->render('user_games/usergames.html.twig', [
                 'user' => $user,
@@ -117,7 +130,7 @@ class UserGamesController extends AbstractController
                 'user_game' => $userGame,
                 'message' => 'nouvelle association réussie !',
             ]);}
-    }
+     */
 
     /**
      * @Route("/user/deletegame/{id<\d+>}", name="user_deletegame")
@@ -153,67 +166,3 @@ class UserGamesController extends AbstractController
         ]);
     }
 }
-
-namespace App\Controller;
-
-use App\Entity\Game;
-use App\Form\FormEditMyGamesType;
-use App\Repository\GameRepository;
-use App\Entity\UserGameAssociation;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
-
-
-class GameInfosController extends AbstractController
-{
-
-    /**
-     * @Route("/usergame/add/{id<\d+>}", name="add_user_game")
-     * @Route("/usergame/edit/{id<\d+>}", name="edit_user_game")
-     * @IsGranted("IS_AUTHENTICATED_FULLY")
-     */
-    public function update(Request $request, Game $game = null)
-    {
-       /* $entityManager = $this->getDoctrine()->getManager();
-
-        $userGame = $entityManager->getRepository(UserGameAssociation::class)->findOneBy([
-                'games' => $game->getId(),
-                'users' => $this->getUser()->getId(),
-            ]
-        );*/
-
-/*        $form_type = 'update';*/
-
-        /*if ($userGame === null) {
-            $userGame = new UserGameAssociation();
-            $form_type = 'create';
-        }*/
-
-       /* $form = $this->createForm(FormEditMyGamesType::class, $userGame);
-        $form->handleRequest($request);*/
-
-        /*if ($form->isSubmitted() && $form->isValid()) {
-
-            if ($userGame->getUsers() === null) {
-                $userGame->setUsers($this->getUser());
-            }
-            if ($userGame->getGames() === null) {
-                $userGame->setGames($game);
-            }
-            $entityManager->persist($userGame);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('user_profile');
-        }*/
-
-       /* return $this->render('game_infos/edit_game.html.twig', [
-            'NewGameForm' => $form->createView(),
-            'game' => $game,
-            'usergame' => $userGame,
-            'form_type' => $form_type,
-        ]);*/
-    }}

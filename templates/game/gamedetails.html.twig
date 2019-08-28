@@ -27,10 +27,7 @@
                     <p class="card-text"><b>Résumé</b><br>{{ game.shortDescription }}</p>
                     <hr>
                     <p class="card-text"><b>Description</b><br>{{ game.description }}</p>
-                    <a href="{{ path('user_addgame', {'id' : game.id}) }}" class="btn btn-primary">Ajouter à ma
-                        liste</a>
-                    <a href="{{ path('user_addgame', {'id' : game.id}) }}" class="btn btn-primary">Ajouter à ma
-                        liste</a>
+                    <a href="{{ path('add_user_game', {'id' : game.id}) }}" class="btn btn-primary">Ajouter à ma liste</a>
                 </div>
             </div>
             <div class="card text-center mb-5 w-50">

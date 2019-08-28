@@ -14,8 +14,8 @@ use Symfony\Component\Routing\Annotation\Route;
 class CategoryController extends AbstractController
 {
     /**
-     * @Route("/category/add", name="add_category")
-     * @Route("/category/edit/{id<\d+>}", name="edit_category")
+     * @Route("/admin/category/add", name="add_category")
+     * @Route("/admin/category/edit/{id<\d+>}", name="edit_category")
      */
     public function editCategory(
         Request $request,
@@ -39,6 +39,19 @@ class CategoryController extends AbstractController
             // on insère le nouveau jeu dans la BDD
             $objectManager->persist($category);
             $objectManager->flush();
+
+            if ($form_type === 'update') {
+                $this->addFlash(
+                    'success',
+                    'La catégorie a bien été mise à jour'
+                );
+            } else {
+                $this->addFlash(
+                    'success',
+                    'La nouvelle catégorie a bien été ajoutée'
+                );
+            }
+
             // on redirige vers la page d'administration des jeux
             return $this->redirectToRoute('admin_categories');
         }
@@ -51,7 +64,7 @@ class CategoryController extends AbstractController
     }
 
     /**
-     * @Route("/category/delete/{id<\d+>}", name="delete_category")
+     * @Route("/admin/category/delete/{id<\d+>}", name="delete_category")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function deleteCategory(
@@ -65,6 +78,12 @@ class CategoryController extends AbstractController
         $category->setDescription('Catégorie supprimée');
         $objectManager->persist($category);
         $objectManager->flush();
+
+        $this->addFlash(
+            'success',
+            'La catégorie a bien été mise à l\'état "supprimée"'
+        );
+
         // on redirige vers la liste des catégories
         return $this->redirectToRoute('admin_categories');
     }

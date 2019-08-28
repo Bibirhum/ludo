@@ -7,11 +7,11 @@
 
 </style>
 
-<div class="example-wrapper">
+<div class="container">
     <h1>Espace d'administration des jeux</h1>
-    {#
-        <h3>Bienvenue {{ app.user.name }}</h3>
-    #}
+
+    <h3>Bienvenue {{ app.user.username }}</h3>
+
     {% if form_type == 'update' %}
         <h2>Mise à jour du jeu <em>{{ game.name }}</em></h2>
         <p>

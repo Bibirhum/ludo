@@ -14,8 +14,17 @@
     <h3>Bienvenue {{ app.user.username }}</h3>
 
     <h2>Liste des catégories</h2>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <div>
-        <button><a href="{{ path('add_category') }}">Ajouter une catégorie</a></button>
+        <button class="btn btn-light"><a href="{{ path('add_category') }}">Ajouter une catégorie</a></button>
     </div>
     <table class="table">
         <thead>

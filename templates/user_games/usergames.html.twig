@@ -1,45 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ludo | Ajout d'un jeu dans une ludothèque{% endblock %}
+{% block title %}Ludo |
+    {% if form_type == 'update' %}
+        Ajout d'un
+    {% else %}
+        Mise à jour des infos sur un
+    {% endif %}jeu dans une ludothèque
+{% endblock %}
 
 {% block body %}
-<style>
+    <style>
 
-</style>
+    </style>
 
-<div class="container">
-    <h1>Ajout d'un jeu dans une ludothèque</h1>
+    <div class="container">
 
-    {{ message }}
-    <p>Joueur :  {{ user.username }}</p>
+        {% if form_type == 'update' %}
+            <h1>
+                Je change mon avis sur un jeu de ma ludothèque
+            </h1>
+        {% else %}
+            <h1>
+                J'ajoute un jeu dans ma ludothèque
+            </h1>
+        {% endif %}
 
-    <p>Jeu : {{ game.name }}</p>
+        <h3>Bienvenue Joueur : {{ app.user.username }} !</h3>
 
-    <p>Association :<br>
-        id : {{ user_game.id }}<br>
-        commentaire : {{ user_game.commentary }}<br>
-        rating : {{ user_game.rating }}<br>
-        playsGame : {{ user_game.playsGame }}<br>
-        ownsGame :  {{ user_game.ownsGame }}<br>
-    </p>
-</div>
+        <h2>Jeu : {{ game.name }}</h2>
 
-{#
-    developpements Axel
-#}
-    <h1>Modifier un jeu</h1>
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="alert alert-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
 
-    <p>Jeu {{ game.name }}</p>
+        {{ form_start(usergame_form) }}
+            {{ form_row(usergame_form.rating) }}
+            {{ form_row(usergame_form.commentary) }}
+            {{ form_row(usergame_form.playsGame) }}
+            {{ form_row(usergame_form.ownsGame) }}
+            {% if form_type == 'update' %}
+                {{ form_row(usergame_form.submit, {'label': 'Mettre à jour'}) }}
+            {% else %}
+                {{ form_row(usergame_form.submit, {'label': 'Ajouter'}) }}
+            {% endif %}
+        {{ form_end(usergame_form) }}
+
+        <button class="btn btn-warning"><a href="{{ path('user_profile') }}">Revenir à mon compte</a></button>
 
 
-    {{ form(NewGameForm) }}
+    </div>
 
-    {{ form_start(NewGameForm) }}
-    {{ form_row(NewGameForm) }}
-
-    {{ form_end(NewGameForm) }}
-
-    <a href="{{ path('user_profile') }}">Revenir au profil</a>
 
 
 {% endblock %}
