@@ -56,11 +56,9 @@ class PlayerSearchController extends AbstractController
             $paramCity = ($data['city'] === null ? '%' : $data['city']);
 
             if ($paramGame === '%') {
-                $user = $userRepository->findBy([
-                   'city' => $paramCity,
-                ]);
+                $user = $userRepository->findByCity($paramCity);
             } else {
-                $userGameAssociation = $userGameRepository->findByFields3(
+                $userGameAssociation = $userGameRepository->findByFields(
                     $paramGame,
                     $paramCity
                 );

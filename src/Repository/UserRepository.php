@@ -41,18 +41,16 @@ class UserRepository extends ServiceEntityRepository
         ;
     }*/
 
-    public function findByFields2(?string $game, ?string $city)
+    public function findByCity(?string $city)
     {
         $entityManager = $this->getEntityManager();
         $query = $entityManager->createQuery('
             SELECT u
-            FROM App\Entity\User u, App\Entity\UserGameAssociation a, App\Entity\Game g
-            WHERE u.id = a.users AND a.games = g.id
-            AND g.name LIKE :game AND u.city LIKE :city
+            FROM App\Entity\User u
+            WHERE u.city LIKE :city
             ORDER BY u.username ASC
         ')
 
-        ->setParameter('game', $game)
         ->setParameter('city', $city);
 
         return $query->execute();

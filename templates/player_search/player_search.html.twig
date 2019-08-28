@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block title %}Ludo | Rechercher un joueur{% endblock %}
 
@@ -111,4 +111,38 @@
         {% endif %}
 
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microplugin/0.0.3/microplugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sifter/0.5.3/sifter.min.js"></script>
+    <script src="{{ asset("js/selectize.js") }}"></script>
+
+    <script>
+        /* utilisation de l'autocompléteur selectize */
+        $(function () {
+            // attention au nom de l'id, construit d'après le nom de la classe du formulaire 'AddProductType' et celui du champ 'tags' qui y est défini !
+            $('#form_name').selectize({
+                //delimiter: ', ',
+                valueField: 'name',
+                labelField: 'name',
+                searchField: 'name',
+                maxItems: 1,
+                create: false,
+                persist: false,
+                load: function (query, callback) {
+                    // query contient ce qui est saisi par l'utilisateur
+                    if (query.legend < 2) { // si la saisie est trop courte, on quitte
+                        return;
+                    }
+                    // sinon on fait de l'ajax
+                    // $.getJSON(/* url de la requête */, /* callback appelé si la requête réussit */);
+                    $.getJSON('{{ path('search_game') }}?search='+encodeURIComponent(query), function(data){
+                        callback(data);
+                    });
+                }
+        }); // fin scope jq
+    </script>
 {% endblock %}
