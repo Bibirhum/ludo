@@ -1,15 +1,76 @@
 
-body{
-    background-image: linear-gradient(to bottom,rgba(114, 137, 218, 0.5),  rgba(114, 137, 218, 0.5)),
-  url("../landing_page/img/game1blurry.jpg");
-    font-family: 'Lato';
-}
-
 .navbar{
   background-color: rgba(17, 25, 74, 1);
 }
 
 /* NAVBAR */
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none; }
+
+.nav-link {
+  font-size: 1.05rem !important;
+  display: block;
+  padding: 0.5rem 1rem;
+  font-family:'Lato' !important;
+  font-weight:bold !important;
+  text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black !important;
+  }
+  .nav-link:hover{
+    text-decoration: none;
+    transform: translateY(-3px);
+    text-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  .nav-link.disabled {
+    color: #6c757d; }
+
+.nav-tabs {
+  border-bottom: 1px solid #dee2e6; }
+  .nav-tabs .nav-item {
+    margin-bottom: -1px; }
+  .nav-tabs .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: 0.125rem;
+    border-top-right-radius: 0.125rem; }
+    .nav-tabs .nav-link:hover, .nav-tabs .nav-link:focus {
+      border-color: #e9ecef #e9ecef #dee2e6; }
+    .nav-tabs .nav-link.disabled {
+      color: #6c757d;
+      background-color: transparent;
+      border-color: transparent; }
+  .nav-tabs .nav-link.active,
+  .nav-tabs .nav-item.show .nav-link {
+    color: #495057;
+    background-color: #fafafa;
+    border-color: #dee2e6 #dee2e6 #fafafa; }
+  .nav-tabs .dropdown-menu {
+    margin-top: -1px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0; }
+
+.nav-pills .nav-link {
+  border-radius: 0.125rem; }
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #009688; }
+
+.nav-fill .nav-item {
+  flex: 1 1 auto;
+  text-align: center; }
+
+.nav-justified .nav-item {
+  flex-basis: 0;
+  flex-grow: 1;
+  text-align: center; }
 
 .navbar-toggler .material-icons{
   color: #fff;
@@ -22,7 +83,6 @@ body{
   margin-bottom: 20px;
   color: #fff;
   background-color: rgba(8, 3, 37, 1)!important;
-  box-shadow: 0 4px 18px 0 rgba(0,0,0,.12), 0 7px 10px -5px rgba(0,0,0,.15) !important;
   z-index: 1000 !important;
   transition: all 150ms ease 0s;
   
@@ -210,6 +270,22 @@ a.change:hover, .navbar a:hover, .navbar .nav-item a.nav-link:hover{
   opacity: .5;
 }
 
+
+footer{
+  background-color: rgba(8, 3, 37, 1);
+  margin-top: 10px;
+  color: #fff;
+  padding: 25px;
+  font-weight: 300;
+  text-align: center;
+  
+}
+.footer p{
+  margin-bottom: 0;
+  font-size: 14px;
+  margin: 0 0 10px;
+  font-weight: 300;
+}
 
 
 

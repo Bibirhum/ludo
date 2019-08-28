@@ -31,16 +31,29 @@ a.change:hover, .navbar a:hover, .navbar .nav-item a.nav-link:hover{
 
 .h6, h6 {
     font-size: .75rem !important;
-    font-weight: 500;
-    font-family: Roboto,Helvetica,Arial,sans-serif;
+    font-weight: bold;
+    font-family: 'Lato';
     line-height: 1.5em;
     text-transform: uppercase;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: 'Lato';
+}
+
+h2.title {
+    font-family:'Catamaran';
+}
+
+p.user_bio{
+    font-size:1rem;
 }
 
 .name h6 {
     margin-top: 10px;
     margin-bottom: 10px;
 }
+
 
 .navbar {
     border: 0;
@@ -114,6 +127,11 @@ a .material-icons {
     right: 0;
 }
 
+body{
+    background-color:rgba(114, 137, 218, 1);
+    font-family:'Lato';
+}
+
 .profile-page .page-header {
     height: 380px;
     background-position:center;
@@ -122,6 +140,7 @@ a .material-icons {
 .page-header {
     height: 100vh;
     background-size: cover;
+    background-image: url(../landing_page/img/game1.jpg);
     margin: 0;
     padding: 0;
     border: 0;
@@ -155,6 +174,7 @@ a .material-icons {
     position: relative;
     z-index: 3;
 }
+
 
 .profile-page .profile {
     text-align: center;

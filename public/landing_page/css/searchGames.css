@@ -1,6 +1,6 @@
 body{
-    background-image: linear-gradient(to bottom,rgba(114, 137, 218, 0.2),  rgba(114, 137, 218, 0.2)),
-  url("../img/game1blurry.jpg");
+background-image: linear-gradient(to bottom,rgba(114, 137, 218, 0.2),  rgba(114, 137, 218, 0.2)),
+  url("../img/game1blurry.jpg") !important;
   background-size:cover;
     font-family: 'Lato';
 }
