@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
@@ -24,21 +26,45 @@ class User implements UserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 20,
+     *      minMessage = "The username must be at least {{ limit }} characters long",
+     *      maxMessage = "The username cannot be longer than {{ limit }} characters"
+     * )
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 255,
+     *      minMessage = "The password must be at least {{ limit }} characters long",
+     *      maxMessage = "The password cannot be longer than {{ limit }} characters"
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "The last_name must be at least {{ limit }} characters long",
+     *      maxMessage = "The last_name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $last_name;
 
     /**
      * @ORM\Column(type="string", length=50)
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 50,
+     *      minMessage = "The first_name must be at least {{ limit }} characters long",
+     *      maxMessage = "The first_name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $first_name;
 

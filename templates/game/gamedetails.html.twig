@@ -1,0 +1,45 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Ludo | Fiche jeu{% endblock %}
+
+{% block body %}
+    <style>
+
+    </style>
+
+    <div class="container">
+        <h1>Fiche technique du jeu <em>{{ game.name }}</em></h1>
+        <h3>Bienvenue {{ app.user.username }}</h3>
+        <div class="row">
+            <div class="card text-center mb-5 w-50">
+                <div class="card-header">
+                    <h2 class="card-title">{{ game.name }}</h2>
+                </div>
+                <img src="{{ asset(game.image) }}" class="card-img-top" alt="Photo du jeu {{ game.name }}">
+                <div class="card-body">
+                    <h5>{{ game.category.name }}</h5>
+                    <p class="card-text">De {{ game.numPlayerMin }} et {{ game.numPlayerMax }} joueurs</p>
+                    <p class="card-text">À partir de {{ game.ageMin }} ans</p>
+                    <p class="card-text"><i>Durée d'une partie : </i>{{ game.duration }} min</p>
+                    <hr>
+                    <p class="card-text"><b>Thème</b><br>{{ game.theme }}</p>
+                    <hr>
+                    <p class="card-text"><b>Résumé</b><br>{{ game.shortDescription }}</p>
+                    <hr>
+                    <p class="card-text"><b>Description</b><br>{{ game.description }}</p>
+                    <a href="{{ path('add_user_game', {'id' : game.id}) }}" class="btn btn-primary">Ajouter à ma liste</a>
+                </div>
+            </div>
+            <div class="card text-center mb-5 w-50">
+                <div class="card-body">
+                    <h4 class="card-title">Commentaires des joueurs</h4>
+                    <hr>
+                    {% for association in game.associatedUsers %}
+                        <h5>{{ association.users.username }}</h5>
+                        <p class="card-text">{{ association.commentary }}</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

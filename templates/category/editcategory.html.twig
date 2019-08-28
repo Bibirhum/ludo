@@ -11,24 +11,34 @@
     <h1>Espace d'administration des catégories</h1>
     
     <h3>Bienvenue {{ app.user.username }}</h3>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <div>
-        <button><a href="{{ path('admin_categories') }}">Retour à la liste des catégories</a></button>
+        <button class="btn btn-light"><a href="{{ path('admin_categories') }}">Retour à la liste des catégories</a></button>
     </div>
+
     {% if form_type == 'update' %}
         <h2>Mise à jour de la catégorie <em>{{ category.name }}</em></h2>
-
         {{ form_start(category_form) }}
             {{ form_row(category_form.name) }}
             {{ form_row(category_form.description) }}
             {{ form_row(category_form.submit, {'label': 'Mettre à jour'}) }}
         {{ form_end(category_form) }}
     {% else %}
-        <h2>Ajout d'un jeu</h2>
+        <h2>Ajout d'une catégorie</h2>
         {{ form_start(category_form) }}
             {{ form_row(category_form.name) }}
             {{ form_row(category_form.description) }}
             {{ form_row(category_form.submit, {'label': 'Ajouter'}) }}
         {{ form_end(category_form) }}
     {% endif %}
+
 </div>
 {% endblock %}
