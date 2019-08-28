@@ -70,7 +70,7 @@ class EditUserProfileType extends AbstractType
 
             //]) //fin add 'avatar'
             ->add('address', TextareaType::class, ['label' => 'Adresse'])
-            ->add('zip_code', IntegerType::class, ['label' => 'Code Postal'])
+            ->add('zip_code', TextType::class, ['label' => 'Code Postal'])
             ->add('city', TextType::class, ['label' => 'Ville'])
             ->add('submit', SubmitType::class, ['label' => 'Je valide !'])
             
