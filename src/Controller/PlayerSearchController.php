@@ -19,6 +19,7 @@ class PlayerSearchController extends AbstractController
 {
     /**
      * @Route("/player/search", name="player_search")
+     * @Route("/player/search/game/{id<\d+>}", name="player_search_by_game")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function playerSearch(
@@ -33,7 +34,7 @@ class PlayerSearchController extends AbstractController
     {
         //$players = $userRepository->findAll();
 
-        $playerSearchForm = $this->createFormBuilder()
+        $playerSearchForm = $this->createFormBuilder($game)
             ->add('name', TextType::class, [
                 'label' => 'Nom du jeu',
                 'required' => false,
@@ -45,7 +46,6 @@ class PlayerSearchController extends AbstractController
             ->add('submit', SubmitType::class, ['label' => 'Rechercher'])
         ->getForm();
 
-        //$playerSearchForm = $this->createForm(PlayerSearchType::class; $user);
         $playerSearchForm->handleRequest($request);
 
         if ($playerSearchForm->isSubmitted() && $playerSearchForm->isValid()) {

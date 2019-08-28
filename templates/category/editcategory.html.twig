@@ -143,7 +143,20 @@
     <div class="mb-4">
     <h1>Gestion des catégories</h1>
         <a href="{{ path('admin_categories') }}" class="btn btn-secondary">Retour à la liste des catégories</a>
+    
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div>
+        <button class="btn btn-light"><a href="{{ path('admin_categories') }}">Retour à la liste des catégories</a></button>
     </div>
+
     {% if form_type == 'update' %}
         <h2>Modification de la catégorie <em>{{ category.name }}</em></h2>
 
@@ -160,6 +173,7 @@
             {{ form_row(category_form.submit, {'label': 'Ajouter'}) }}
         {{ form_end(category_form) }}
     {% endif %}
+
 </div>
       <!-- Footer -->
       <footer class="sticky-footer bg-white">

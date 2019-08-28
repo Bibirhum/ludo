@@ -5,12 +5,17 @@ namespace App\Controller;
 use App\Entity\Game;
 use App\Entity\User;
 use App\Entity\UserGameAssociation;
+use App\Form\UserGameType;
 use App\Repository\GameRepository;
 use App\Repository\UserGameAssociationRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 
 class UserGamesController extends AbstractController
 {
@@ -24,11 +29,15 @@ class UserGamesController extends AbstractController
         ]);
     }
 
+
+
     /**
-     * @Route("/user/addgame/{id<\d+>}", name="user_addgame")
+     * @Route("/user/add_game/{id<\d+>}", name="add_user_game")
+     * @Route("/user/edit_game/{id<\d+>}", name="edit_user_game")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
-    public function userAddGame(
+    public function editUserGame(
+        Request $request,
         ObjectManager $objectManager,
         UserGameAssociationRepository $userGameRepository,
         Game $game
@@ -41,6 +50,53 @@ class UserGamesController extends AbstractController
             'games' => $game,
         ]);
 
+        // DEBUT REPRISE CODE AXEL
+        $form_type = 'update';
+
+        if ($userGame === null) {
+            $userGame = new UserGameAssociation();
+            $form_type = 'create';
+        }
+
+        $form = $this->createForm(UserGameType::class, $userGame);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            if ($userGame->getUsers() === null) {
+                $userGame->setUsers($this->getUser());
+            }
+            if ($userGame->getGames() === null) {
+                $userGame->setGames($game);
+            }
+            $objectManager->persist($userGame);
+            $objectManager->flush();
+
+            if ($form_type === 'update') {
+                $this->addFlash(
+                    'success',
+                    'Votre avis sur ce jeu a bien été mis à jour'
+                );
+            } else {
+                $this->addFlash(
+                    'success',
+                    'Ce jeu a bien été ajouté à votre ludothèque'
+                );
+            }
+            //return $this->redirectToRoute('user_profile');
+        }
+
+
+        return $this->render('user_games/usergames.html.twig', [
+            'usergame_form' => $form->createView(),
+            'game' => $game,
+            'usergame' => $userGame,
+            'form_type' => $form_type,
+        ]);
+    }
+        // FIN CODE AXEL
+
+        /* premier code Franck
         if ($userGame) {
             return $this->render('user_games/usergames.html.twig', [
                 'user' => $user,
@@ -74,7 +130,7 @@ class UserGamesController extends AbstractController
                 'user_game' => $userGame,
                 'message' => 'nouvelle association réussie !',
             ]);}
-    }
+     */
 
     /**
      * @Route("/user/deletegame/{id<\d+>}", name="user_deletegame")

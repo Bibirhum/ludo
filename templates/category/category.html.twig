@@ -145,9 +145,18 @@
 <!-- Begin Page Content -->
      <div class="container">
 
-    <h1>Gestion des catégories</h1>
+    <h2>Gestion des catégories</h2>
+
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endfor %}
+
     <div>
-        <a href="{{ path('add_category') }}" class="btn btn-success">Ajouter une catégorie</a>
+        <button class="btn btn-light"><a href="{{ path('add_category') }}">Ajouter une catégorie</a></button>
     </div>
     <table class="table">
         <thead>

@@ -20,7 +20,19 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class GameController extends AbstractController
 {
     /**
-     * @Route("/games/search", name="games_search")
+     * @Route("/game/details/{id}", name="game_details")
+     *
+     */
+    public function show(Game $game)
+    {
+
+        return $this->render('game/gamedetails.html.twig', [
+            'game' => $game
+        ]);
+    }
+
+    /**
+     * @Route("/game/search", name="games_search")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function searchGames(Request $request, GameRepository $gameRepository, Game $game = null)
