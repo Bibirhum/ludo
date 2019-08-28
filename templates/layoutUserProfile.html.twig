@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 
@@ -14,71 +16,57 @@
         <link rel="stylesgeet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
         <!-- Custom styles for this template -->
         <link href="{{ asset('css/userProfile.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     {% endblock %}
 </head>
 
-{# NavBar #}
-<nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg "  color-on-scroll="100"  id="sectionsNav">
+<!-- Navigation -->
+<div class="container-fluid">
+  <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg "  color-on-scroll="100"  id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" href="{{ path('games_search') }}">LUDO</a>
+            <a class="navbar-brand" href="{{ path('games_search') }}"><img src="{{ asset('landing_page/img/logoludowhitesmall.png') }}" alt="logo ludo"></a>
         </div>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
+         <i class="material-icons">menu</i>
+        </button>
     
-        <div class="collapse navbar-collapse">
+        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="dropdown nav-item">
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
-                        <i class="material-icons">apps</i> RECHERCHER
-                    </a>
-                    <div class="dropdown-menu dropdown-with-icons">
-                    <a href="{{ path('games_search') }}" class="dropdown-item">
+                <li class="nav-item">
+                    <a class="nav-link nav-shadow" href="{{ path('games_search') }}" class="dropdown-item">
                         JEUX
                     </a>
-                    <a href="{{ path('player_search') }}" class="dropdown-item">
-                        JOUEURS
-                    </a>
-                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('user_profile') }}">
+                    <a class="nav-link nav-shadow " href="{{ path('player_search') }}" class="dropdown-item">
+                        JOUEURS
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-shadow" href="{{ path('user_profile') }}">
                         MON COMPTE
                     </a>
                 </li>
                 {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                         <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">
-                            Se DECONNECTER
+                    <a class="nav-link nav-shadow" href="{{ path('app_logout') }}">
+                            DECONNEXION
                             </a>
                         </li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                    <a class="nav-link" href="{{ path('admin') }}">
+                    <a class="nav-link nav-shadow" href="{{ path('admin') }}">
                             ADMINISTRATION
                             </a>
                         </li>
                 {% endif %}
-                    
-                {# <li class="nav-item">
-                    <a class="nav-link" href="https://twitter.com/CreativeTim" target="_blank">
-                    <i class="fa fa-twitter"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="https://www.facebook.com/CreativeTim" target="_blank">
-                    <i class="fa fa-facebook-square"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link"  href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
-                    <i class="fa fa-instagram"></i>
-                    </a> #}
-                </li>
             </ul>
         </div>
     </div>
 </nav>
-{# Fin NavBar #}
+</div>
 
 
 <body class="profile-page">
@@ -88,10 +76,13 @@
 </footer>
 
 {% block javascripts %}
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/cef3058f65.js"></script>
+     <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script src="{{ asset('js/script.js') }}"></script>  
     <script src="{{ asset('js/userProfile.js') }}"></script>  
 {% endblock %}
 </body>

@@ -37,6 +37,10 @@ a.change:hover, .navbar a:hover, .navbar .nav-item a.nav-link:hover{
     text-transform: uppercase;
 }
 
+.title{
+    text-decoration:none;
+}
+
 .name h6 {
     margin-top: 10px;
     margin-bottom: 10px;

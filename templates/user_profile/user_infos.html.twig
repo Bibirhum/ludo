@@ -1,14 +1,12 @@
-{% extends 'layoutUserProfile.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block title %}Ludo | Fiche d'un joueur{% endblock %}
 
 {% block body %}
-    <style>
 
-    </style>
 
-    <div class="container fluid mx-auto d-block text-center">
-        <h1>Joueur <b>{{ user.username }}</b></h1>
+    <div class="container fluid mx-auto d-block text-center fiche">
+        
 
         {% if user.avatar is empty %}
             <img src="https://api.adorable.io/avatars/200/abott@adorable.png" class="rounded-circle w-25"
@@ -17,15 +15,17 @@
             <img src="{{ asset(user.avatar) }}" class="rounded-circle w-25" alt="Avatar du joueur {{ user.username }}">
         {% endif %}
 
-        <div class="container fluid">
+        <div class="container fluid header_section">
 
-            <p class="font-italic">{{ user.bio }}</p>
+        <h1>Joueur {{ user.username }}</h1>
+
+            <p class="font-italic bio">{{ user.bio }}</p>
 
             <div class="container fluid">
-                <h2>Sa ludothèque idéale</h2>
+                <h2>Sa ludothèque</h2>
             </div>
 
-            <div class="d-flex flex-nowrap">
+            <div class="d-flex flex-nowrap collection">
 
                 {% for game in user.associatedGames %}
                     <div class="card w-25">
@@ -57,6 +57,9 @@
             </div>
 
         </div>
-<button class="btn btn-light"><a href="{{ path('player_search') }}">Retour vers la recherche de partenaires de jeu</a></button>
+        <div class="bouton">
+<a href="{{ path('player_search') }}" class="btn btn-primary">Retour vers la recherche</a>
+ <a href="#" class="btn btn-primary">Contacter ce joueur</a>
+</div>
     </div>
 {% endblock %}
