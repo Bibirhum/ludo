@@ -1,0 +1,117 @@
+body{
+    font-family: 'Lato';
+    background-color:rgba(114, 137, 218, 1);
+}
+
+.container_form{
+    background-color: linear-gradient(to bottom,rgba(114, 137, 218, 0.2),  rgba(114, 137, 218, 0.2));
+}
+
+
+h1{
+    color: black;
+    font-family: 'Catamaran';
+    font-weight: bold;
+}
+
+
+.name h3 {
+    color:black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+h5,h6{
+    font-weight:bold;
+}
+
+.formFields{
+    font-family:'Lato';
+    font-weight:bold;
+    color:white;
+    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+}
+
+#form_submit{
+    color:  #f68c0f;
+}
+#form_submit:hover{
+    color: white;
+}
+
+.position-sticky{
+    margin-right:0.5rem;
+}
+
+
+.btn-primary {
+    background-color: #7289da;
+    border-color: #7289da;
+  }
+  
+  .btn-primary:hover {
+    background-color: #f68c0f !important;
+    color: white !important;
+    transform: translateY(-3px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+    .btn:hover::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0; }
+  
+  .btn-primary:active, .btn-primary:focus {
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+  .btn-primary, .btn-primary:link, .btn-primary:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0.5rem 2rem;
+    display: inline-block;
+    border-radius: 10rem;
+    transition: all .2s;
+    position: relative;
+    font-size: 1rem;
+    border: none;
+    color: #f68c0f;
+    cursor: pointer; }
+  
+    .btn--animated {
+      animation: moveInBottom .5s ease-out .75s;
+      animation-fill-mode: backwards; }
+
+.main-raised {
+margin: -60px 30px 0;
+border-radius: 6px;
+box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+.main {
+background: #FFF;
+position: relative;
+z-index: 3;
+}
+
+.profile-page .profile {
+    text-align: center;
+}
+.profile-page .profile img {
+    max-width: 160px;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-transform: translate3d(0,-50%,0);
+    -moz-transform: translate3d(0,-50%,0);
+    -o-transform: translate3d(0,-50%,0);
+    -ms-transform: translate3d(0,-50%,0);
+    transform: translate3d(0,-50%,0);
+}
+.img-raised {
+    box-shadow: 0 5px 15px -8px rgba(0,0,0,.24), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+.alert{
+    color: white;
+    text-align: center;
+    background-color: #f68c0f;
+    border: none;
+}

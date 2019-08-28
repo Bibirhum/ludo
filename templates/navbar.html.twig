@@ -5,17 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>LUDO| {% block title %}{% endblock %}</title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons">
-    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-    <link rel="stylesgeet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
-    <link href="{{ asset('css/global.css') }}" rel="stylesheet">
-    {% block stylesheets %}
-    
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900">
+    <link  rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i">
+    <link href="{{ asset('css/navbar.css') }}" rel="stylesheet">
+    {% block stylesheet %}
     {% endblock %}
 </head>
 
@@ -23,11 +18,11 @@
 
 <body class="profile-page">
 
-{# NavBar #}
+<!-- {# NavBar #} -->
 <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg "  color-on-scroll="100"  id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" href="{{ path('games_search') }}"><img src="{{ asset('img/logo.png') }}" alt="logo ludo"></a>
+            <a class="navbar-brand" href=" {{ path('games_search') }}  "><img src="{{ asset('img/logo.png') }}" alt="logo ludo"></a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
          <i class="material-icons">menu</i>
@@ -37,7 +32,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="dropdown nav-item">
                     <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false">
-                        <i class="material-icons">apps</i> RECHERCHER
+                        RECHERCHER
                     </a>
                     <div class="dropdown-menu dropdown-with-icons">
                     <a href="{{ path('games_search') }}" class="dropdown-item">
@@ -55,14 +50,14 @@
                 </li>
                 {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                         <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">
-                            Se DECONNECTER
+                        <a class="nav-link" href="{{ path('app_logout') }}">
+                            DECONNECTION
                             </a>
                         </li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                    <a class="nav-link" href="{{ path('admin') }}">
+                        <a class="nav-link" href="{{ path('admin') }}">
                             ADMINISTRATION
                             </a>
                         </li>
@@ -71,20 +66,33 @@
         </div>
     </div>
 </nav>
-{# Fin NavBar #}
+<!-- {# Fin NavBar #} -->
 
-{% block body %}{% endblock %}
 
-<footer id="footer" class="footer">
-  <p>Copyright &copy; Ludo 2019</p>
+<div class="page-header header-filter" data-parallax="true"></div>
+
+{% block body %}
+  
+
+
+  
+  
+{% endblock %}
+
+</div>
+
+
+<footer class="footer">
+  <p class="m-0 text-center text-white small">Copyright &copy; Ludo 2019</p>
 </footer>
 
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+<script src="{{ asset('js/script.js') }}"></script>
 {% block javascripts %}
-    <script src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
-    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/script.js') }}"></script>  
 {% endblock %}
 </body>
 </html>
