@@ -17,6 +17,7 @@
         <p>
             <img src="{{ asset(game.thumbnail) }}" alt="Image du jeu {{ game.name }}" width="160" height="120">
         </p>
+        {{ form_errors(game_form) }}
         {{ form_start(game_form) }}
             {{ form_row(game_form.name) }}
             {{ form_row(game_form.imageFile) }}
@@ -32,6 +33,7 @@
         {{ form_end(game_form) }}
     {% else %}
         <h2>Ajout d'un jeu</h2>
+        {{ form_errors(game_form) }}
         {{ form_start(game_form) }}
             {{ form_row(game_form.name) }}
             {{ form_row(game_form.imageFile) }}

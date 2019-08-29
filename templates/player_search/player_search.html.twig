@@ -1,6 +1,14 @@
-{% extends 'base.html.twig' %}
+{% extends 'layout.html.twig' %}
 
 {% block title %}Ludo | Rechercher un joueur{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link rel="stylesheet" href="../public/landing_page/css/searchGames.css">
+    <link rel="stylesheet" href="{{ asset("css/selectize.css") }}">
+{% endblock %}
 
 {% block body %}
     <style>
@@ -111,4 +119,59 @@
         {% endif %}
 
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/microplugin/0.0.3/microplugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sifter/0.5.3/sifter.min.js"></script>
+    <script src="{{ asset("js/selectize.js") }}"></script>
+
+    <script>
+        /* utilisation de l'autocompléteur selectize */
+        /* autocomplétion du champ de recherche du nom du jeu*/
+        $(function () {
+            $('#form_name').selectize({
+                valueField: 'name',
+                labelField: 'name',
+                searchField: 'name',
+                maxItems: 1,
+                create: false,
+                persist: false,
+                load: function (query, callback) {
+                    // query contient ce qui est saisi par l'utilisateur
+                    if (query.legend < 2) { // si la saisie est trop courte, on quitte
+                        return;
+                    }
+                    // ajax
+                    // $.getJSON(/* url de la requête */, /* callback appelé si la requête réussit */);
+                    $.getJSON('{{ path('searchby_game_name') }}?search='+encodeURIComponent(query), function(data){
+                        callback(data);
+                    });
+                }
+            });
+
+            /* autocomplétion du champ de recherche de la ville*/
+            $('#form_city').selectize({
+                valueField: 'city',
+                labelField: 'city',
+                searchField: 'city',
+                maxItems: 1,
+                create: false,
+                persist: false,
+                load: function (query, callback) {
+                    // query contient ce qui est saisi par l'utilisateur
+                    if (query.legend < 2) { // si la saisie est trop courte, on quitte
+                        return;
+                    }
+                    // ajax
+                    // $.getJSON(/* url de la requête */, /* callback appelé si la requête réussit */);
+                    $.getJSON('{{ path('searchby_user_city') }}?search='+encodeURIComponent(query), function(data){
+                        callback(data);
+                    });
+                }
+            });
+        }); // fin scope jq
+    </script>
 {% endblock %}

@@ -50,6 +50,20 @@ class GameRepository extends ServiceEntityRepository
 
         return $query->execute();
     }
+
+    /**
+     * Return the game names that match the string passed as parameter
+     * @param string $search : the string to search
+     * @return Game[] : the games that match the given string in database
+     */
+    public function searchByString(string $search)
+    {
+        return $this->createQueryBuilder('g')
+            ->where('g.name LIKE :search')
+            ->setParameter('search', '%' . $search . '%')
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Game[] Returns an array of Game objects
     //  */
