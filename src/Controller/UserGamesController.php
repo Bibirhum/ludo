@@ -44,6 +44,7 @@ class UserGamesController extends AbstractController
     )
     {
         $user = $this->getUser();
+        $buttonSend="";
 
         $userGame = $userGameRepository->findOneBy([
             'users' => $user,
@@ -62,6 +63,7 @@ class UserGamesController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $buttonSend = 'sent';
 
             if ($userGame->getUsers() === null) {
                 $userGame->setUsers($this->getUser());
@@ -92,6 +94,7 @@ class UserGamesController extends AbstractController
             'game' => $game,
             'usergame' => $userGame,
             'form_type' => $form_type,
+            'buttonSend' => $buttonSend,
         ]);
     }
         // FIN CODE AXEL

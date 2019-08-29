@@ -52,9 +52,13 @@
             {{ form_row(usergame_form.playsGame) }}
             {{ form_row(usergame_form.ownsGame) }}
             {% if form_type == 'update' %}
-                {{ form_row(usergame_form.submit, {'label': 'Mettre à jour'}) }}
+                {% if buttonSend == 'sent' %}
+                    {{ form_row(usergame_form.submit, {'label_attr': {'class':'displayNone'}}) }}
+                {% else %}
+                    {{ form_row(usergame_form.submit, {'label': 'Mettre à jour', 'label_attr': {'class':'formFields'}}) }}
+                {% endif %}
             {% else %}
-                {{ form_row(usergame_form.submit, {'label': 'Ajouter'}) }}
+                {{ form_row(usergame_form.submit, {'label': 'Ajouter', 'label_attr': {'class':'formFields'}}) }}
             {% endif %}
         {{ form_end(usergame_form) }}
 

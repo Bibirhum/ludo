@@ -5,6 +5,10 @@ body{
     font-family: 'Lato';
 }
 
+.displayNone{
+  display: none;
+}
+
 
 .navbar{
   background-color: rgba(17, 25, 74, 1);

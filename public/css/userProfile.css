@@ -24,8 +24,9 @@ a.change:hover, .navbar a:hover, .navbar .nav-item a.nav-link:hover{
 .card{
     text-align: center;
 }
-.add_circle_outline{
+.fa-plus-circle{
     font-size: 50px;
+    padding: 20px;
 }
 
 
@@ -376,9 +377,14 @@ img.rounded {
     background-color: rgba(246, 140, 15, 1);
     color: #FFF;
 }
-.show .dropdown-toggle:after {
+.dropdown-toggle:after {
     transform: rotate(180deg);
 }
+
+.rotate:after {
+    transform: rotate(180deg);
+}
+
 
 .dropdown-toggle:after {
     will-change: transform;
