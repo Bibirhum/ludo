@@ -1,6 +1,6 @@
 {% extends 'layout.html.twig' %}
 
-{% block title %}Ludo | Rechercher un joueur{% endblock %}
+{% block title %}Ludo | Rechercher des joueurs{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -11,114 +11,131 @@
 {% endblock %}
 
 {% block body %}
-    <style>
+    
 
-    </style>
+    <div class="profile-content" >
 
-    <div class="container">
-        <h1>Je cherche des partenaires de jeux</h1>
+            <div class="container">
 
-        <h3>Bienvenue {{ app.user.username }}</h3>
+                <div class="row">
 
-        <p>
-            Pour chercher des partenaires de jeu, il vous suffit de renseigner le nom du jeu auquel vous souhaitez
-            jouer.
-        </p>
-        <p>
-            Vous pouvez ensuite limiter votre recherche en précisant dans quelle ville vous cherchez un partenaire
-            de jeu.
-        </p>
-        <p>
-            Si vous renseignez uniquement la ville, vous obtiendrez la liste de tous les joueurs inscrits dans
-            cette ville.
-            <br>Dans ce cas, la fiche du joueur mentionnera tous les jeux de sa ludothèque.
-        </p>
-        <p>
-            Pour chaque joueur de la liste, vous avez la possibilité d'accéder à sa fiche et de lui envoyer un message
-            privé.
-        </p>
+                    <div class="container header_section recherche">
+                        <h1 class="text-center mb-5 mt-2 title-shadow">Recherche de joueurs</h1>
+                    </div>
 
-        {{ form_start(playersearch_form) }}
-        {{ form_row(playersearch_form.name) }}
-        {{ form_row(playersearch_form.city) }}
-        {{ form_row(playersearch_form.submit, {'label': 'Lancer la recherche !'}) }}
-        {{ form_end(playersearch_form) }}
-
-        {% for label, messages in app.flashes %}
-            {% for message in messages %}
-                <div class="alert alert-{{ label }}">
-                    {{ message }}
+                    <div class="font-italic ml-5 mr-5 mb-5 explication">
+                        <h3>
+                            Que la partie commence !
+                        </h3>
+                        <br>
+                        <p>
+                           <strong>Vous connaissez le jeu auquel vous souhaitez jouer ? </strong> <br>Faîtes une recherche par jeu et filtrez par ville pour trouver des joueurs près de chez vous et disputer des parties endiablées !
+                        </p>
+                        <p>
+                           <strong>Vous voulez découvrir à quoi jouent les Ludonautes près de chez vous ? </strong> Faîtes une recherche par ville. 
+                        </p>
+                    </div>
                 </div>
-            {% endfor %}
-        {% endfor %}
 
-        {% if players %}
+                <div class="container_form">
 
-            <div class="row">
-                {% for player in players %}
-                    <div class="col-3">
-                        <div class="card">
-                            <img src="{{ asset(player.avatar) }}" class="card-img-top"
-                                 alt="Avatar du joueur {{ player.username }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ player.username }}</h5>
-                                <p class="card-subtitle">{{ player.bio }}</p>
-                                <hr>
-                                <p class="card-text"><b>Ville : </b>{{ player.city }}</p>
-                                <hr>
-                                <p class="card-text"><b>Ludothèque :</b></p>
-                                <ul>
-                                    {% for game in player.associatedGames %}
-                                        <li>{{ game.games.name }}</li>
-                                    {% endfor %}
-                                </ul>
-                                <a href="{{ path('player_infos', {'id' : player.id}) }}" target="_blank"
-                                   class="btn btn-info w-100">Fiche du joueur</a>
-                                <a href="#" class="btn btn-success w-100">Contacter ce joueur</a>
-                            </div>
+                    <div class="row">
+
+                        <div class="col-12">
+
+                        {% for label, messages in app.flashes %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ label }}">
+                                    {{ message }}
+                                </div>
+                            {% endfor %}
+                        {% endfor %}
+
                         </div>
-                    </div>
-                {% endfor %}
-            </div>
 
-        {% else %}
 
-            <div class="row">
-                {% for usergame in usergames %}
-                    <div class="col-3">
-                        <div class="card">
-                            <img src="{{ asset(usergame.users.avatar) }}" class="card-img-top"
-                                 alt="Avatar du joueur {{ usergame.users.username }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ usergame.users.username }}</h5>
-                                <p class="card-subtitle">{{ usergame.users.bio }}</p>
-                                <hr>
-                                <p class="card-text"><b>Ville : </b>{{ usergame.users.city }}</p>
-                                <hr>
-                                <p class="card-text">
-                                    {% if usergame.playsGame == 1 %}
-                                        <span class="badge badge-success w-100">{{ usergame.users.username }} y joue !</span>
-                                    {% endif %}
-                                    {% if usergame.ownsGame == 1 %}
-                                        <span class="badge badge-info w-100">{{ usergame.users.username }} l'a en stock !</span>
-                                    {% endif %}
-                                    {% if usergame.playsGame == 0 and usergame.ownsGame == 0 %}
-                                        <span class="badge badge-warning w-100">{{ usergame.users.username }} est intéressé(e) !</span>
-                                    {% endif %}
-                                </p>
-                                <hr>
-                                <a href="{{ path('player_infos', {'id' : usergame.users.id}) }}" target="_blank"
-                                   class="btn btn-info w-100">Fiche du joueur</a>
-                                <a href="#" class="btn btn-success w-100" target="_blank">Contacter ce joueur</a>
-                            </div>
+                        <div class="col-3 position-sticky float-left">
+                            <h3>Filtrer par :</h3>
+                            
+                            {{ form_start(playersearch_form, {'label_attr': {'class':'formFields'}}) }}
+                            {{ form_row(playersearch_form.name, {'label_attr': {'class':'formFields'}}) }}
+                            {{ form_row(playersearch_form.city, {'label_attr': {'class':'formFields'}}) }}
+                            {{ form_row(playersearch_form.submit, {'label': 'Lancer la recherche', 'attr': { 'class': 'btn-primary' }}) }}
+                            {{ form_end(playersearch_form) }}
+
                         </div>
+
+                        <div class="col-9 row d-flex justify-content-around results">
+
+                            {% if players %}
+                            {% for player in players %}
+                            <div class="card text-center mb-5 w-50">
+                                <div class="card-header">
+                                    <h4>{{ player.username }}</h3>
+                                    <div class="description text-center">
+                                        <p>{{player.bio}}</p>
+                                    </div>
+                                </div>
+                                <img src="{{ asset(player.avatar) }}" class="card-img-top"
+                                        alt="Avatar du joueur {{ player.username }}">
+                                <div class="card-body">
+                                    <h6>Ville : {{ player.city }}</h6>
+                                    <h6>Ludothèque : </h6>
+                                    <ul>
+                                        {% for game in player.associatedGames %}
+                                            <li>{{ game.games.name }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                    
+                                    <a href="{{ path('player_infos', {'id' : player.id}) }}" target="_blank" class="btn btn-primary">Fiche du joueur</a>
+                                    <a href="#" class="btn btn-primary">Contacter ce joueur</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            {% else %}
+                            {% for usergame in usergames %}
+                            <div class="card text-center mb-5 w-50">
+                                <div class="card-header">
+                                    <h4>{{ usergame.users.username }}</h3>
+                                    <div class="description text-center">
+                                        <p>{{usergame.users.bio}}</p>
+                                    </div>
+                                </div>
+                                <img src="{{ asset(usergame.users.avatar) }}" class="card-img-top"
+                                    alt="Avatar du joueur {{ usergame.users.username }}">
+                                <div class="card-body">
+                                    <h6>Ville : {{ usergame.users.city }}</h6>
+                                    <p class="card-text">
+                                        {% if usergame.playsGame is same as (1)  %}
+                                            <i class="material-icons">sentiment_satisfied_alt</i>{{ usergame.users.username }} y joue !
+                                        {% endif %}
+                                        {% if usergame.ownsGame is same as (1)  %}
+                                            <i class="material-icons">thumb_up_alt</i>{{ usergame.users.username }} l'a en stock !
+                                        {% endif %}
+                                        {% if usergame.playsGame == 0 and game.ownsGame == 0 %}
+                                            <span class="badge badge-warning">{{ usergame.users.username }} est intéressé(e) !</span>
+                                        {% endif %}
+                                    </p>
+                                    <a href="{{ path('player_infos', {'id' : usergame.users.id}) }}" target="_blank"
+                                    class="btn btn-primary">Fiche du joueur</a>
+                                    <a href="#" class="btn btn-primary" target="_blank">Contacter ce joueur</a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                            {% endif %}
+
+                        </div>
+
+                            
                     </div>
-                {% endfor %}
+                </div>
+
+
+
             </div>
-
-        {% endif %}
-
-    </div>
+            
+            </div>
 {% endblock %}
 
 {% block javascripts %}

@@ -1,6 +1,6 @@
 {% extends 'layoutUserProfile.html.twig' %}
 
-{% block title %}Ludo | Mon profil{% endblock %}
+{% block title %} Mon profil{% endblock %}
 
 
 
@@ -17,7 +17,7 @@
 
 		<div class="profile-content" >
       {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-      <span> Vous êtes connecté</span>
+    
       {% endif %}
 
       <div class="container">
@@ -37,10 +37,6 @@
               <div class="description text-center">
                 <p class="font-italic user_bio">{{user.bio}}</p>
               </div>
-
-
-
-
 
               <div id="accordion" role="tablist">
                 <div class="profile-tabs">
@@ -127,19 +123,22 @@
                   <div class="card-body">
                     <h6>Catégorie : {{ item.games.category.name }}</h6>
                     <h6>Commentaire :</h6> 
-                    <p>{{ item.commentary}}</p>
-                    <h6>Note perso : >{{ item.rating }}</h6>
+                    <p>{% if item.commentary %}
+                    <em>{{ item.commentary}}</em> {% else %}
+                    <em>Pas encore de commentaire</em> {% endif %}</p>
+                    <h6>Note perso :</h6> {% if item.rating %}
+                    {{ item.rating }}/5
+                    {% else %}<p><em>Pas encore de note</em></p>{% endif %}
+                    <br>
                     {% if item.playsGame is same as (1)  %}
-                    <i class="material-icons">
-                    sentiment_satisfied_alt
-                    </i>J'y joue !
+                     <i class="far fa-thumbs-up"></i>
+                    J'y joue !
                     {% endif %}
                     {% if item.ownsGame is same as (1) %}
-                    <i class="material-icons">
-                    thumb_up_alt
+                    <i class="far fa-hand-paper"></i>
                     </i>Je l'ai !
                     {% endif %} 
-                    <a href="#!"><i class="material-icons">arrow_right_alt</i>Détails</a>
+                    <a href="{{ path('edit_user_game', {'id' : item.games.id}) }}" class="btn-primary mt-2">Modifier mon avis</a>
                   </div>
                 </div>
               </div>

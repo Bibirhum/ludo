@@ -10,9 +10,9 @@
         <link href="{{ asset('css/global.css') }}" rel="stylesheet">
         <link href="{{ asset('landing_page/css/searchGames.css') }}" rel="stylesheet">
         <link rel="stylesgeet" href="https://rawgit.com/creativetimofficial/material-kit/master/assets/css/material-kit.css">
-
-
-
+        {# fonts #}
+         <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
     {% endblock %}
 </head>
 
@@ -22,7 +22,7 @@
   <nav class="navbar navbar-color-on-scroll navbar-transparent fixed-top  navbar-expand-lg "  color-on-scroll="100"  id="sectionsNav">
     <div class="container">
         <div class="navbar-translate">
-            <a class="navbar-brand" href="{{ path('games_search') }}"><img src="{{ asset('landing_page/img/logoludowhitesmall.png') }}" alt="logo ludo"></a>
+            <a class="navbar-brand" href="{{ path('user_profile') }}"><img src="{{ asset('landing_page/img/logoludowhitesmall.png') }}" alt="logo ludo"></a>
         </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" >
          <i class="material-icons">menu</i>
@@ -30,35 +30,31 @@
     
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                <li class="dropdown nav-item">
-                
-                    <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown" aria-expanded="false"><i class="material-icons"></i>RECHERCHER
-                    
-                    </a>
-                    <div class="dropdown-menu dropdown-with-icons">
-                    <a href="{{ path('games_search') }}" class="dropdown-item">
+                <li class="nav-item">
+                    <a class="nav-link nav-shadow" href="{{ path('games_search') }}" class="dropdown-item">
                         JEUX
                     </a>
-                    <a href="{{ path('player_search') }}" class="dropdown-item">
-                        JOUEURS
-                    </a>
-                    </div>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ path('user_profile') }}">
+                    <a class="nav-link nav-shadow" href="{{ path('player_search') }}" class="dropdown-item">
+                        JOUEURS
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link nav-shadow" href="{{ path('user_profile') }}">
                         MON COMPTE
                     </a>
                 </li>
                 {% if is_granted('IS_AUTHENTICATED_FULLY')%}
                         <li class="nav-item">
-                    <a class="nav-link" href="{{ path('app_logout') }}">
+                    <a class="nav-link nav-shadow" href="{{ path('app_logout') }}">
                             DECONNEXION
                             </a>
                         </li>
                 {% endif %}
                 {% if is_granted('ROLE_ADMIN') %}
                         <li class="nav-item">
-                    <a class="nav-link" href="{{ path('admin') }}">
+                    <a class="nav-link nav-shadow" href="{{ path('admin') }}">
                             ADMINISTRATION
                             </a>
                         </li>
