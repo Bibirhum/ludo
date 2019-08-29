@@ -81,7 +81,7 @@ class User implements UserInterface, \Serializable
     private $avatarFile;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180)
      */
     private $email;
 

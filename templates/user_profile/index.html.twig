@@ -38,6 +38,9 @@
                 <p class="font-italic user_bio">{{user.bio}}</p>
               </div>
 
+              <a href="{{ path('message_read', {'id' : user.id}) }}" target="_blank"
+                                    class="btn btn-primary">Mes messages</a>
+
               <div id="accordion" role="tablist">
                 <div class="profile-tabs">
                   <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">

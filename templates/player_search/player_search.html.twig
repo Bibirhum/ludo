@@ -88,7 +88,7 @@
                                     </ul>
                                     
                                     <a href="{{ path('player_infos', {'id' : player.id}) }}" target="_blank" class="btn btn-primary">Fiche du joueur</a>
-                                    <a href="#" class="btn btn-primary">Contacter ce joueur</a>
+                                
                                 </div>
                             </div>
                             {% endfor %}
@@ -108,18 +108,18 @@
                                     <h6>Ville : {{ usergame.users.city }}</h6>
                                     <p class="card-text">
                                         {% if usergame.playsGame is same as (1)  %}
-                                            <i class="material-icons">sentiment_satisfied_alt</i>{{ usergame.users.username }} y joue !
+                                            <i class="far fa-thumbs-up"></i>  {{ usergame.users.username }} y joue !
                                         {% endif %}
                                         {% if usergame.ownsGame is same as (1)  %}
-                                            <i class="material-icons">thumb_up_alt</i>{{ usergame.users.username }} l'a en stock !
+                                            <br><i class="far fa-hand-paper"></i>  {{ usergame.users.username }} l'a en stock !
                                         {% endif %}
                                         {% if usergame.playsGame == 0 and game.ownsGame == 0 %}
-                                            <span class="badge badge-warning">{{ usergame.users.username }} est intéressé(e) !</span>
+                                            <br><i class="far fa-lightbulb-on"></i>  {{ usergame.users.username }} est intéressé(e) !</span>
                                         {% endif %}
                                     </p>
                                     <a href="{{ path('player_infos', {'id' : usergame.users.id}) }}" target="_blank"
                                     class="btn btn-primary">Fiche du joueur</a>
-                                    <a href="#" class="btn btn-primary" target="_blank">Contacter ce joueur</a>
+                                    
                                 </div>
                             </div>
                             {% endfor %}
