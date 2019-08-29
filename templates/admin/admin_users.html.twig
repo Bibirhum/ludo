@@ -145,7 +145,15 @@
      <div class="container">
     <h1>Gestion des joueurs</h1>
 
-   
+      {# affichage msg flash #}
+    {% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endfor %}
+    
     <table class="table">
         <thead>
             <tr>

@@ -69,8 +69,14 @@ class AdminController extends AbstractController
             // on met à jour le joueur dans la BDD
             $objectManager->persist($user);
             $objectManager->flush();
+
+            // msg flash confirmation
+            $this->addFlash(
+                'success',
+                'joueur mis a jour !'
+            );
             // on redirige vers la page d'administration des joueurs
-            return $this->redirectToRoute('admin_users');
+             return $this->redirectToRoute('admin_users');
         }
 
         return $this->render('admin/admin_one_user.html.twig', [
@@ -92,6 +98,11 @@ class AdminController extends AbstractController
         // on supprime le joueur
         $objectManager->remove($user);
         $objectManager->flush();
+        // msg flash confirmation
+        $this->addFlash(
+            'success',
+            'joueur supprimer !'
+        );
         // on redirige vers la liste des joueurs
         return $this->redirectToRoute('admin_users');
     }
