@@ -15,7 +15,7 @@
             <img src="{{ asset(user.avatar) }}" class="rounded-circle w-25" alt="Avatar du joueur {{ user.username }}">
         {% endif %}
 
-        <div class="container fluid header_section">
+        <div class="container fluid">
 
         <h1>Joueur {{ user.username }}</h1>
 
@@ -39,7 +39,7 @@
                             <p>{{ game.games.category.name }}</p>
                             <h6><b>Commentaire : </b></h6>
                             <p>{% if game.commentary %}{{ game.commentary }}{% else %}Pas de commentaire{% endif %}</p>
-                            <h6><b>Note : </b>{% if game.rating %}{{ game.rating }}{% else %}Pas de note{% endif %}</h6>
+                            <h6><b>Note : </b>{% if game.rating %}{{ game.rating }}/5{% else %}Pas de note{% endif %}</h6>
                             <p>
                                 {% if game.playsGame == 1 %}
                                     <span class="badge badge-success">{{ user.username }} y joue !</span>

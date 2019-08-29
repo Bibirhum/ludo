@@ -38,7 +38,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('admin') }}">
         
         <img src="{{ asset('landing_page/img/logoludowhitesmall.png') }}">
       </a>
@@ -153,9 +153,9 @@
         {% endfor %}
     {% endfor %}
 
-    <div>
-        <button class="btn btn-light"><a href="{{ path('admin_categories') }}">Retour à la liste des catégories</a></button>
-    </div>
+    {# <div>
+        <a href="{{ path('admin_categories') }}" class="btn btn-secondary"></a>
+    </div> #}
 
     {% if form_type == 'update' %}
         <h2>Modification de la catégorie <em>{{ category.name }}</em></h2>

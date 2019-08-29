@@ -1,0 +1,24 @@
+.text-black{
+    color: black;
+}
+
+.vignette{
+    width:10%;
+    border:1px solid  #7289da;
+    border-radius: 100%;
+}
+
+.encart_commentaire{
+    border:1px solid  #7289da;
+    border-radius: 2rem;
+    padding:1.5rem;
+    
+}
+
+.nom{
+    margin-left: 1rem;
+}
+
+.fiche-technique{
+    margin-top:10rem;
+  }

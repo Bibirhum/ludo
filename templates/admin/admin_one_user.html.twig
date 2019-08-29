@@ -38,7 +38,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{path('admin')}}">
         
         <img src="{{ asset('landing_page/img/logoludowhitesmall.png') }}">
       </a>
@@ -141,7 +141,7 @@
 <!-- Begin Page Content -->
      <div class="container">
     <h1>Gestion des informations du joueur <em>{{ user.username }}</em></h1>
-<p class="alert alert-danger">ATTENTION ! Le changement de mot de passe à n'utiliser seulement qu'en cas de demande explicite par l'utilisateur</p>
+<p class="alert alert-danger">ATTENTION ! Le changement de mot de passe n'est à utiliser seulement qu'en cas de demande explicite par l'utilisateur</p>
 <p class="alert alert-danger">ATTENTION ! Le changement de statut n'est à utiliser qu'en cas de test et/ou d'ajout d'un nouvel admin</p>
  <div>
         <a class="btn btn-secondary" href="{{ path('admin_users') }}" >Retour à la liste des joueurs</a>
