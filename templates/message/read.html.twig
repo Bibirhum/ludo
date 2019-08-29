@@ -4,8 +4,18 @@
 
 {% block body %}
 
-<div class="example-wrapper">
+<link href="{{ asset('landing_page/css/message_read.css') }}" rel="stylesheet">
+
+<div class="example-wrapper message">
     <div class="container">
+
+    <div class="text-center">
+    <a class="btn btn-primary" href="{{path('user_profile')}}" role="button">Retour à mon profil</a>
+    </div>
+
+     <h4 class="title-shadow"><i class="far fa-envelope"></i> Messages</h4>
+
+     
 
         {% for label, messages in app.flashes %}
             {% for message in messages %}
@@ -18,16 +28,26 @@
         {% for message in messages %}
             <div class="card text-center">
                 <div class="card-body">
-                    <h5 class="card-title">De : {{ message.sender.username }} || à : {{ message.recipient.username }}</h5>
+                    <h5 class="card-title">De : {{ message.sender.username }} | À : {{ message.recipient.username }}</h5>
                     <p class="card-text">{{message.message}}</p>
-                    <a href="{{ path('message_write', {'id' : message.sender.id}) }}" class="btn btn-primary">Répondre</a>
+                    {% if message.sender.username != app.user.username %}
+                    <a href="{{ path('message_write', {'id' : message.sender.id}) }}" class="btn btn-primary"><i class="far fa-paper-plane"></i>    Répondre</a>
+                    {% endif %}
                 </div>
                 <div class="card-footer text-muted">
                     {{ message.creationDate|date('d/m/Y - H:i:s') }}
                 </div>
             </div>
             <br>
+            
         {% endfor %}
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">De : Ludo | À : {{ app.user.username }}</h5>
+                <p class="card-text text-left"><strong>Hello {{ app.user.username }} !</strong> L'équipe Ludo et les Ludonautes vous souhaitent la bienvenue dans la partie : ) ! <br><br>Voici plusieurs étapes pour bien démarrer : <br><br>  Pour commencer, pourquoi ne pas ajouter des jeux à votre <a href="{{path('games_search')}}">Ludothèque</a> ? De cette façon, les autres Ludonautes pourront vous trouver et vous proposer de les rejoindre pour une partie de vos jeux préférés !<br><br> Ensuite, cherchez les <a href="{{path('player_search')}}">Ludonautes</a> qui jouent aux mêmes jeux que vous, et envoyez-leur un message !<br><br> Ludo est aussi une plateforme où les fans de jeux viennent découvrir des nouveautés, n'hésitez donc pas à noter, commenter et recommander les jeux auxquels vous avez joué !  <br><br> Amusez-vous bien ! <br><br> <em>L'équipe Ludo</em> </p>
+            </div>
+        </div>
     </div>
 </div>
 {% endblock %}
+

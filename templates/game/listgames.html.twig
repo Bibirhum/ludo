@@ -60,7 +60,9 @@
                             <p class="card-text">
                             <h6>Durée d'une partie :</h6> {{ game.duration }} minutes</p>
                             <p class="card-text">{{ game.shortDescription }}</p>
+                            <div class="mb-2">
                              <a href="{{ path('game_details', {'id' : game.id}) }}" class="btn btn-primary">Fiche du jeu</a>
+                             </div>
                             <a href="{{ path('add_user_game', {'id' : game.id}) }}" class="btn btn-primary">Ajouter à ma ludothèque</a>
                             
                         </div>

@@ -25,14 +25,14 @@
 
                     <div class="font-italic ml-5 mr-5 mb-5 explication">
                         <h3>
-                            Que la partie commence !
+                            <i class="fas fa-dice"></i>  Que la partie commence !
                         </h3>
                         <br>
                         <p>
-                           <strong>Vous connaissez le jeu auquel vous souhaitez jouer ? </strong> <br>Faîtes une recherche par jeu et filtrez par ville pour trouver des joueurs près de chez vous et disputer des parties endiablées !
+                           <i class="fas fa-chess-pawn"></i> <strong>Vous connaissez le jeu auquel vous souhaitez jouer ? </strong> <br>Faîtes une recherche par jeu et filtrez par ville pour trouver des joueurs près de chez vous et disputer des parties endiablées !
                         </p>
                         <p>
-                           <strong>Vous voulez découvrir à quoi jouent les Ludonautes près de chez vous ? </strong> Faîtes une recherche par ville. 
+                           <i class="fas fa-city"></i> <strong>Vous voulez découvrir à quoi jouent les Ludonautes près de chez vous ? </strong> Faîtes une recherche par ville. 
                         </p>
                     </div>
                 </div>
@@ -81,9 +81,9 @@
                                 <div class="card-body">
                                     <h6>Ville : {{ player.city }}</h6>
                                     <h6>Ludothèque : </h6>
-                                    <ul>
+                                    <ul class="pl-0">
                                         {% for game in player.associatedGames %}
-                                            <li>{{ game.games.name }}</li>
+                                            <li class="list-unstyled">{{ game.games.name }}</li>
                                         {% endfor %}
                                     </ul>
                                     
