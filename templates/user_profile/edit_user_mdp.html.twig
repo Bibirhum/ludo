@@ -1,0 +1,58 @@
+{% block title %}{% endblock %}
+
+<title>Ludo - Modification du profil</title>
+
+<!-- Custom fonts for this template -->
+  <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+<!-- Custom styles for this template -->
+  <link href="{{ asset('landing_page/css/editProfile.css') }}" rel="stylesheet">
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+{% block body %}
+
+<div class="row text-left ml-2 my-2">
+        <div class="col-md-12 form-group float-left">
+        <h6>Fausse manip'?</h6>
+            <button class="btn btn-lg btn-tertiary btn--animated" type="submit" onclick="location.href='{{ path('user_profile') }}'">
+                Annuler
+            </button>
+        </div>
+    </div>
+
+{% form_theme edit_user_mdp 'bootstrap_4_layout.html.twig' %}
+
+<div class="simple-login-container mx-auto my-0">
+    <h1>Modification du mot de passe</h1>
+
+
+    <div class="row d-flex flex-nowrap justify-content-around">
+
+        <div class="col-md-12 form-group">
+            {{ form_start(edit_user_mdp) }}
+            {{ form_row(edit_user_mdp.password, {'label_attr': {'class':'formFields'}}) }} 
+        </div>
+
+               
+
+    </div>
+
+    {# <button type="submit" class="btn btn-primary btn--animated w-100">Je valide !</button> #}
+            {{ form_end(edit_user_mdp) }}  
+    
+    </div>
+
+</div> 
+{# fin de simple-login-container #}
+
+
+
+
+
+{% endblock %}

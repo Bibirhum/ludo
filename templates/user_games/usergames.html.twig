@@ -20,21 +20,23 @@
 
     </style>
 
-    <div class="container">
+    <div class="container fiche-jeu">
 
         {% if form_type == 'update' %}
-            <h1>
-                Je change mon avis sur un jeu de ma ludothèque
+            <h1 class="title-shadow">
+                Je change d'avis !
             </h1>
         {% else %}
-            <h1>
-                J'ajoute un jeu dans ma ludothèque
+            <h1 class="title-shadow">
+                J'ajoute ce jeu !
             </h1>
+            <h4 class="title-shadow">...et je donne mon avis ; ) </h4>
         {% endif %}
 
-        <h3>Bienvenue Joueur : {{ app.user.username }} !</h3>
-
-        <h2>Jeu : {{ game.name }}</h2>
+        <h2 class="title-shadow mt-5">Jeu : {{ game.name }}</h2>
+        <div class="mb-5">
+        <img src="{{ asset(game.image) }}">
+        </div>
 
         {% for label, messages in app.flashes %}
             {% for message in messages %}
@@ -56,7 +58,7 @@
             {% endif %}
         {{ form_end(usergame_form) }}
 
-        <button class="btn btn-warning"><a href="{{ path('user_profile') }}">Revenir à mon compte</a></button>
+        <a href="{{ path('user_profile') }}" class="btn btn-primary">Revenir à mon compte</a>
 
     </div>
 

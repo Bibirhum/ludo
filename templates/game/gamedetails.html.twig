@@ -2,18 +2,19 @@
 
 {% block title %}Ludo | Fiche jeu{% endblock %}
 
+
+
 {% block body %}
-    <style>
 
-    </style>
+<link href="{{ asset('landing_page/css/gamedetails.css') }}" rel="stylesheet">
 
-    <div class="container">
-        <h1>Fiche technique du jeu <em>{{ game.name }}</em></h1>
-        <h3>Bienvenue {{ app.user.username }}</h3>
+    <div class="container fiche-technique">
+        <h1 class="title-shadow">Fiche du jeu</h1>
+    
         <div class="row">
             <div class="card text-center mb-5 w-50">
                 <div class="card-header">
-                    <h2 class="card-title">{{ game.name }}</h2>
+                    <h2 class="card-title text-black">{{ game.name }}</h2>
                 </div>
                 <img src="{{ asset(game.image) }}" class="card-img-top" alt="Photo du jeu {{ game.name }}">
                 <div class="card-body">
@@ -27,16 +28,32 @@
                     <p class="card-text"><b>Résumé</b><br>{{ game.shortDescription }}</p>
                     <hr>
                     <p class="card-text"><b>Description</b><br>{{ game.description }}</p>
-                    <a href="{{ path('add_user_game', {'id' : game.id}) }}" class="btn btn-primary">Ajouter à ma liste</a>
+                    <a href="{{ path('add_user_game', {'id' : game.id}) }}" class="btn btn-primary">Ajouter à ma ludothèque</a>
                 </div>
             </div>
             <div class="card text-center mb-5 w-50">
                 <div class="card-body">
-                    <h4 class="card-title">Commentaires des joueurs</h4>
+                    <h4 class="card-title text-left ">Commentaires des joueurs</h4>
                     <hr>
                     {% for association in game.associatedUsers %}
+                    {% if association.commentary %}
+                    <div class="entete">
                         <h5>{{ association.users.username }}</h5>
-                        <p class="card-text">{{ association.commentary }}</p>
+                        <img src="{{asset(association.users.avatar)}}" class="vignette float-left r-3">
+                        </div>
+                   
+                        <div class="encart_commentaire mb-5">
+                         {% if association.rating %}
+                        <p class="card-text text-left ml-4"><strong> Note :</strong> {{ association.rating }}/5</p>
+                        {% endif %}
+                        <br>
+                        
+                        <p class="card-text text-left ml-4">{{ association.commentary }}</p>
+                         
+                        
+                         <a href="{{ path('player_infos', {'id' : association.users.id}) }}" target="_blank" class="btn btn-primary mb-2">Fiche du joueur</a>
+                        </div>
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>

@@ -22,10 +22,10 @@ class UserType extends AbstractType
                 // this is read and encoded in the controller
                 'type' => PasswordType::class,
                 'first_options' => [
-                    'label' => 'Mot de passe'
+                    'label' => 'Nouveau mot de passe'
                 ],
                 'second_options' => [
-                    'label' => 'Confirmation du mot de passe'
+                    'label' => 'Confirmation du nouveau mot de passe'
                 ],
                 'mapped' => false,
 

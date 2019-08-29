@@ -56,11 +56,9 @@ class PlayerSearchController extends AbstractController
             $paramCity = ($data['city'] === null ? '%' : $data['city']);
 
             if ($paramGame === '%') {
-                $user = $userRepository->findBy([
-                   'city' => $paramCity,
-                ]);
+                $user = $userRepository->findByCity($paramCity);
             } else {
-                $userGameAssociation = $userGameRepository->findByFields3(
+                $userGameAssociation = $userGameRepository->findByFields(
                     $paramGame,
                     $paramCity
                 );
@@ -99,5 +97,30 @@ class PlayerSearchController extends AbstractController
         return $this->render('user_profile/user_infos.html.twig', [
             'user' => $user,
         ]);
+    }
+
+    /**
+     * @Route("/player/searchbycity", name="searchby_user_city")
+     */
+    public function searchByCity(Request $request, UserRepository $userRepository)
+    {
+        $search = $request->get('search');
+        // si l'utilisateur n'envoie pas de recherche, on retourne la page 404
+        if (!$search) {
+            throw $this->createNotFoundException();
+        }
+
+        $users = $userRepository->findByCity($search);
+
+        $users = array_map(function(User $user){
+            return [
+                'id' => $user->getId(),
+                'city' => $user->getCity(),
+            ];
+        }, $users);
+
+        //dd($tags);
+
+        return $this->json($users);
     }
 }

@@ -11,6 +11,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\GameRepository")
+ * @Assert\Expression(
+ *     "this.getNumPlayerMax() >  this.getNumPlayerMin()",
+ *     message="Number of max players must be superior to number of min players !"
+ * )
  */
 class Game
 {
@@ -35,7 +39,6 @@ class Game
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
      */
     private $image;
 
@@ -46,7 +49,6 @@ class Game
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
      */
     private $thumbnail;
 

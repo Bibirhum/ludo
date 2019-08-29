@@ -1,22 +1,121 @@
-{% extends 'layout.html.twig' %}
+{% extends 'admin_template.html.twig' %}
 
 {% block title %}Ludo | Administration{% endblock %}
 
 {% block body %}
-<style>
 
-</style>
+<!-- Begin Page Content -->
+        <div class="container-fluid">
 
-<div class="container">
-    <h1>Espace d'administration du site <em>Ludo</em></h1>
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Tableau de bord</h1>
+          </div>
 
-    <h2>Bienvenue {{ app.user.username }}</h2>
+          <!-- Content Row -->
+          <div class="row">
 
-    <div class="row">
-        <button class="btn btn-primary"><a href="{{ path('admin_users') }}"></a>Gestion des joueurs</button>
-        <button class="btn btn-primary"><a href="{{ path('admin_games') }}"></a>Gestion des jeux</button>
-        <button class="btn btn-primary"><a href="{{ path('admin_categories') }}"></a>Gestion des catégories de jeu</button>
-    </div>
+            <!-- Earnings (Monthly) Card Example -->
+           
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body admin_users">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <a href="{{ path('admin_users') }}" class="link_admin_sections"><p class="admin_sections">Gestion des joueurs</p>
+                            </a>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
 
-</div>
+            <!-- Earnings (Monthly) Card Example -->
+           <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body admin_games">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <a href="{{ path('admin_games') }}" class="link_admin_sections"><p class="admin_sections">Gestion des jeux</p>
+                            </a>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+             <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body admin_categories">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">
+                            <a href="{{ path('admin_categories') }}" class="link_admin_sections"><p class="admin_sections">Gestion des catégories</p>
+                            </a>
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          <!-- Content Row -->
+
+          <div class="row">
+
+           
+                </div>
+                <!-- Card Body -->
+               
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+
+
+        
+              <!-- Illustrations -->
+              <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-primary">Admin infos</h6>
+                </div>
+                <div class="card-body ml-4">
+                  <div class="text-center">
+                    <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" src="img/undraw_posting_photo.svg" alt="">
+                  </div>
+                  <p>Ici, vous pouvez gérer la base de données des jeux, consulter la liste des joueurs actuellement inscrits et gérer les catégories de jeu</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+
 {% endblock %}

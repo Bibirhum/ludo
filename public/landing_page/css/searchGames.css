@@ -25,7 +25,7 @@ h5,h6{
 }
 
 .container.header_section{
-    margin-top:2rem;
+    margin-top:10rem;
     padding-top:2rem;
 }
 
@@ -75,3 +75,5 @@ h5,h6{
     .btn--animated {
       animation: moveInBottom .5s ease-out .75s;
       animation-fill-mode: backwards; }
+
+      

@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Controller;
-
 use App\Entity\Game;
 use App\Entity\User;
 use App\Form\GameType;
@@ -16,7 +14,6 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 class GameController extends AbstractController
 {
     /**
@@ -25,19 +22,17 @@ class GameController extends AbstractController
      */
     public function show(Game $game)
     {
-
         return $this->render('game/gamedetails.html.twig', [
             'game' => $game
         ]);
     }
-
     /**
      * @Route("/game/search", name="games_search")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     public function searchGames(Request $request, GameRepository $gameRepository, Game $game = null)
     {
-        $gameSearchForm = $this->createFormBuilder()
+        $gameSearchForm = $this->createFormBuilder($game)
             ->add('name', TextType::class, [
                 'label' => 'Nom',
                 'required' => false,
@@ -57,26 +52,26 @@ class GameController extends AbstractController
                 'required' => false,
             ])
             ->add('duration', IntegerType::class, [
-                'label' => 'Durée maximale d\'une partie en minutes',
+                'label' => 'Durée maximale en minutes',
                 'required' => false,
             ])
             ->add('ageMin', IntegerType::class, [
-                'label' => 'Âge minimum requis',
+                'label' => 'Âge minimum',
                 'required' => false,
             ])
             ->add('submit', SubmitType::class)
             ->getForm();
+
         $gameSearchForm->handleRequest($request);
 
         if ($gameSearchForm->isSubmitted() && $gameSearchForm->isValid()) {
             $data = $gameSearchForm->getData();
             $paramName = ($data['name'] === null ? '%' : $data['name']);
-            $paramCategory = ($data['category']->getName() === null ? '%' : $data['category']->getName());
+            $paramCategory = ($data['category'] === null ? '%' : $data['category']->getName());
             $paramNumPlayerMin = ($data['numPlayerMin'] === null ? 0 : $data['numPlayerMin']);$data['numPlayerMin'];
             $paramNumPlayerMax = ($data['numPlayerMax'] === null ? 1000000 : $data['numPlayerMax']);$data['numPlayerMax'];
             $paramDuration = ($data['duration'] === null ? 1000000 : $data['duration']);$data['duration'];
             $paramAgeMin = ($data['ageMin'] === null ? 0 : $data['ageMin']);$data['ageMin'];
-
             $game = $gameRepository->findByFields(
                 $paramName,
                 $paramCategory,
@@ -85,6 +80,18 @@ class GameController extends AbstractController
                 $paramDuration,
                 $paramAgeMin
             );
+
+            if ($game) {
+                $this->addFlash(
+                    'success',
+                    'Voici la liste des jeux qui correspondent à vos critères de recherche'
+                );
+            } else {
+                $this->addFlash(
+                    'warning',
+                    'Aucun jeu ne correspond à vos critères de recherche'
+                );
+            }
         } else {
             $game = $gameRepository->findAll();
         }
@@ -94,9 +101,8 @@ class GameController extends AbstractController
             'games' => $game,
         ]);
     }
-
     /**
-     * @Route("/game/add", name="add_game")
+     * @Route("/admin/game/add", name="add_game")
      * @Route("/game/edit/{id<\d+>}", name="edit_game")
      */
     public function editGame(
@@ -107,15 +113,12 @@ class GameController extends AbstractController
     {
         // variable pour typer le formulaire et permettre des affichages conditionnels dans le template
         $form_type = 'update';
-
         if ($game === null) {
             $game = new Game();
             $form_type = 'create';
         }
-
         $gameForm = $this->createForm(GameType::class, $game);
         $gameForm->handleRequest($request);
-
         if ($gameForm->isSubmitted() && $gameForm->isValid()) {
             // on ne fait ce traitement que si une image a bien été envoyée
             if ($game->getImageFile() !== null) {
@@ -134,16 +137,14 @@ class GameController extends AbstractController
             // on redirige vers la page d'administration des jeux
             return $this->redirectToRoute('admin_games');
         }
-
-        return $this->render('game/editgame.html.twig', [
+        return $this->render('admin/editgame.html.twig', [
             'game_form' => $gameForm->createView(),
             'game' => $game,
             'form_type' => $form_type,
         ]);
     }
-
     /**
-     * @Route("/game/delete/{id<\d+>}", name="delete_game")
+     * @Route("/admin/game/delete/{id<\d+>}", name="delete_game")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     // TODO : l'utilisateur doit être connecté pour pouvoir accéder à cette page
@@ -158,5 +159,30 @@ class GameController extends AbstractController
         $objectManager->flush();
         // on redirige vers la liste des produits
         return $this->redirectToRoute('admin_games');
+    }
+
+    /**
+     * @Route("/game/searchbyname", name="searchby_game_name")
+     */
+    public function search(Request $request, GameRepository $gameRepository)
+    {
+        $search = $request->get('search');
+        // si l'utilisateur n'envoie pas de recherche, on retourne la page 404
+        if (!$search) {
+            throw $this->createNotFoundException();
+        }
+
+        $games = $gameRepository->searchByString($search);
+
+        $games = array_map(function(Game $game){
+            return [
+                'id' => $game->getId(),
+                'name' => $game->getName(),
+               ];
+        }, $games);
+
+        //dd($tags);
+
+        return $this->json($games);
     }
 }

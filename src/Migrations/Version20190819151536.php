@@ -24,7 +24,7 @@ final class Version20190819151536 extends AbstractMigration
 
        /* $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB'); */
        $this->addSql('ALTER TABLE user CHANGE email email VARCHAR(180) NOT NULL');
-       $this->addSql('ALTER TABLE user ADD roles JSON NOT NULL');
+        //$this->addSql('ALTER TABLE user ADD roles JSON NOT NULL');
     }
 
     public function down(Schema $schema) : void
@@ -34,7 +34,7 @@ final class Version20190819151536 extends AbstractMigration
 
         /*$this->addSql('DROP TABLE user');*/
         $this->addSql('ALTER TABLE user CHANGE email email VARCHAR(255) NOT NULL');
-        $this->addSql('ALTER TABLE user DROP COLUMN roles');
+        //$this->addSql('ALTER TABLE user DROP COLUMN roles');
 
 
     }

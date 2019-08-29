@@ -28,29 +28,6 @@ class EditUserProfileType extends AbstractType
             ->add('first_name', TextType::class, ['label' => "Prénom"])
             ->add('last_name', TextType::class, ['label' => 'Nom'])
             ->add('email', EmailType::class, ['label' => 'Adresse email'])
-            ->add('password', RepeatedType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
-                'type' => PasswordType::class,
-                'first_options' => [
-                    'label' => 'Mot de passe'
-                ],
-                'second_options' => [
-                    'label' => 'Confirmation mot de passe'
-                ],
-                'mapped' => false,
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Please enter a password',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
-            ])
             ->add('bio', TextareaType::class, ['label' => 'Bio'])
             ->add('avatarFile', FileType::class, array('label'=>'Avatar','data_class' =>null,'required' =>false)) //[
                 // 'label' =>'Votre avatar (.jpg, .png, .jpeg)',
@@ -70,7 +47,7 @@ class EditUserProfileType extends AbstractType
 
             //]) //fin add 'avatar'
             ->add('address', TextareaType::class, ['label' => 'Adresse'])
-            ->add('zip_code', IntegerType::class, ['label' => 'Code Postal'])
+            ->add('zip_code', TextType::class, ['label' => 'Code Postal'])
             ->add('city', TextType::class, ['label' => 'Ville'])
             ->add('submit', SubmitType::class, ['label' => 'Je valide !'])
             

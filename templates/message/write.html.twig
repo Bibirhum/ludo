@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Ludo | Écrire un message à un joueur{% endblock %}
+
+{% block body %}
+
+
+    <div class="container">
+        <p>Ecrire à : {{ recipient.username }}</p>
+            {{ form(write_form) }}
+            <a class="btn btn-primary" href="{{path('message_read')}}" role="button">Revenir à mes messages</a>
+            <a class="btn btn-primary" href="{{ path('player_infos', {'id': recipient.id}) }}" role="button">Revenir à la fiche du joueur</a>
+    </div>
+
+{% endblock %}

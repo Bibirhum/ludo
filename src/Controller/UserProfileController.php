@@ -3,6 +3,7 @@ namespace App\Controller;
 
 use App\Entity\Game;
 use App\Entity\User;
+use App\Form\PasswordEditType;
 use App\Form\EditUserProfileType;
 use App\Controller\UserController;
 use App\Repository\GameRepository;
@@ -11,6 +12,7 @@ use App\Entity\UserGameAssociation;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\FormBuilderInterface;
 use App\Repository\UserGameAssociationRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -77,8 +79,7 @@ class UserProfileController extends AbstractController
      */
     public function editUser (
         ObjectManager $objectManager,
-        Request $request,
-        UserPasswordEncoderInterface $passwordEncoder
+        Request $request
         // User $user = null
         )
     {   
@@ -102,6 +103,41 @@ class UserProfileController extends AbstractController
                 $user->setAvatar($folder.DIRECTORY_SEPARATOR.$filename);
                 }
 
+                ;
+    
+            
+    
+
+                $objectManager->persist($user);
+                $objectManager->flush();
+                
+                return $this->redirectToRoute('user_profile');
+    
+            }
+    
+            return $this->render('user_profile/edit_user_profile.html.twig', [
+                'edit_user_form' => $form->createView(),
+            ]);
+        }
+
+        // Modification du mdp par l'utilisateur
+    /**
+     * @Route("/user/edit_mdp", name="edit_user_mdp")
+     * @IsGranted("IS_AUTHENTICATED_FULLY")
+     */
+    public function editMdp (
+        ObjectManager $objectManager,
+        Request $request,
+        UserPasswordEncoderInterface $passwordEncoder
+        )
+    {   
+        $user = $this->getUser();
+        $form = $this->createForm(PasswordEditType::class,$user);
+    
+        $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid()) {
+               
                 $user->setPassword(
                      $passwordEncoder->encodePassword(
                         $user,
@@ -119,11 +155,10 @@ class UserProfileController extends AbstractController
     
             }
     
-            return $this->render('user_profile/edit_user_profile.html.twig', [
-                'edit_user_form' => $form->createView(),
+            return $this->render('user_profile/edit_user_mdp.html.twig', [
+                'edit_user_mdp' => $form->createView(),
             ]);
         }
-
 
       
     

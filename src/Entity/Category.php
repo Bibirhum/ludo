@@ -35,12 +35,6 @@ class Category
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank
-     * @Assert\Length(
-     *      min = 2,
-     *      max = 250,
-     *      minMessage = "The category name must be at least {{ limit }} characters long",
-     *      maxMessage = "The category name cannot be longer than {{ limit }} characters"
-     * )
      */
     private $description;
 

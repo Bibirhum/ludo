@@ -18,10 +18,10 @@ class PlayerSearchType extends AbstractType
                 'label' => 'Pseudo',
                 'required' => false,
             ])
-            ->add('zipCode', TextType::class, [
+            /*->add('zipCode', TextType::class, [
                 'label' => 'Code postal',
                 'required' => false,
-            ])
+            ])*/
             ->add('city', TextType::class, [
                 'label' => 'Ville',
                 'required' => false,
