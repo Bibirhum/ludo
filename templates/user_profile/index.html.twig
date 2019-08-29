@@ -38,8 +38,7 @@
                 <p class="font-italic user_bio">{{user.bio}}</p>
               </div>
 
-              <a href="{{ path('message_read', {'id' : user.id}) }}" target="_blank"
-                                    class="btn btn-primary">Mes messages</a>
+              <a href="{{ path('message_read', {'id' : user.id}) }}" target="_blank" class="btn-primary"><i class="far fa-envelope"></i>  Mes messages</a>
 
               <div id="accordion" role="tablist">
                 <div class="profile-tabs">
