@@ -24,15 +24,16 @@
 
         {% if form_type == 'update' %}
             <h1 class="title-shadow">
-                Modification avis
+                Je change d'avis !
             </h1>
         {% else %}
             <h1 class="title-shadow">
-                Ajout de jeu 
+                J'ajoute ce jeu !
             </h1>
+            <h4 class="title-shadow">...et je donne mon avis ; ) </h4>
         {% endif %}
 
-        <h2 class="title-shadow">Jeu : {{ game.name }}</h2>
+        <h2 class="title-shadow mt-5">Jeu : {{ game.name }}</h2>
         <div class="mb-5">
         <img src="{{ asset(game.image) }}">
         </div>

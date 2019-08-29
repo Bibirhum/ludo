@@ -9,7 +9,7 @@
 <link href="{{ asset('landing_page/css/gamedetails.css') }}" rel="stylesheet">
 
     <div class="container fiche-technique">
-        <h1 class="title-shadow">Fiche technique <em>{{ game.name }}</em></h1>
+        <h1 class="title-shadow">Fiche du jeu</h1>
     
         <div class="row">
             <div class="card text-center mb-5 w-50">
@@ -28,7 +28,7 @@
                     <p class="card-text"><b>Résumé</b><br>{{ game.shortDescription }}</p>
                     <hr>
                     <p class="card-text"><b>Description</b><br>{{ game.description }}</p>
-                    <a href="{{ path('add_user_game', {'id' : game.id}) }}" class="btn btn-primary">Ajouter à ma liste</a>
+                    <a href="{{ path('add_user_game', {'id' : game.id}) }}" class="btn btn-primary">Ajouter à ma ludothèque</a>
                 </div>
             </div>
             <div class="card text-center mb-5 w-50">

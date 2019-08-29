@@ -18,7 +18,7 @@
         {% for message in messages %}
             <div class="card text-center">
                 <div class="card-body">
-                    <h5 class="card-title">Expéditeur : {{ message.sender.username }} || Destinataire : {{ message.recipient.username }}</h5>
+                    <h5 class="card-title">De : {{ message.sender.username }} || à : {{ message.recipient.username }}</h5>
                     <p class="card-text">{{message.message}}</p>
                     <a href="{{ path('message_write', {'id' : message.sender.id}) }}" class="btn btn-primary">Répondre</a>
                 </div>

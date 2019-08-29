@@ -113,8 +113,8 @@
                                         {% if usergame.ownsGame is same as (1)  %}
                                             <br><i class="far fa-hand-paper"></i>  {{ usergame.users.username }} l'a en stock !
                                         {% endif %}
-                                        {% if usergame.playsGame == 0 and game.ownsGame == 0 %}
-                                            <br><i class="far fa-lightbulb-on"></i>  {{ usergame.users.username }} est intéressé(e) !</span>
+                                        {% if usergame.playsGame == 0 and usergame.ownsGame == 0 %}
+                                            <br><i class="far fa-smile-wink"></i>  {{ usergame.users.username }} est intéressé(e) !
                                         {% endif %}
                                     </p>
                                     <a href="{{ path('player_infos', {'id' : usergame.users.id}) }}" target="_blank"

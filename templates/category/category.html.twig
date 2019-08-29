@@ -156,7 +156,7 @@
     {% endfor %}
 
     <div>
-        <button class="btn btn-light"><a href="{{ path('add_category') }}">Ajouter une catégorie</a></button>
+        <a href="{{ path('add_category') }}" class="btn btn-success">Ajouter une catégorie</a>
     </div>
     <table class="table">
         <thead>
@@ -176,9 +176,9 @@
                 <td>{{ category.description }}</td>
                 <td><a href="{{ path('edit_category', { 'id' : category.id }) }}" class="btn btn-warning">Mettre à jour</a></td>
                 <td><a href="{{ path('delete_category', { 'id' : category.id }) }}" class="btn btn-danger" onClick="(function(){
-    prompt('Etes-vous sûr(e) de vouloir supprimer cette catégorie ? Cette action est irréversible.');
-    return false;
-})();return false;">Supprimer</a></td>
+    confirm('Etes-vous sûr(e) de vouloir supprimer cette catégorie ? Cette action est irréversible.');
+  
+})();">Supprimer</a></td>
             </tr>
         {% endfor %}
         </tbody>

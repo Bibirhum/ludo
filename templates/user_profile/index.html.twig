@@ -32,7 +32,7 @@
                 {% endif %}
               </div>
               <div class="name">
-                <h1 class="title">Bienvenue {{user.username}}! </h1>
+                <h1 class="title">Bienvenue {{user.username}} ! </h1>
               </div>
               <div class="description text-center">
                 <p class="font-italic user_bio">{{user.bio}}</p>
@@ -141,15 +141,20 @@
                     {{ item.rating }}/5
                     {% else %}<p><em>Pas encore de note</em></p>{% endif %}
                     <br>
-                    {% if item.playsGame is same as (1)  %}
+                    {% if item.playsGame == 1 %}
                      <i class="far fa-thumbs-up"></i>
                     J'y joue !
                     {% endif %}
-                    {% if item.ownsGame is same as (1) %}
-                    <i class="far fa-hand-paper"></i>
+                    {% if item.ownsGame == 1 %}
+                    <br><i class="far fa-hand-paper"></i>
                     </i>Je l'ai !
+                    {% endif %}
+                    {% if item.playsGame == 0 and item.ownsGame == 0 %}
+                    <br><i class="far fa-smile-wink"></i>  Je suis intéressé(e) !
                     {% endif %} 
                     <a href="{{ path('edit_user_game', {'id' : item.games.id}) }}" class="btn-primary mt-2">Modifier mon avis</a>
+                    <a href="{{ path('game_details', {'id' : item.games.id}) }}" class="btn-primary mt-2">Fiche du jeu</a>
+
                   </div>
                 </div>
               </div>

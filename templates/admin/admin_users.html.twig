@@ -182,9 +182,9 @@
     #}
                     <td><a href="{{ path('admin_one_user', { 'id' : user.id }) }}" class="btn btn-warning">Mettre à jour</a></td>
                     <td><a href="{{ path('delete_user', { 'id' : user.id }) }}" class="btn btn-danger" onClick="(function(){
-    prompt('Etes-vous sûr(e) de vouloir supprimer cet utilisateur ? Cette action est irréversible.');
-    return false;
-})();return false;">Supprimer</a></td>
+    confirm('Etes-vous sûr(e) de vouloir supprimer cet utilisateur ? Cette action est irréversible.');
+    
+})();">Supprimer</a></td>
                 </tr>
             {% endfor %}
             </tbody>
