@@ -134,6 +134,19 @@ class GameController extends AbstractController
             // on insère le nouveau jeu dans la BDD
             $objectManager->persist($game);
             $objectManager->flush();
+
+            if ($form_type === 'update') {
+                $this->addFlash(
+                    'success',
+                    'Le jeu a bien été mis à jour'
+                );
+            } else {
+                $this->addFlash(
+                    'success',
+                    'Le nouveau jeu a bien été ajouté à la base de données'
+                );
+            }
+
             // on redirige vers la page d'administration des jeux
             return $this->redirectToRoute('admin_games');
         }
@@ -147,8 +160,6 @@ class GameController extends AbstractController
      * @Route("/admin/game/delete/{id<\d+>}", name="delete_game")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
-    // TODO : l'utilisateur doit être connecté pour pouvoir accéder à cette page
-    // d'où l'annotation IsGranted
     public function deleteGame(
         Game $game,
         ObjectManager $objectManager
@@ -157,6 +168,12 @@ class GameController extends AbstractController
         // on supprime le produit
         $objectManager->remove($game);
         $objectManager->flush();
+
+        $this->addFlash(
+            'success',
+            'Le jeu a bien été supprimé'
+        );
+
         // on redirige vers la liste des produits
         return $this->redirectToRoute('admin_games');
     }

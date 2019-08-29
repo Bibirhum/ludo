@@ -52,7 +52,7 @@ class CategoryController extends AbstractController
                 );
             }
 
-            // on redirige vers la page d'administration des jeux
+            // on redirige vers la page d'administration des catégories
             return $this->redirectToRoute('admin_categories');
         }
 
@@ -72,17 +72,33 @@ class CategoryController extends AbstractController
         ObjectManager $objectManager
     )
     {
+        // on récupère les jeux associés à la catégorie à supprimer
+        $games = $category->getRelatedGames()->toArray();
+
+        //dd($games);
+        // on ne peut supprimer la catégorie que si aucun jeu n'y est associé
+        if (empty($games)) {
+            // on supprime la catégorie
+            $objectManager->remove($category);
+            $objectManager->flush();
+
+            $this->addFlash(
+                'success',
+                'La catégorie a bien été supprimée'
+            );
+        } else {
+            $this->addFlash(
+                'warning',
+                'La catégorie ne peut pas être supprimée car elle est associée à un ou plusieurs jeux de la base de données'
+            );
+        }
+
         // on 'vide' la catégorie
         // -> suppression d'un enregistrement interdit à cause des contraintes d'intégrité
-        $category->setName('Catégorie supprimée');
-        $category->setDescription('Catégorie supprimée');
-        $objectManager->persist($category);
-        $objectManager->flush();
-
-        $this->addFlash(
-            'success',
-            'La catégorie a bien été mise à l\'état "supprimée"'
-        );
+        //$category->setName('Catégorie supprimée');
+        //$category->setDescription('Catégorie supprimée');
+        //$objectManager->persist($category);
+        //$objectManager->flush();
 
         // on redirige vers la liste des catégories
         return $this->redirectToRoute('admin_categories');
