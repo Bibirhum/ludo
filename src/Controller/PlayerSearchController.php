@@ -98,4 +98,29 @@ class PlayerSearchController extends AbstractController
             'user' => $user,
         ]);
     }
+
+    /**
+     * @Route("/player/searchbycity", name="searchby_user_city")
+     */
+    public function searchByCity(Request $request, UserRepository $userRepository)
+    {
+        $search = $request->get('search');
+        // si l'utilisateur n'envoie pas de recherche, on retourne la page 404
+        if (!$search) {
+            throw $this->createNotFoundException();
+        }
+
+        $users = $userRepository->findByCity($search);
+
+        $users = array_map(function(User $user){
+            return [
+                'id' => $user->getId(),
+                'city' => $user->getCity(),
+            ];
+        }, $users);
+
+        //dd($tags);
+
+        return $this->json($users);
+    }
 }

@@ -21,19 +21,18 @@
 
 
             <div class="col-3 position-sticky float-left">
+
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+
                 <h3>Filtrer par :</h3>
 
-                {# {{ form_start(game_form) }}
-                    {{ form_row(game_form.name, {'label_attr': {'class':'formFields'}}) }}
-                    {{ form_row(game_form.category, {'label_attr': {'class':'formFields'}}) }}
-                    {{ form_row(game_form.numPlayerMin, {'label_attr': {'class':'formFields'}}) }}
-                    {{ form_row(game_form.numPlayerMax, {'label_attr': {'class':'formFields'}}) }}
-                    {{ form_row(game_form.duration, {'label_attr': {'class':'formFields'}}) }}
-                    {{ form_row(game_form.ageMin, {'label_attr': {'class':'formFields'}}) }}
-
-                {{ form_end(game_form) }}  #}
-
-
+                {{ form_errors(game_form) }}
 
                 {{ form_start(game_form) }}
                 {{ form_row(game_form.name, {'required': false,'label_attr': {'class':'formFields'}}) }}
@@ -80,10 +79,9 @@
 
     <script>
         /* utilisation de l'autocompléteur selectize */
+        /* autocomplétion du champ de recherche du nom du jeu*/
         $(function () {
-            // attention au nom de l'id, construit d'après le nom de la classe du formulaire 'AddProductType' et celui du champ 'tags' qui y est défini !
             $('#form_name').selectize({
-                //delimiter: ', ',
                 valueField: 'name',
                 labelField: 'name',
                 searchField: 'name',
@@ -95,9 +93,9 @@
                     if (query.legend < 2) { // si la saisie est trop courte, on quitte
                         return;
                     }
-                    // sinon on fait de l'ajax
+                    // ajax
                     // $.getJSON(/* url de la requête */, /* callback appelé si la requête réussit */);
-                    $.getJSON('{{ path('search_game') }}?search='+encodeURIComponent(query), function(data){
+                    $.getJSON('{{ path('searchby_game_name') }}?search='+encodeURIComponent(query), function(data){
                         callback(data);
                     });
                 }

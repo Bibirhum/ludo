@@ -32,7 +32,7 @@ class GameController extends AbstractController
      */
     public function searchGames(Request $request, GameRepository $gameRepository, Game $game = null)
     {
-        $gameSearchForm = $this->createFormBuilder()
+        $gameSearchForm = $this->createFormBuilder($game)
             ->add('name', TextType::class, [
                 'label' => 'Nom',
                 'required' => false,
@@ -61,7 +61,9 @@ class GameController extends AbstractController
             ])
             ->add('submit', SubmitType::class)
             ->getForm();
+
         $gameSearchForm->handleRequest($request);
+
         if ($gameSearchForm->isSubmitted() && $gameSearchForm->isValid()) {
             $data = $gameSearchForm->getData();
             $paramName = ($data['name'] === null ? '%' : $data['name']);
@@ -78,16 +80,29 @@ class GameController extends AbstractController
                 $paramDuration,
                 $paramAgeMin
             );
+
+            if ($game) {
+                $this->addFlash(
+                    'success',
+                    'Voici la liste des jeux qui correspondent à vos critères de recherche'
+                );
+            } else {
+                $this->addFlash(
+                    'warning',
+                    'Aucun jeu ne correspond à vos critères de recherche'
+                );
+            }
         } else {
             $game = $gameRepository->findAll();
         }
+
         return $this->render('game/listgames.html.twig', [
             'game_form' => $gameSearchForm->createView(),
             'games' => $game,
         ]);
     }
     /**
-     * @Route("/game/add", name="add_game")
+     * @Route("/admin/game/add", name="add_game")
      * @Route("/game/edit/{id<\d+>}", name="edit_game")
      */
     public function editGame(
@@ -122,14 +137,14 @@ class GameController extends AbstractController
             // on redirige vers la page d'administration des jeux
             return $this->redirectToRoute('admin_games');
         }
-        return $this->render('game/editgame.html.twig', [
+        return $this->render('admin/editgame.html.twig', [
             'game_form' => $gameForm->createView(),
             'game' => $game,
             'form_type' => $form_type,
         ]);
     }
     /**
-     * @Route("/game/delete/{id<\d+>}", name="delete_game")
+     * @Route("/admin/game/delete/{id<\d+>}", name="delete_game")
      * @IsGranted("IS_AUTHENTICATED_FULLY")
      */
     // TODO : l'utilisateur doit être connecté pour pouvoir accéder à cette page
@@ -147,7 +162,7 @@ class GameController extends AbstractController
     }
 
     /**
-     * @Route("/game/searchbyname", name="search_game")
+     * @Route("/game/searchbyname", name="searchby_game_name")
      */
     public function search(Request $request, GameRepository $gameRepository)
     {

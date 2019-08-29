@@ -20,48 +20,19 @@ class UserRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return User[] Returns an array of User objects
+     * Return the users that match the string passed as parameter
+     * @param string $search : the string to search
+     * @return User[] : the users that match the given string in database
      */
-
-    /*public function findByFields(?string $game, ?string $zipcode, ?string $city)
+    public function findByCity(?string $search)
     {
         return $this->createQueryBuilder('u')
-            ->andWhere('u.username LIKE :username')
-            ->orWhere('u.zipCode LIKE :zipcode')
-            ->orWhere('u.city LIKE :city')
-
-            ->setParameter('username', '%'.$game.'%')
-            ->setParameter('zipcode', '%'.$zipcode.'%')
-            ->setParameter('city', '%'.$city.'%')
-
-            ->orderBy('u.username', 'ASC')
-            //->setMaxResults(5)
+            ->where('u.city LIKE :search')
+            ->setParameter('search', '%' . $search . '%')
             ->getQuery()
-            ->getResult()
-        ;
-    }*/
-
-    public function findByCity(?string $city)
-    {
-        $entityManager = $this->getEntityManager();
-        $query = $entityManager->createQuery('
-            SELECT u
-            FROM App\Entity\User u
-            WHERE u.city LIKE :city
-            ORDER BY u.username ASC
-        ')
-
-        ->setParameter('city', $city);
-
-        return $query->execute();
+            ->getResult();
 
     }
-
-//INNER JOIN App\Entity\UserGameAssociation a
-//ON u.id = a.users
-//INNER JOIN App\Entity\Game g
-//ON a.games = g.id
-
 
     // /**
     //  * @return User[] Returns an array of User objects
