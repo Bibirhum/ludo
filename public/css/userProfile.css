@@ -456,7 +456,22 @@ footer p a:hover {
     text-decoration: none;
 }
 
-
+    
+/* Animation Card */
+.princing-item {
+    transition: all 150ms ease-out;
+  }
+  .princing-item:hover {
+    transform: scale(1.05);
+  }
+  .princing-item:hover .deco-layer--1 {
+    -webkit-transform: translate3d(15px, 0, 0);
+    transform: translate3d(15px, 0, 0);
+  }
+  .princing-item:hover .deco-layer--2 {
+    -webkit-transform: translate3d(-15px, 0, 0);
+    transform: translate3d(-15px, 0, 0);
+  }
 
 
 

@@ -141,6 +141,7 @@ h1,h2{
 }
 
 .navbar {
+  z-index: 100;
   border: 0;
   border-radius: 3px;
   padding: .625rem 0;
@@ -410,19 +411,13 @@ a.change:hover, .navbar a:hover, .navbar .nav-item a.nav-link:hover{
         animation-fill-mode: backwards; }
     
 /* Animation Card */
-.princing-item {
+.animationCard {
   transition: all 150ms ease-out;
 }
-.princing-item:hover {
+.animationCard:hover {
   transform: scale(1.05);
-}
-.princing-item:hover .deco-layer--1 {
-  -webkit-transform: translate3d(15px, 0, 0);
-  transform: translate3d(15px, 0, 0);
-}
-.princing-item:hover .deco-layer--2 {
-  -webkit-transform: translate3d(-15px, 0, 0);
-  transform: translate3d(-15px, 0, 0);
+  z-index: 99;
+  box-shadow: 0 0 8px black;
 }
 
 

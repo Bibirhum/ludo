@@ -48,8 +48,8 @@
 
             <div class="col-9 row d-flex justify-content-around results">
                 {% for game in games %}
-                    <div class="card text-center mb-5 w-50">
-                        <div class="card-header">
+                    <div class="card text-center mb-5 w-50 animationCard">
+                        <div class="card-header ">
                             <h4 class="card-title">{{ game.name }}</h4>
                         </div>
                         <img src="{{ asset(game.image) }}" class="card-img-top" alt="Photo du jeu {{ game.name }}">

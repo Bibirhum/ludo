@@ -22,6 +22,14 @@ class GameController extends AbstractController
      */
     public function show(Game $game)
     {
+
+        
+        // $nb = 0;
+        // if (is_array($liste_nombres)) foreach($liste_nombres as $nombre){
+        //         $nb += empty($nombre) ? 0 : 1;
+        // }
+        // return $nb;
+
         return $this->render('game/gamedetails.html.twig', [
             'game' => $game
         ]);

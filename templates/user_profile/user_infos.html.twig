@@ -28,7 +28,7 @@
             <div class="d-flex flex-nowrap collection justify-content-center">
 
                 {% for game in user.associatedGames %}
-                    <div class="card w-25">
+                    <div class="card w-25 animationCard">
                         {# à modifier avec asset pour accueillir les vraies images   #}
                         <img class="card-img-top" src="{{ asset(game.games.thumbnail) }}"
                              alt="Photo du jeu {{ game.games.name }}">

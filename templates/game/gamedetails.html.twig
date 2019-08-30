@@ -43,7 +43,7 @@
                         </div>
                    
                         <div class="encart_commentaire mb-5">
-                         {% if association.rating %}
+                        {% if association.rating %}
                         <p class="card-text text-left ml-4"><strong> Note :</strong> {{ association.rating }}/5</p>
                         {% endif %}
                         <br>
@@ -54,6 +54,9 @@
                          <a href="{{ path('player_infos', {'id' : association.users.id}) }}" target="_blank" class="btn btn-primary mb-2">Fiche du joueur</a>
                         </div>
                         {% endif %}
+
+
+                        
                     {% endfor %}
                 </div>
             </div>
