@@ -152,7 +152,7 @@
         {{ form_errors(game_form) }}
         {{ form_start(game_form) }}
             {{ form_row(game_form.name) }}
-            {{ form_row(game_form.imageFile) }}
+            {{ form_row(game_form.imageFile, {'required' : false}) }}
             {{ form_row(game_form.theme) }}
             {{ form_row(game_form.short_description) }}
             {{ form_row(game_form.description) }}

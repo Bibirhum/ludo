@@ -35,7 +35,7 @@
 
         <h2 class="title-shadow mt-5">Jeu : {{ game.name }}</h2>
         <div class="mb-5">
-        <img src="{{ asset(game.image) }}">
+        <img src="{{ asset(game.image) }}" class="w-25">
         </div>
 
         {% for label, messages in app.flashes %}

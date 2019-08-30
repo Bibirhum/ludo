@@ -18,13 +18,13 @@ class Message
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="sentMessages")
-     * @ORM\JoinColumn(nullable=false)
+     * 
      */
     private $sender;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="receivedMessages")
-     * @ORM\JoinColumn(nullable=false)
+     * 
      */
     private $recipient;
 

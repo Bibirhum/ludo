@@ -28,9 +28,9 @@
         {% for message in messages %}
             <div class="card text-center">
                 <div class="card-body">
-                    <h5 class="card-title">De : {{ message.sender.username }} | À : {{ message.recipient.username }}</h5>
+                    <h5 class="card-title">De : {{ message.sender.username|default('Utilisateur supprimé') }} | À : {{ message.recipient.username|default('Utilisateur supprimé') }}</h5>
                     <p class="card-text">{{message.message}}</p>
-                    {% if message.sender.username != app.user.username %}
+                    {% if message.sender is defined and message.sender.username != app.user.username %}
                     <a href="{{ path('message_write', {'id' : message.sender.id}) }}" class="btn btn-primary"><i class="far fa-paper-plane"></i>    Répondre</a>
                     {% endif %}
                 </div>
