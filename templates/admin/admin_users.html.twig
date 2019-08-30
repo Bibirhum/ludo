@@ -145,7 +145,15 @@
      <div class="container">
     <h1>Gestion des joueurs</h1>
 
-   
+      {# affichage msg flash #}
+    {% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }}">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endfor %}
+    
     <table class="table">
         <thead>
             <tr>
@@ -158,8 +166,7 @@
                 <th>Présentation</th>
                 <th>Avatar</th>
                 <th>Statut</th>
-                <th>Mettre à jour</th>
-                <th>Supprimer</th>
+                <th colspan="2">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -173,14 +180,19 @@
                     <td>{{ user.address }}-{{ user.zipCode }}-{{ user.city }}</td>
                     <td>{{ user.bio }}</td>
                     <td><img src="{{ user.avatar }}" alt="Avatar du joueur {{ user.username }}" width="160" height="120"></td>
-                    <td>{{ user.status }}</td>
+                    <td>{% if user.status == 0  %}
+                        Utilisateur
+                        {% else %}
+                        Admin
+                        {% endif %}
+                    </td>
     {#
                     <td><a href="{{ path('user_games', { 'id' : user.id }) }}" class="btn btn-success">Liste des jeux</a></td>
     #}
     {#
                     <td><a href="{{ path('edit_user', { 'id' : user.id }) }}" class="btn btn-success">Modifier</a></td>
     #}
-                    <td><a href="{{ path('admin_one_user', { 'id' : user.id }) }}" class="btn btn-warning">Mettre à jour</a></td>
+                    <td><a href="{{ path('admin_one_user', { 'id' : user.id }) }}" class="btn btn-success">Modifier</a></td>
                     <td><a href="{{ path('delete_user', { 'id' : user.id }) }}" class="btn btn-danger" onClick="(function(){
     confirm('Etes-vous sûr(e) de vouloir supprimer cet utilisateur ? Cette action est irréversible.');
     

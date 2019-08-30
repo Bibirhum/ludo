@@ -4,13 +4,14 @@ namespace App\Form;
 
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\PasswordType;
-use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 class UserType extends AbstractType
 {
@@ -28,20 +29,15 @@ class UserType extends AbstractType
                     'label' => 'Confirmation du nouveau mot de passe'
                 ],
                 'mapped' => false,
+                'required' => false
 
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez saisir un mot de passe',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
             ])
-            ->add('status')
+            ->add('status',ChoiceType::class,
+                [
+                    'choices' => [
+                        'Utilisateur' => 0,
+                        'Admin' => 1],
+                    'label' => 'Statut'])
             ->add('submit', SubmitType::class, ['label' => 'Mettre à jour'])
 
         ;
