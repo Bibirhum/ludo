@@ -29,18 +29,8 @@ class UserType extends AbstractType
                     'label' => 'Confirmation du nouveau mot de passe'
                 ],
                 'mapped' => false,
+                'required' => false
 
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez saisir un mot de passe',
-                    ]),
-                    new Length([
-                        'min' => 6,
-                        'minMessage' => 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
-                        'max' => 4096,
-                    ]),
-                ],
             ])
             ->add('status',ChoiceType::class,
                 [

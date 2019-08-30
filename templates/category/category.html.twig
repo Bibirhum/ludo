@@ -164,8 +164,7 @@
                 <th>ID</th>
                 <th>Nom</th>
                 <th>Description</th>
-                <th>Mettre à jour</th>
-                <th>Supprimer</th>
+                <th colspan="2">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -174,7 +173,7 @@
                 <th>{{ category.id }}</th>
                 <td>{{ category.name }}</td>
                 <td>{{ category.description }}</td>
-                <td><a href="{{ path('edit_category', { 'id' : category.id }) }}" class="btn btn-warning">Mettre à jour</a></td>
+                <td><a href="{{ path('edit_category', { 'id' : category.id }) }}" class="btn btn-success">Modifier</a></td>
                 <td><a href="{{ path('delete_category', { 'id' : category.id }) }}" class="btn btn-danger" onClick="(function(){
     confirm('Etes-vous sûr(e) de vouloir supprimer cette catégorie ? Cette action est irréversible.');
   
