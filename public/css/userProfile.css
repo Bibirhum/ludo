@@ -21,10 +21,13 @@ a.change:hover, .navbar a:hover, .navbar .nav-item a.nav-link:hover{
 }
 
 /* card */
+.cardPosition{
+    justify-content: center;
+}
 .card{
     text-align: center;
 }
-.fa-plus-circle{
+.fa-plus-circle, .add_circle_outline{
     font-size: 50px;
     padding: 20px;
 }
@@ -454,17 +457,31 @@ footer p a:hover {
 }
 
 
+
+
+
 /* RESPONSIVE DESIGN */
 @media (min-width: 1200px){
 	.main {
         width: 50%;
     }
+    .cardPosition{
+        justify-content: left;
+    }
 }
-@media (min-width: 768px) and (max-width: 991.98px){
+@media (min-width: 768px) and (max-width: 1999.98px){
 	.main {
         width: 70%;
     }
 }
+
+
+
+
+
+
+
+
 
 
 

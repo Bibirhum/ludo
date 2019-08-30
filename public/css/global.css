@@ -409,7 +409,21 @@ a.change:hover, .navbar a:hover, .navbar .nav-item a.nav-link:hover{
         animation: moveInBottom .5s ease-out .75s;
         animation-fill-mode: backwards; }
     
-
+/* Animation Card */
+.princing-item {
+  transition: all 150ms ease-out;
+}
+.princing-item:hover {
+  transform: scale(1.05);
+}
+.princing-item:hover .deco-layer--1 {
+  -webkit-transform: translate3d(15px, 0, 0);
+  transform: translate3d(15px, 0, 0);
+}
+.princing-item:hover .deco-layer--2 {
+  -webkit-transform: translate3d(-15px, 0, 0);
+  transform: translate3d(-15px, 0, 0);
+}
 
 
 
