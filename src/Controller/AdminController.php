@@ -73,7 +73,7 @@ class AdminController extends AbstractController
             // msg flash confirmation
             $this->addFlash(
                 'success',
-                'joueur mis a jour !'
+                'Le joueur a bien été mis à jour !'
             );
             // on redirige vers la page d'administration des joueurs
              return $this->redirectToRoute('admin_users');
@@ -101,7 +101,7 @@ class AdminController extends AbstractController
         // msg flash confirmation
         $this->addFlash(
             'success',
-            'joueur supprimer !'
+            'Le joueur a bien été supprimé !'
         );
         // on redirige vers la liste des joueurs
         return $this->redirectToRoute('admin_users');
