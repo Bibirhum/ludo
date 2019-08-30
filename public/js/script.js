@@ -1,5 +1,15 @@
 var big_image;
 
+function turnArrowInfo() {
+  var element = document.getElementById("info");
+  element.classList.toggle("arrow");
+}
+function turnArrowJeux() {
+  var element = document.getElementById("jeux");
+  element.classList.toggle("arrow");
+}
+
+
 $(document).ready(function() {
   BrowserDetect.init();
 

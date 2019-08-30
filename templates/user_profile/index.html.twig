@@ -10,12 +10,13 @@
   <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
   
 <div class="page-header header-filter" data-parallax="true"></div>
+
   
-  
-  
-  <div class="main main-raised w-50 mx-auto">
+  <div class="main main-raised mx-auto">
 
 		<div class="profile-content" >
+
+
       {% if is_granted('IS_AUTHENTICATED_FULLY')%}
     
       {% endif %}
@@ -43,8 +44,8 @@
               <div id="accordion" role="tablist">
                 <div class="profile-tabs">
                   <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
-                    <li class="nav-item">
-                      <a class="nav-link dropdown-toggle" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <li class="nav-item show">
+                      <a id="info" class="nav-link arrow dropdown-toggle" data-toggle="collapse" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" onclick="turnArrowInfo()">
                       <i class="fas fa-user"></i>
                       <h4>Mes infos</h4>
                       </a>
@@ -90,7 +91,7 @@
             <div class="profile-tabs">
               <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
                 <li class="nav-item">
-                  <a class="nav-link dropdown-toggle" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+                  <a id="jeux" class="nav-link arrow dropdown-toggle" data-toggle="collapse" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" onclick="turnArrowJeux()">
                   <i class="fas fa-dice-six"></i>
                       <h4>Mes jeux</h4>
                   </a>
@@ -108,9 +109,12 @@
 
       <div id="collapseTwo" class="collapse show" role="tabpanel" aria-labelledby="headingOne">
         <div class="tab-content tab-space ml-5 mr-5">
-            <div class="row">
+              
+              
+              <div class="row d-flex justify-content-center">
+
               {% if is_granted('IS_AUTHENTICATED_FULLY')%}
-              <div class="col-md-3">
+              <div class="col-lg-4 col-md-5 col-10 pb-2 pt-2">
                 <div class="card">
                   <div class="card-header">
                   <h3>
@@ -125,45 +129,61 @@
                 </div>
               </div>
               {% endif %}
+
+              {# </div>
+
+              <div class="row d-flex justify-content-center"> #}
               
               {% for item in user_game %}
+                
 
-              <div class="col-md-3">
-                <div class="card">
-                <div class="card-header">
-                <h3>{{ item.games.name }}</h3>
-                </div>
-                  {# à modifier avec asset pour accueillir les vraies images   #}
-                  <img class="card-img-top" src="{{ item.games.thumbnail }}" alt="Card image cap">
-                  <div class="card-body">
-                    <h6>Catégorie : {{ item.games.category.name }}</h6>
-                    <h6>Commentaire :</h6> 
-                    <p>{% if item.commentary %}
-                    <em>{{ item.commentary}}</em> {% else %}
-                    <em>Pas encore de commentaire</em> {% endif %}</p>
-                    <h6>Note perso :</h6> {% if item.rating %}
-                    {{ item.rating }}/5
-                    {% else %}<p><em>Pas encore de note</em></p>{% endif %}
-                    <br>
-                    {% if item.playsGame == 1 %}
-                     <i class="far fa-thumbs-up"></i>
-                    J'y joue !
-                    {% endif %}
-                    {% if item.ownsGame == 1 %}
-                    <br><i class="far fa-hand-paper"></i>
-                    </i>Je l'ai !
-                    {% endif %}
-                    {% if item.playsGame == 0 and item.ownsGame == 0 %}
-                    <br><i class="far fa-smile-wink"></i>  Je suis intéressé(e) !
-                    {% endif %} 
-                    <a href="{{ path('edit_user_game', {'id' : item.games.id}) }}" class="btn-primary mt-2">Modifier mon avis</a>
-                    <a href="{{ path('game_details', {'id' : item.games.id}) }}" class="btn-primary mt-2">Fiche du jeu</a>
 
-                  </div>
-                </div>
+            <div class="col-lg-4 col-md-5 col-10 pb-2 pt-2">
+                
+                  <div class="card">
+                      <div class="card-header">
+                      <h3>{{ item.games.name }}</h3>
+                      </div>
+                              {# à modifier avec asset pour accueillir les vraies images   #}
+                      <img class="card-img-top" src="{{ item.games.thumbnail }}" alt="Card image cap">
+                      <div class="card-body">
+                            <h6>Catégorie : {{ item.games.category.name }}</h6>
+                            <h6>Commentaire :</h6> 
+                            <p>{% if item.commentary %}
+                            <em>{{ item.commentary}}</em> {% else %}
+                            <em>Pas encore de commentaire</em> {% endif %}</p>
+                            <h6><b>Note perso : </b>{% if item.rating %}
+                            {{ item.rating }}/5{% else %}Pas encore de note{% endif %}</h6>
+
+
+                            <p>
+                                {% if item.playsGame == 1 %}
+                            <i class="far fa-thumbs-up"></i>
+                            J'y joue !</p>
+                                {% endif %}
+                            {% if item.ownsGame == 1 %}
+                            <i class="far fa-hand-paper"></i>
+                            </i>Je l'ai !</p>
+                                {% endif %}
+                            {% if item.playsGame == 0 and item.ownsGame == 0 %}
+                            <i class="far fa-smile-wink"></i>  Je suis intéressé(e) !</p>
+                                {% endif %}
+                            </p>
+                       <div class="mb-2">
+                            <a href="{{ path('edit_user_game', {'id' : item.games.id}) }}" class="btn-primary mt-2">Modifier mon avis</a>
+                                 </div>
+                            <a href="{{ path('game_details', {'id' : item.games.id}) }}" class="btn-primary mt-2">Fiche du jeu</a>
+
+
+
+
+                      </div>
+                    </div>
+                  
               </div>
               {% endfor %}
-            </div>
+
+              </div>
         </div>
       </div>
 

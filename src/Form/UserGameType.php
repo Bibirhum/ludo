@@ -15,6 +15,7 @@ class UserGameType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
             ->add('rating', IntegerType::class, [
                 'label' => 'Ma note (entre 0 et 5) :',
@@ -42,7 +43,6 @@ class UserGameType extends AbstractType
                         'oui' => 1,
                         'non' => 0],
                     'label' => 'Je possède ce jeu ?'])
-
             ->add('submit', SubmitType::class, ['label' => 'Mettre à jour'])
         ;
         ;

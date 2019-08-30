@@ -59,11 +59,13 @@ class UserGamesController extends AbstractController
             $form_type = 'create';
         }
 
+
+
         $form = $this->createForm(UserGameType::class, $userGame);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $buttonSend = 'sent';
+            
 
             if ($userGame->getUsers() === null) {
                 $userGame->setUsers($this->getUser());
@@ -75,11 +77,13 @@ class UserGamesController extends AbstractController
             $objectManager->flush();
 
             if ($form_type === 'update') {
+                $buttonSend = 'sent';
                 $this->addFlash(
                     'success',
                     'Votre avis sur ce jeu a bien été mis à jour'
                 );
             } else {
+                $buttonSend = 'sent';
                 $this->addFlash(
                     'success',
                     'Ce jeu a bien été ajouté à votre ludothèque'
@@ -92,7 +96,6 @@ class UserGamesController extends AbstractController
         return $this->render('user_games/usergames.html.twig', [
             'usergame_form' => $form->createView(),
             'game' => $game,
-            'usergame' => $userGame,
             'form_type' => $form_type,
             'buttonSend' => $buttonSend,
         ]);

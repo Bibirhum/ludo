@@ -32,6 +32,9 @@ class GameController extends AbstractController
      */
     public function searchGames(Request $request, GameRepository $gameRepository, Game $game = null)
     {
+
+
+
         $gameSearchForm = $this->createFormBuilder($game)
             ->add('name', TextType::class, [
                 'label' => 'Nom',
@@ -61,6 +64,7 @@ class GameController extends AbstractController
             ])
             ->add('submit', SubmitType::class)
             ->getForm();
+        
 
         $gameSearchForm->handleRequest($request);
 
