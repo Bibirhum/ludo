@@ -50,6 +50,32 @@ h1,h2{
   margin-bottom: 2rem;
 }
 
+/* footer */
+
+footer{
+  background-color: rgba(8, 3, 37, 1);
+  margin-top: 10px;
+  color: #fff;
+  padding: 25px;
+  font-weight: 300;
+  text-align: center;
+  
+}
+.footer p{
+  margin-bottom: 0;
+  font-size: 14px;
+  margin: 0 0 10px;
+  font-weight: 300;
+}
+footer p a{
+  color: #555;
+  font-weight: 400;
+}
+
+footer p a:hover {
+  color: rgba(246, 140, 15, 1);
+  text-decoration: none;
+}
 
 
 
