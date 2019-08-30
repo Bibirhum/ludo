@@ -101,6 +101,7 @@ class GameController extends AbstractController
             'games' => $game,
         ]);
     }
+
     /**
      * @Route("/admin/game/add", name="add_game")
      * @Route("/game/edit/{id<\d+>}", name="edit_game")
@@ -184,5 +185,55 @@ class GameController extends AbstractController
         //dd($tags);
 
         return $this->json($games);
+    }
+
+    /**
+     * @Route("/admin/game/api", name="add_game")
+     */
+    public function addGameApi(
+        Request $request,
+        ObjectManager $objectManager,
+        Game $game = null
+    )
+    {
+        $json = file_get_contents('https://www.boardgameatlas.com/api/search?name=Catan&fields=name,min_players,max_players,max_playtime,min_age&client_id=ZoLjExzjNm');
+
+        $gameInfos = json_decode($json, true);
+
+        //dd($gameInfos);
+        $gameArray = [];
+
+        foreach ($gameInfos['games'] as $result) {
+            $gameArray[] = $result;
+        }
+
+
+        /*$gameForm = $this->createForm(GameType::class, $game);
+        $gameForm->handleRequest($request);
+        if ($gameForm->isSubmitted() && $gameForm->isValid()) {
+            // on ne fait ce traitement que si une image a bien été envoyée
+            if ($game->getImageFile() !== null) {
+                // on gère ici le déplacement du fichier uploadé depuis la localisation temporaire
+                // vers la localisation permanente (public/uploads)
+                $imageFile = $game->getImageFile();
+                $folder = 'uploads/game';
+                $fileName = uniqid();
+                $imageFile->move($folder, $fileName);
+                $game->setImage($folder . DIRECTORY_SEPARATOR . $fileName);
+                $game->setThumbnail($folder . DIRECTORY_SEPARATOR . $fileName);
+            }
+            // on insère le nouveau jeu dans la BDD
+            $objectManager->persist($game);
+            $objectManager->flush();
+            // on redirige vers la page d'administration des jeux
+            return $this->redirectToRoute('admin_games');
+        }*/
+
+        return $this->render('admin/editgameapi.html.twig', [
+            //'game_form' => $gameForm->createView(),
+            //'game' => $game,
+           // 'form_type' => $form_type,
+            'game_array' => $gameArray,
+        ]);
     }
 }
