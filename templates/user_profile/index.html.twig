@@ -129,7 +129,7 @@
                 <h3>{{ item.games.name }}</h3>
                 </div>
                   {# à modifier avec asset pour accueillir les vraies images   #}
-                  <img class="card-img-top" src="{{ item.games.thumbnail }}" alt="Card image cap">
+                  <img class="card-img-top" src="{{ asset(item.games.image) }}" alt="Card image cap">
                   <div class="card-body">
                     <h6>Catégorie : {{ item.games.category.name }}</h6>
                     <h6>Commentaire :</h6> 
