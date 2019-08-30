@@ -1,5 +1,15 @@
 var big_image;
 
+function turnArrowInfo() {
+  var element = document.getElementById("info");
+  element.classList.toggle("arrow");
+}
+function turnArrowJeux() {
+  var element = document.getElementById("jeux");
+  element.classList.toggle("arrow");
+}
+
+
 $(document).ready(function() {
   BrowserDetect.init();
 
@@ -139,7 +149,7 @@ materialKit = {
   },
 
   checkScrollForTransparentNavbar: debounce(function() {
-    if ($(document).scrollTop()) {
+    if ($(document).scrollTop() > scroll_distance) {
       if (materialKit.misc.transparent) {
         materialKit.misc.transparent = false;
         $('.navbar-color-on-scroll').removeClass('navbar-transparent');

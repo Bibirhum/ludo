@@ -51,10 +51,13 @@
             {{ form_row(usergame_form.commentary) }}
             {{ form_row(usergame_form.playsGame) }}
             {{ form_row(usergame_form.ownsGame) }}
+            {% if buttonSend == 'sent' %}
+                {{ form_row(usergame_form.submit, {'attr': {'class':'displayNone'}}) }}
+            {% endif %}
             {% if form_type == 'update' %}
-                {{ form_row(usergame_form.submit, {'label': 'Mettre à jour'}) }}
+                {{ form_row(usergame_form.submit, {'label': 'Mettre à jour', 'label_attr': {'class':'formFields'}}) }}
             {% else %}
-                {{ form_row(usergame_form.submit, {'label': 'Ajouter'}) }}
+                {{ form_row(usergame_form.submit, {'label': 'Ajouter', 'label_attr': {'class':'formFields'}}) }}
             {% endif %}
         {{ form_end(usergame_form) }}
 
@@ -65,5 +68,6 @@
 {% endblock %}
 
 {% block javascripts %}
+{{ parent() }}
     <script src="https://kit.fontawesome.com/cef3058f65.js"></script>
 {% endblock %}

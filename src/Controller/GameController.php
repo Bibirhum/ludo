@@ -22,6 +22,14 @@ class GameController extends AbstractController
      */
     public function show(Game $game)
     {
+
+        
+        // $nb = 0;
+        // if (is_array($liste_nombres)) foreach($liste_nombres as $nombre){
+        //         $nb += empty($nombre) ? 0 : 1;
+        // }
+        // return $nb;
+
         return $this->render('game/gamedetails.html.twig', [
             'game' => $game
         ]);
@@ -32,6 +40,9 @@ class GameController extends AbstractController
      */
     public function searchGames(Request $request, GameRepository $gameRepository, Game $game = null)
     {
+
+
+
         $gameSearchForm = $this->createFormBuilder($game)
             ->add('name', TextType::class, [
                 'label' => 'Nom',
@@ -61,6 +72,7 @@ class GameController extends AbstractController
             ])
             ->add('submit', SubmitType::class)
             ->getForm();
+        
 
         $gameSearchForm->handleRequest($request);
 

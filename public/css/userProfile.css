@@ -21,11 +21,15 @@ a.change:hover, .navbar a:hover, .navbar .nav-item a.nav-link:hover{
 }
 
 /* card */
+.cardPosition{
+    justify-content: center;
+}
 .card{
     text-align: center;
 }
-.add_circle_outline{
+.fa-plus-circle, .add_circle_outline{
     font-size: 50px;
+    padding: 20px;
 }
 
 
@@ -173,6 +177,7 @@ body{
     background: #FFF;
     position: relative;
     z-index: 3;
+    width: 90%;
 }
 
 
@@ -376,9 +381,11 @@ img.rounded {
     background-color: rgba(246, 140, 15, 1);
     color: #FFF;
 }
-.show .dropdown-toggle:after {
+
+.arrow:after {
     transform: rotate(180deg);
 }
+
 
 .dropdown-toggle:after {
     will-change: transform;
@@ -448,3 +455,48 @@ footer p a:hover {
     color: rgba(246, 140, 15, 1);
     text-decoration: none;
 }
+
+    
+/* Animation Card */
+.princing-item {
+    transition: all 150ms ease-out;
+  }
+  .princing-item:hover {
+    transform: scale(1.05);
+  }
+  .princing-item:hover .deco-layer--1 {
+    -webkit-transform: translate3d(15px, 0, 0);
+    transform: translate3d(15px, 0, 0);
+  }
+  .princing-item:hover .deco-layer--2 {
+    -webkit-transform: translate3d(-15px, 0, 0);
+    transform: translate3d(-15px, 0, 0);
+  }
+
+
+
+/* RESPONSIVE DESIGN */
+@media (min-width: 1200px){
+	.main {
+        width: 50%;
+    }
+    .cardPosition{
+        justify-content: left;
+    }
+}
+@media (min-width: 768px) and (max-width: 1999.98px){
+	.main {
+        width: 70%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
